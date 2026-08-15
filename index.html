@@ -125,14 +125,13 @@
   <!-- ══════════ STORY ══════════ -->
   <section class="section tint" id="story">
     <div class="floaters" aria-hidden="true">
-          <span class="floater l" style="--t:10%;--sz:148px;--rot:-9deg;--spd:1.5"><img src="photos/wrap.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
-          <span class="floater r" style="--t:58%;--sz:118px;--rot:11deg;--spd:-1.2"><img src="photos/trilece.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
+          <span class="floater l" style="--t:14%;--sz:148px;--rot:-9deg;--spd:1.5"><img src="photos/wrap.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
         </div>
     <div class="shell story-grid">
       <div class="story-copy">
         <p class="eyebrow reveal">Our Story</p>
-        <h2 class="reveal" data-delay="1">A family kitchen at number 43</h2>
-        <p class="reveal" data-delay="2">
+        <h2 class="reveal" data-delay="1">A family kitchen<br>at number 43</h2>
+        <p class="drop reveal" data-delay="2">
           Pitta Corner sits a few minutes from Wood Green tube — a family-run Greek
           and Cypriot kitchen in a parade of shops, with a dark blue front and window
           boxes spilling over with petunias. People spot the flowers first and the
@@ -149,16 +148,23 @@
           potatoes, tzatziki and spicy feta mixed in-house.
         </p>
       </div>
-      <aside class="card-blue reveal" data-delay="2">
-        <h3>Open every day</h3>
-        <p class="sub">43 High Road, N22 6BH</p>
-        <ul class="hours">
-          <li><span>Monday – Sunday</span><b>8:00 – 23:00</b></li>
-          <li><span>Breakfast &amp; coffee</span><b>From 8:00</b></li>
-          <li><span>Grill &amp; kitchen</span><b>All day</b></li>
-          <li><span>Lamb Souvla</span><b>Pre-order only</b></li>
-        </ul>
-      </aside>
+
+      <div class="story-stack">
+        <figure class="story-photo">
+          <img src="photos/shopfront.jpg" alt="The Pitta Corner shopfront on the High Road, window boxes in flower"
+               width="1206" height="869" loading="lazy" decoding="async">
+        </figure>
+        <aside class="card-blue">
+          <h3>Open every day</h3>
+          <p class="sub">43 High Road, N22 6BH</p>
+          <ul class="hours">
+            <li><span>Monday – Sunday</span><b>8:00 – 23:00</b></li>
+            <li><span>Breakfast &amp; coffee</span><b>From 8:00</b></li>
+            <li><span>Grill &amp; kitchen</span><b>All day</b></li>
+            <li><span>Lamb Souvla</span><b>Pre-order only</b></li>
+          </ul>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -504,7 +510,7 @@
       </section>
 
       <!-- SOYVLAKI PITA WRAP -->
-      <section class="mgroup" data-cat="wraps">
+      <section class="mgroup flip" data-cat="wraps">
         <figure class="dish-photo">
             <img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips, in Pitta Corner paper" width="1200" height="900"
                  loading="lazy" decoding="async">
@@ -562,7 +568,7 @@
       </section>
 
       <!-- SKEPASTI -->
-      <section class="mgroup" data-cat="skepasti">
+      <section class="mgroup flip" data-cat="skepasti">
         <figure class="dish-photo">
             <img src="photos/skepasti.jpg" alt="Skepasti — open pitta loaded with chips and grated cheese" width="1200" height="900"
                  loading="lazy" decoding="async">
@@ -754,6 +760,43 @@
     </div>
   </section>
 
+
+  <!-- ══════════ TICKER ══════════ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-row">
+        <span>Souvlaki</span><i></i>
+        <span>Kalamaki</span><i></i>
+        <span>Gyros</span><i></i>
+        <span>Souvla</span><i></i>
+        <span>Skepasti</span><i></i>
+        <span>Kokoretsi</span><i></i>
+        <span>Loukaniko</span><i></i>
+        <span>Halloumi</span><i></i>
+        <span>Tzatziki</span><i></i>
+        <span>Trokafteri</span><i></i>
+        <span>Dakos</span><i></i>
+        <span>Saganaki</span><i></i>
+        <span>Trilece</span><i></i>
+        <span>Baklava</span><i></i>
+        <span>Kadaifi</span><i></i>
+        <span>Souvlaki</span><i></i>
+        <span>Kalamaki</span><i></i>
+        <span>Gyros</span><i></i>
+        <span>Souvla</span><i></i>
+        <span>Skepasti</span><i></i>
+        <span>Kokoretsi</span><i></i>
+        <span>Loukaniko</span><i></i>
+        <span>Halloumi</span><i></i>
+        <span>Tzatziki</span><i></i>
+        <span>Trokafteri</span><i></i>
+        <span>Dakos</span><i></i>
+        <span>Saganaki</span><i></i>
+        <span>Trilece</span><i></i>
+        <span>Baklava</span><i></i>
+        <span>Kadaifi</span><i></i>
+    </div>
+  </div>
+
   <!-- ══════════ REVIEWS ══════════ -->
   <section class="section tint" id="reviews">
     <div class="floaters" aria-hidden="true">
@@ -768,11 +811,18 @@
            score from Haringey. The numbers below are the public ones, unedited.</p>
         <div class="rule"><i></i></div>
       </div>
-      <div class="ratings stagger">
-        <div class="rating"><strong>5.0</strong><span class="src">Just Eat</span><em>900+ ratings</em></div>
-        <div class="rating"><strong>4.5</strong><span class="src">Uber Eats</span><em>Delivery rating</em></div>
-        <div class="rating"><strong>4.2</strong><span class="src">Restaurant Guru</span><em>582 reviews</em></div>
-        <div class="rating"><strong>5</strong><span class="src">Food Hygiene</span><em>Haringey, Nov 2024</em></div>
+      <div class="reviews-grid">
+        <div class="rating-hero">
+          <span class="stars" aria-hidden="true"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span>
+          <strong>5.0</strong>
+          <span class="src">Just Eat</span>
+          <em>Averaged over 900+ ratings</em>
+        </div>
+        <ul class="rating-list">
+          <li><b>4.5</b><span>Uber Eats</span><em>Delivery rating</em></li>
+          <li><b>4.2</b><span>Restaurant Guru</span><em>582 reviews</em></li>
+          <li><b>5</b><span>Food Hygiene</span><em>Haringey Council, Nov 2024</em></li>
+        </ul>
       </div>
       <div class="quotes stagger">
         <blockquote class="quote">

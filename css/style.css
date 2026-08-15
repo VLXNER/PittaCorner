@@ -318,11 +318,52 @@ button{font:inherit;cursor:pointer;}
 }
 
 /* ═══════════ STORY ═══════════ */
-.story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,84px);align-items:center;}
+.story-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(36px,6vw,80px);
+  align-items:center;}
 .story-copy p{color:var(--ink-700);}
-.pull{border-left:2px solid var(--gold-500);padding:6px 0 6px 24px;margin:28px 0;
-  font-family:var(--font-display);font-size:1.25rem;font-style:italic;
+/* A dropped initial. It is the oldest trick in restaurant printing and it
+   does more for the page than any amount of gradient. */
+.story-copy .drop::first-letter{
+  float:left;font-family:var(--font-display);font-weight:600;
+  font-size:3.5em;line-height:.78;color:var(--blue-900);
+  padding:.06em .1em 0 0;}
+.pull{position:relative;padding:2px 0 2px 46px;margin:30px 0;
+  font-family:var(--font-display);font-size:1.28rem;font-style:italic;
   line-height:1.55;color:var(--blue-900);}
+.pull::before{content:"\201C";position:absolute;left:0;top:.06em;
+  font-family:var(--font-display);font-style:normal;font-size:3.4em;line-height:.72;
+  color:var(--gold-500);}
+
+/* The shopfront and the hours card, overlapped and offset rather than
+   stacked in a tidy column — the arrangement is what makes it read as a
+   spread instead of a form. */
+.story-stack{position:relative;}
+.story-photo{margin:0 0 0 auto;width:92%;overflow:hidden;border-radius:var(--r-md);
+  border:1px solid var(--cream-300);background:var(--cream-200);aspect-ratio:1;
+  box-shadow:0 34px 60px -34px rgba(20,27,40,.45);}
+.story-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.story-stack .card-blue{position:relative;z-index:2;
+  width:min(100%,340px);margin:-84px auto 0 0;padding:clamp(24px,2.6vw,32px);
+  box-shadow:0 40px 72px -30px rgba(15,42,92,.62);}
+
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .story-stack{view-timeline-name:--story;view-timeline-axis:block;}
+    .story-photo img{animation:story-pan linear both;
+      animation-timeline:--story;animation-range:cover;}
+    @keyframes story-pan{from{transform:scale(1.12) translateY(-3%);}
+                         to  {transform:scale(1.12) translateY(3%);}}
+    .story-stack .card-blue{animation:story-card linear both;
+      animation-timeline:--story;animation-range:cover;}
+    @keyframes story-card{from{transform:translateY(24px);}
+                          to  {transform:translateY(-18px);}}
+  }
+}
+
+@media (max-width:1040px){
+  .story-photo{width:100%;}
+  .story-stack .card-blue{width:100%;margin:-52px 0 0;}
+}
 .card-blue{background:var(--blue-900);color:var(--cream-50);padding:clamp(30px,4vw,44px);
   border-radius:var(--r-md);}
 .card-blue h3{font-size:1.5rem;margin-bottom:.2em;}
@@ -381,8 +422,8 @@ button{font:inherit;cursor:pointer;}
   border:3px solid rgba(201,154,44,.35);
   box-shadow:0 24px 50px -22px rgba(20,27,40,.6);
   transform:rotate(var(--rot));opacity:.9;}
-.floater.l{left:clamp(-70px,-2vw,0px);}
-.floater.r{right:clamp(-70px,-2vw,0px);}
+.floater.l{left:clamp(-38px,-1vw,-8px);}
+.floater.r{right:clamp(-38px,-1vw,-8px);}
 .floater img{width:100%;height:100%;object-fit:cover;display:block;}
 .on-blue .floater,.signature .floater{border-color:rgba(236,200,115,.4);}
 /* keep the reading column clear of them */
@@ -524,14 +565,47 @@ button{font:inherit;cursor:pointer;}
 .chip.is-active{background:var(--blue-900);border-color:var(--blue-900);color:var(--cream-50);}
 
 .mgroup{margin-bottom:clamp(44px,5vw,68px);}
-.mgroup.is-hidden{display:none;}
-/* A board with a photograph at the top gets its heading pulled left and
-   set against the picture, rather than centred under it like the rest. */
-.mgroup:has(> .dish-photo) .mhead{text-align:left;}
+/* A board with a photograph becomes a spread: the picture holds one side
+   and sticks while the dishes scroll past it on the other. Full-width
+   photo, then heading, then list, was costing most of a screen per group
+   before a single price appeared. The side alternates down the page.
+   Browsers without :has() keep the stacked version, which still works. */
+.mgroup:has(> .dish-photo){
+  display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+  gap:0 clamp(28px,4vw,58px);align-items:start;}
+.mgroup:has(> .dish-photo) > .dish-photo{
+  grid-column:1;grid-row:1 / span 2;align-self:start;
+  position:sticky;top:126px;margin:0;}
+.mgroup:has(> .dish-photo) > .dish-photo img{aspect-ratio:4/5;}
+.mgroup:has(> .dish-photo) > .mhead{grid-column:2;grid-row:1;text-align:left;}
+.mgroup:has(> .dish-photo) > .dishes,
+.mgroup:has(> .dish-photo) > .plist{grid-column:2;grid-row:2;grid-template-columns:1fr;}
 .mgroup:has(> .dish-photo) .mhead .rule{justify-content:flex-start;}
 .mgroup:has(> .dish-photo) .mhead .rule::after{display:none;}
 .mgroup:has(> .dish-photo) .mhead .dish-mark{margin-left:0;}
 .mgroup:has(> .dish-photo) .mhead .note{margin-left:0;}
+
+.mgroup.flip:has(> .dish-photo){grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);}
+.mgroup.flip:has(> .dish-photo) > .dish-photo{grid-column:2;}
+.mgroup.flip:has(> .dish-photo) > .mhead,
+.mgroup.flip:has(> .dish-photo) > .dishes,
+.mgroup.flip:has(> .dish-photo) > .plist{grid-column:1;}
+
+@media (max-width:900px){
+  .mgroup:has(> .dish-photo){grid-template-columns:1fr;}
+  .mgroup:has(> .dish-photo) > .dish-photo{grid-column:1;grid-row:1;
+    position:static;margin-bottom:clamp(20px,3vw,30px);}
+  .mgroup:has(> .dish-photo) > .dish-photo img{aspect-ratio:3/2;}
+  .mgroup:has(> .dish-photo) > .mhead{grid-column:1;grid-row:2;}
+  .mgroup:has(> .dish-photo) > .dishes,
+  .mgroup:has(> .dish-photo) > .plist{grid-column:1;grid-row:3;}
+}
+
+/* Declared after the :has() spreads above and carrying the id, because
+   `.mgroup:has(.dish-photo){display:grid}` and `.mgroup.is-hidden` have
+   equal specificity — source order alone let the spread win and the
+   category filter stopped hiding every photo-led group. */
+#menu-groups .mgroup.is-hidden{display:none;}
 .mhead{text-align:center;margin-bottom:clamp(24px,3vw,36px);
   view-timeline-name:--head;view-timeline-axis:block;}
 /* Line-art dish marks. Deliberately drawings, not photographs: nobody
@@ -622,23 +696,89 @@ button{font:inherit;cursor:pointer;}
 .drinks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,44px);}
 .drink-col h3{font-size:1.14rem;margin-bottom:.7em;}
 
+/* ═══════════ TICKER ═══════════
+   A slow run of the shop's own dish names between two light sections.
+   The list is written out twice and translated exactly -50%, so the
+   second copy lands where the first began and the loop is seamless. It
+   is driven by document scroll, not a timer: it moves when the reader
+   moves, which is the difference between a decorated page and a page
+   that just has something spinning on it. Purely repetition of names
+   that appear on the board below, so it is aria-hidden. */
+.ticker{overflow:hidden;background:var(--blue-900);
+  border-block:1px solid rgba(246,230,189,.18);padding:clamp(13px,1.5vw,18px) 0;}
+.ticker-row{display:flex;align-items:center;gap:clamp(18px,2.4vw,32px);
+  width:max-content;white-space:nowrap;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.05rem,1.9vw,1.5rem);letter-spacing:.05em;
+  color:var(--gold-300);}
+.ticker-row i{flex:0 0 auto;width:6px;height:6px;transform:rotate(45deg);
+  background:var(--gold-500);}
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .ticker-row{animation:ticker-run linear both;animation-timeline:scroll(root block);}
+    @keyframes ticker-run{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  }
+}
+
 /* ═══════════ REVIEWS ═══════════ */
-.ratings{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,26px);
-         margin-bottom:clamp(30px,4vw,48px);}
-.rating{text-align:center;padding:24px 16px;border:1px solid var(--cream-300);
-        border-radius:var(--r-md);background:var(--cream-50);}
-.rating strong{display:block;font-family:var(--font-display);font-size:2.3rem;
-  font-weight:600;color:var(--blue-900);line-height:1;}
-.rating .src{display:block;font-weight:700;font-size:.86rem;color:var(--ink-900);margin-top:8px;}
-.rating em{display:block;font-style:normal;font-size:.76rem;color:var(--ink-600);}
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,32px);}
-.quote{margin:0;text-align:center;padding:0 clamp(4px,1vw,14px);}
-.quote .stars{display:flex;justify-content:center;gap:3px;color:var(--gold-500);margin-bottom:14px;}
+/* Four identical boxes gave four identical readings equal weight. The
+   5.0 across nine hundred ratings is the headline and now looks like it;
+   the other three sit beside it as a list. */
+.reviews-grid{display:grid;grid-template-columns:1.02fr .98fr;
+  gap:clamp(18px,2.6vw,32px);margin-bottom:clamp(30px,4vw,50px);}
+.rating-hero{position:relative;overflow:hidden;background:var(--blue-900);
+  color:var(--cream-50);border-radius:var(--r-md);
+  padding:clamp(30px,3.6vw,48px);
+  display:flex;flex-direction:column;justify-content:center;}
+.rating-hero::after{content:"";position:absolute;right:-70px;bottom:-90px;
+  width:280px;height:280px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(220,176,74,.26),transparent 68%);}
+.rating-hero > *{position:relative;}
+.rating-hero .stars{display:flex;gap:6px;color:var(--gold-300);margin-bottom:16px;}
+.rating-hero .stars .ico{width:21px;height:21px;fill:currentColor;stroke:none;}
+.rating-hero strong{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(3.8rem,7.6vw,6rem);line-height:.84;color:var(--gold-300);
+  letter-spacing:-.03em;}
+.rating-hero .src{display:block;margin-top:14px;font-size:1.16rem;font-weight:700;}
+.rating-hero em{font-style:normal;font-size:.75rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blue-200);}
+
+.rating-list{display:grid;gap:clamp(10px,1.2vw,14px);align-content:stretch;}
+.rating-list li{display:grid;grid-template-columns:max-content 1fr;gap:1px 20px;
+  align-content:center;padding:clamp(15px,1.7vw,20px) clamp(18px,2vw,26px);
+  background:var(--cream-50);border:1px solid var(--cream-300);border-radius:var(--r-md);
+  transition:border-color var(--t-mid) var(--e-soft),transform var(--t-mid) var(--e-out),
+             box-shadow var(--t-mid) var(--e-soft);}
+.rating-list li:hover{border-color:var(--gold-500);transform:translateX(5px);
+  box-shadow:-5px 0 0 -1px var(--gold-500);}
+.rating-list b{grid-row:1 / span 2;align-self:center;min-width:3.2ch;
+  font-family:var(--font-display);font-weight:600;font-size:clamp(1.9rem,2.6vw,2.4rem);
+  line-height:1;color:var(--blue-900);min-width:2ch;}
+.rating-list span{font-weight:700;font-size:1rem;align-self:end;color:var(--ink-900);}
+.rating-list em{font-style:normal;font-size:.78rem;color:var(--ink-600);align-self:start;}
+
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px);}
+.quote{position:relative;margin:0;text-align:left;background:var(--cream-50);
+  border:1px solid var(--cream-300);border-radius:var(--r-md);
+  padding:clamp(24px,2.6vw,32px);
+  transition:border-color var(--t-mid) var(--e-soft),transform var(--t-mid) var(--e-out),
+             box-shadow var(--t-mid) var(--e-soft);}
+.quote:hover{transform:translateY(-4px);border-color:var(--gold-500);
+  box-shadow:0 26px 46px -30px rgba(20,27,40,.5);}
+.quote::before{content:"\201C";position:absolute;right:16px;top:-2px;
+  font-family:var(--font-display);font-size:5rem;line-height:1;
+  color:var(--gold-300);pointer-events:none;}
+.quote > *{position:relative;}
+.quote .stars{display:flex;gap:3px;color:var(--gold-600);margin-bottom:14px;}
 .quote .stars .ico{width:15px;height:15px;fill:currentColor;stroke:none;}
-.quote p{font-family:var(--font-display);font-size:1.05rem;font-style:italic;
-  line-height:1.6;color:var(--ink-900);}
+.quote p{font-family:var(--font-display);font-size:1.06rem;font-style:italic;
+  line-height:1.6;color:var(--ink-900);margin-bottom:.8em;}
 .quote cite{font-style:normal;font-size:.72rem;font-weight:800;letter-spacing:.14em;
   text-transform:uppercase;color:var(--gold-700);}
+
+@media (max-width:900px){
+  .reviews-grid{grid-template-columns:1fr;}
+}
 
 /* ═══════════ ORDER ═══════════ */
 .order-links{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:920px;margin:0 auto;}
@@ -1009,7 +1149,7 @@ button{font:inherit;cursor:pointer;}
                         to{opacity:1;transform:none;}}
 
     /* cards and ratings lift a touch */
-    .platter-card,.burger-card,.rating,.quote{
+    .platter-card,.burger-card,.rating-hero,.rating-list li,.quote{
       animation:card-in linear both;animation-timeline:view();
       animation-range:entry 5% entry 50%;}
     @keyframes card-in{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
@@ -1045,7 +1185,6 @@ button{font:inherit;cursor:pointer;}
 @media (max-width:1040px){
   .pillars{grid-template-columns:repeat(2,1fr);}
   .drinks-grid{grid-template-columns:repeat(2,1fr);}
-  .ratings{grid-template-columns:repeat(2,1fr);}
   .quotes{grid-template-columns:1fr;}
   .story-grid,.visit-grid,.platter,.burgers,.bfast-grid{grid-template-columns:1fr;}
   .dishes{grid-template-columns:1fr;}
@@ -1066,7 +1205,7 @@ button{font:inherit;cursor:pointer;}
   .burger{display:flex;}
   .filter-wrap{top:0;}
   .filter{justify-content:flex-start;}
-  .pillars,.drinks-grid,.ratings,.footer-cols,.order-links{grid-template-columns:1fr;}
+  .pillars,.drinks-grid,.footer-cols,.order-links{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr;}
   .hero-facts{gap:22px;}
   .map{min-height:320px;}
