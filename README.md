@@ -49,15 +49,26 @@ python3 -m http.server 8000
 
 ## Deployment
 
-The site is published with GitHub Pages served straight from the `main` branch
-(**Settings → Pages → Source: Deploy from a branch → `main` → `/` (root)**).
-There is no build step and no deploy workflow — the files in the repository root
-are the site, so every push to `main` republishes it.
+Live site: **https://vlxner.github.io/PittaCorner/**
 
-`.nojekyll` is present to tell Pages to serve the files as-is instead of running
-them through Jekyll.
+Published to GitHub Pages by `.github/workflows/deploy-pages.yml`, which uploads
+the repository root as-is (the site is plain static files — there is no build
+step). `.nojekyll` tells Pages to serve them without running Jekyll.
 
-Live site: https://vlxner.github.io/PittaCorner/
+The workflow deploys on pushes to `claude/pitts-corner-website-ddxwpr`, **not**
+`main`. That is a workaround, not a preference: the `github-pages` environment
+carries a deployment branch policy pinned to that branch, because it was the
+repository default at the moment Pages was first enabled. Deploys from `main`
+are rejected before the job starts:
+
+```
+Branch "main" is not allowed to deploy to github-pages due to environment protection rules.
+```
+
+To move deployment onto `main`, add `main` to the allowed branches under
+**Settings → Environments → github-pages → Deployment branches**, then change the
+workflow's `on.push.branches` to `[main]`. Until then, publishing a change means
+merging it to `main` and then pushing that same commit to the deploy branch.
 
 ## Note
 
