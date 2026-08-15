@@ -47,6 +47,14 @@ python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
+## Deployment
+
+The site is published with GitHub Pages via `.github/workflows/deploy-pages.yml`.
+Every push to `main` uploads the repository root as-is (there is no build step)
+and deploys it. The workflow enables Pages on first run, so no manual setup is
+needed; the live URL appears in the workflow run's `deploy` job summary and under
+the repository's **Settings → Pages**.
+
 ## Note
 
 This is an unofficial, fan-built informational website created for demonstration
