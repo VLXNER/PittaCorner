@@ -392,13 +392,18 @@ button{font:inherit;cursor:pointer;}
    The photo is pinned and the copy scrolls over it. Deliberately NOT
    background-attachment:fixed — that stutters badly on iOS. A sticky
    layer is composited and stays smooth on a phone. */
-.band{position:relative;background:var(--blue-900);color:var(--cream-50);}
+/* Explicit height, and the copy absolutely positioned rather than pulled
+   up with a negative margin. The negative-margin version let the copy
+   render below the band's own box and overlap the section beneath, which
+   put dark heading text on top of a dark photograph. */
+.band{position:relative;height:180svh;background:var(--blue-900);color:var(--cream-50);}
 .band-media{position:sticky;top:0;height:100svh;overflow:hidden;}
 .band-media img{width:100%;height:100%;object-fit:cover;opacity:.55;}
 .band-media::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(15,42,92,.75),rgba(15,42,92,.35) 45%,rgba(15,42,92,.9));}
-.band-copy{position:relative;margin-top:-70svh;padding:0 clamp(20px,6vw,60px) 22svh;
-  max-width:640px;margin-inline:auto;text-align:center;}
+.band-copy{position:absolute;top:0;left:0;right:0;height:100svh;
+  display:grid;align-content:center;justify-items:center;
+  padding:0 clamp(20px,6vw,60px);max-width:680px;margin-inline:auto;text-align:center;}
 .band-copy h2{color:var(--cream-50);}
 .band-copy p{color:var(--blue-200);}
 .band-copy .eyebrow{color:var(--gold-300);}
@@ -438,8 +443,63 @@ button{font:inherit;cursor:pointer;}
 @media (max-width:1040px){ .album{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:640px){
   .album{grid-template-columns:1fr;}
+  .band{height:150svh;}
   .band-media{height:80svh;}
-  .band-copy{margin-top:-56svh;padding-bottom:18svh;}
+  .band-copy{height:80svh;}
+}
+
+
+/* ═══════════ PHOTO-BACKED SECTIONS ═══════════
+   A photograph behind a whole section, dimmed hard enough that the copy
+   over it still clears 4.5:1. The scrim is two layers: a flat navy wash
+   for contrast and a vertical gradient so the section edges blend into
+   the panels above and below rather than cutting off. */
+.has-bg{position:relative;isolation:isolate;overflow:hidden;}
+.has-bg::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background-image:var(--bg-img);background-size:cover;background-position:center;
+}
+.has-bg::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg,var(--blue-900),rgba(15,42,92,.82) 30%,
+                    rgba(15,42,92,.82) 70%,var(--blue-900)),
+    rgba(15,42,92,.72);
+}
+
+/* ═══════════ SECTION MOTION ═══════════
+   Scroll-driven, compositor-run, and only ever on decorative movement --
+   never on anything that changes what the text says. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    /* the backdrop photograph drifts slowly as its section passes */
+    .has-bg::before{animation:bg-drift linear both;animation-timeline:view();
+                    animation-range:cover;}
+    @keyframes bg-drift{from{transform:scale(1.14) translateY(-2.5%);}
+                        to{transform:scale(1.04) translateY(2.5%);}}
+
+    /* section headings rise as they come in */
+    .section-head{animation:head-in linear both;animation-timeline:view();
+                  animation-range:entry 5% entry 55%;}
+    @keyframes head-in{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+
+    /* menu photographs settle in with a slight scale */
+    .dish-photo{animation:photo-in linear both;animation-timeline:view();
+                animation-range:entry 0% entry 50%;}
+    @keyframes photo-in{from{opacity:0;transform:translateY(26px) scale(.97);}
+                        to{opacity:1;transform:none;}}
+
+    /* cards and ratings lift a touch */
+    .platter-card,.burger-card,.rating,.quote{
+      animation:card-in linear both;animation-timeline:view();
+      animation-range:entry 5% entry 50%;}
+    @keyframes card-in{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+
+    /* the gold rule draws itself outward */
+    .rule::before,.rule::after{animation:rule-draw linear both;
+      animation-timeline:view();animation-range:entry 10% entry 45%;}
+    @keyframes rule-draw{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  }
 }
 
 /* ═══════════ REVEAL ═══════════ */
