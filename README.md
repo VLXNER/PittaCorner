@@ -9,20 +9,50 @@ Live: **https://vlxner.github.io/PittaCorner/**
 ```
 index.html      The whole page: SVG sprite, hero, story, pillars, charcoal
                 band, how-it's-made sequence, platters, signature showcase,
-                full menu board, breakfast, drinks, ticker, reviews, order,
-                album, visit, allergens, footer, Restaurant JSON-LD
+                full menu board with search, breakfast, drinks, ticker,
+                reviews, order, FAQ, album with lightbox, visit, allergens,
+                footer, Restaurant + Menu + FAQPage JSON-LD
 css/style.css   Tokens, layout, motion, print sheet, high-contrast sheet
-js/script.js    Mobile nav, menu filter, scroll spy, reveal observer,
-                cursor-follow highlight. ~130 lines, and deliberately so —
-                every scroll-driven effect on the page is CSS
+js/script.js    Mobile nav, menu filter + search, lightbox, action bar,
+                open-now clock, scroll spy, reveal observer — every
+                scroll-driven effect on the page is still CSS
 fonts/          Manrope, Playfair Display, Kaushan Script (self-hosted)
-photos/         The restaurant's own photographs
+photos/         The restaurant's own photographs (+ generated WebP tiers)
 logos/          Just Eat, Deliveroo, Uber Eats marks
+icons/          PWA icons rendered from the badge
 docs/           Full transcription of the 2026 in-store menu
+404.html        Self-contained (Pages serves it for any missing path, so
+                relative links would break — everything is inline)
 ```
 
 No build step, no dependencies, no package.json. Run it with
 `python3 -m http.server 8000`.
+
+## Capabilities
+
+- **Menu search** — name, ingredient or board number, accent-insensitive,
+  with a live match count. Search overrides the category chips; choosing a
+  chip clears the search.
+- **Album lightbox** — native `<dialog>` (focus trap, Escape and
+  focus-restore come free), arrow keys, wraparound, preloaded neighbours.
+  The viewer image has no `src` until first opened.
+- **Mobile action bar** — Call / Order pinned to the thumb once the hero
+  scrolls away, hidden again wherever those CTAs already exist on screen.
+- **Live open state** — "Open now · till 11pm" pills computed in
+  Europe/London regardless of the visitor's clock, repainted every minute,
+  hidden entirely unless JS can confirm the time.
+- **FAQ** — six answers drawn only from facts already on the board, with
+  matching FAQPage JSON-LD; `beforeprint` opens every entry so the answers
+  actually print.
+- **Back-to-top** — desktop, scroll-driven reveal with the page's reading
+  progress drawn as a conic ring; no scroll listener.
+- **WebP delivery** — 26 generated tiers behind `<picture>`/`image-set()`;
+  measured at 1440px and 390px, the browser fetches zero JPEGs.
+- **Structured data** — the Restaurant block carries `hasMenu` with all 14
+  sections / 107 items (prices only where legible, diet markers from the
+  board's own tags), plus FAQPage.
+- **Installable** — web manifest + icons; also `404.html`, `robots.txt`,
+  `sitemap.xml`, and `prefers-reduced-data` support.
 
 ## Where the design comes from
 
@@ -131,7 +161,7 @@ nothing at all. It also forces `.reveal` / `.stagger` elements visible, since
 those sit at `opacity: 0` until an IntersectionObserver fires, and anything the
 reader had not scrolled past would otherwise print blank.
 
-## Two bugs worth not reintroducing
+## Bugs worth not reintroducing
 
 **`url()` in a custom property resolves against the stylesheet that substitutes
 it, not the one that declares it.** Writing `--bg-img: url(photos/grill.jpg)` on
@@ -146,6 +176,24 @@ and `.mgroup.is-hidden` are both `(0,2,0)`, so source order alone decided which
 won — and the `:has()` spread came later, which meant the menu category filter
 stopped hiding any photo-led group. Selecting *Fish* showed six categories. The
 hide rule carries the id now (`#menu-groups .mgroup.is-hidden`).
+
+**Centre-justified flex content in an overflow scroller clips its leading items**
+with no way to scroll to them — `scrollLeft` cannot go negative. Once the search
+box sat beside the chips, the row always overflowed and the *All* chip became
+unclickable. `justify-content:flex-start` on anything that scrolls.
+
+**An author `display` beats the `[hidden]` attribute.** `#search-clear` got
+`display:grid` for centring and quietly became always-visible; the CSS restates
+`#search-clear[hidden]{display:none}`.
+
+**A registered custom property with `inherits:false` never reaches a pseudo.**
+The back-to-top progress ring paints on `::before`, so animating `--p` on the
+button did nothing — the animation has to live on the `::before` itself.
+
+**An anchor to a sticky element scrolls nowhere.** The header carried
+`id="top"`, and a sticky header is by definition already at the viewport top,
+so `href="#top"` had nothing to do. With no element named `top`, the HTML spec
+falls back to scrolling to the document start — so the id is gone.
 
 ## Design skills (`.claude/skills/`)
 

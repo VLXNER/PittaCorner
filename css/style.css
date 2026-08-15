@@ -1500,6 +1500,10 @@ button{font:inherit;cursor:pointer;}
 
   /* the board itself */
   #menu-groups .mgroup.is-hidden{display:block !important;}   /* print every category */
+  /* and every dish: a search left running must not thin out the print */
+  #menu-groups .mgroup.is-empty{display:block !important;}
+  #menu-groups .dish.is-off{display:block !important;}
+  #menu-groups .plist > li.is-off{display:flex !important;}
   .mgroup{break-inside:auto;margin-bottom:6mm;display:block !important;}
   .mhead{text-align:left !important;margin-bottom:3mm;}
   .dishes{grid-template-columns:1fr 1fr !important;gap:0 8mm !important;}
