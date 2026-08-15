@@ -1,4 +1,29 @@
 /* =========================================================
+   Self-hosted fonts — no request to Google.
+
+   Manrope ships as a variable font, so one 24KB file covers every
+   weight the site uses (400 body through 800 headings) instead of five
+   static files. Kaushan Script is only ever set in the wordmark, so it
+   is subset to basic latin plus the punctuation a short brand string
+   might need — 35KB down to 16KB. Both are SIL OFL; licences are in
+   /fonts. See fonts/README.md to regenerate.
+   ========================================================= */
+@font-face{
+  font-family:'Manrope';
+  font-style:normal;
+  font-weight:200 800;
+  font-display:swap;
+  src:url('../fonts/manrope-latin-variable.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Kaushan Script';
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url('../fonts/kaushan-script-latin-400.woff2') format('woff2');
+}
+
+/* =========================================================
    Pitta Corner — 43 High Road, Wood Green
    Palette lifted from the shopfront and the printed menu board:
      turquoise script sign, dark slate fascia, petrol-blue window
