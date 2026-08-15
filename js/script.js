@@ -168,7 +168,10 @@
       });
       allGroups.forEach(g =>
         g.classList.toggle('is-empty', !g.querySelector('.dish:not(.is-off), .plist > li:not(.is-off)')));
-      const shown = raw.trim();
+      // clamp the echo: this line lands in an aria-live region, and a
+      // 500-character paste must not be read back in full
+      const t = raw.trim();
+      const shown = t.length > 40 ? t.slice(0, 40) + '\u2026' : t;
       scount.textContent = n
         ? `${n} ${n === 1 ? 'dish' : 'dishes'} match “${shown}”`
         : `Nothing on the board matches “${shown}” — try a simpler word`;
