@@ -140,6 +140,20 @@ Pages was first enabled. It does not run for other branches. To move deploys ont
 Actions from `main`, add `main` under **Settings → Environments → github-pages →
 Deployment branches** and change the workflow's `on.push.branches` to `[main]`.
 
+### Never commit credentials here
+
+Pages serves the repository root **verbatim**, dotfiles included (`.nojekyll`
+disables Jekyll's usual filtering). Anything committed is publicly fetchable
+under the site URL — `secret.json` in the root is `…github.io/PittaCorner/secret.json`.
+
+The realistic way that happens is tooling writing config into the repo. In
+particular, `claude mcp add --scope project` writes `.mcp.json` to the repo root
+with any `--header` values inline, API keys and all. Use the default `local`
+scope or `--scope user` so it lands in `~/.claude.json` instead. `.gitignore`
+covers `.mcp.json`, `.claude.json`, `.env*` and `*.pem` as a backstop, but that
+only helps for untracked files — it will not un-publish something already
+committed. If a key does reach a commit here, treat it as public and rotate it.
+
 ## Note
 
 This is an unofficial, informational website. It is not affiliated with or

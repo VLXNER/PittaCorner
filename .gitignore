@@ -1,3 +1,16 @@
+# Secrets — GitHub Pages serves this repository's root verbatim, so anything
+# committed here is publicly fetchable under the site URL. Keep credentials out.
+#
+# `claude mcp add --scope project` writes .mcp.json into the repo root with any
+# --header values inline, API keys included. Use the default local scope, or
+# --scope user, so it lands in ~/.claude.json instead. This ignore is the
+# backstop for when that is forgotten.
+.mcp.json
+.claude.json
+.env
+.env.*
+*.pem
+
 # Python bytecode — regenerated whenever the .claude/skills tooling runs
 __pycache__/
 *.py[cod]
