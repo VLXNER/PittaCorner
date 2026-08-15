@@ -171,20 +171,42 @@ button{font:inherit;cursor:pointer;}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 
-/* ═══════════ HERO ═══════════ */
-.hero{position:relative;text-align:center;padding:clamp(56px,8vw,100px) 0 clamp(48px,6vw,80px);}
-.hero-badge{width:96px;height:96px;margin:0 auto 26px;color:var(--blue-900);}
-.hero h1{margin-bottom:.3em;}
-.hero h1 em{font-style:italic;color:var(--gold-600);}
-.hero-lead{font-size:clamp(1.02rem,1.35vw,1.16rem);color:var(--ink-600);
-           max-width:52ch;margin:0 auto 2.2em;}
-.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:2.8em;}
-.hero-facts{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(24px,5vw,64px);
-  padding-top:clamp(28px,4vw,44px);border-top:1px solid var(--cream-200);}
-.hero-facts li{text-align:center;}
-.hero-facts strong{display:block;font-family:var(--font-display);font-size:1.6rem;
-  font-weight:600;color:var(--blue-900);line-height:1.2;}
-.hero-facts span{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-600);}
+/* ═══════════ HERO ═══════════
+   Full-bleed photograph of the grill. A restaurant page has about two
+   seconds to make someone hungry, and a line-drawn badge on cream paper
+   does not do that -- the flames do. Type sits on a scrim heavy enough to
+   hold 4.5:1 without washing the fire out. */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:flex-end;isolation:isolate;overflow:hidden;background:var(--blue-900);}
+.hero-media{position:absolute;inset:0;z-index:-2;}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 62%;}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(8,20,44,.82) 0%,rgba(8,20,44,.42) 32%,
+             rgba(8,20,44,.72) 68%,rgba(8,20,44,.95) 100%);}
+.hero-inner{position:relative;text-align:center;padding-top:22vh;
+  padding-bottom:clamp(40px,7vw,80px);display:flex;flex-direction:column;align-items:center;}
+.hero-badge{width:64px;height:64px;color:var(--gold-300);margin-bottom:20px;}
+.hero-kicker{display:inline-flex;align-items:center;gap:.8em;margin:0 0 .8em;
+  font-size:.74rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold-300);}
+.hero-kicker::before,.hero-kicker::after{content:"";width:30px;height:1px;background:var(--gold-400);}
+.hero h1{color:#fff;font-size:clamp(2.9rem,7.4vw,6rem);line-height:1.02;
+  letter-spacing:-.03em;margin-bottom:.32em;text-shadow:0 2px 30px rgba(0,0,0,.5);}
+.hero h1 em{font-style:italic;color:var(--gold-300);}
+.hero-lead{color:rgba(255,255,255,.92);font-size:clamp(1.02rem,1.4vw,1.2rem);
+  max-width:46ch;margin:0 auto 2.2em;text-shadow:0 1px 14px rgba(0,0,0,.6);}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-glass{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+.btn-glass:hover{background:rgba(255,255,255,.22);border-color:#fff;}
+.hero-strip{position:relative;border-top:1px solid rgba(246,230,189,.22);
+  background:rgba(8,20,44,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
+.hero-strip-in{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  padding-top:20px;padding-bottom:20px;text-align:center;}
+.hero-strip strong{display:block;font-family:var(--font-display);font-size:1.15rem;
+  font-weight:600;color:var(--gold-300);line-height:1.25;}
+.hero-strip span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);}
 
 /* ═══════════ STORY ═══════════ */
 .story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,84px);align-items:center;}
@@ -534,6 +556,8 @@ button{font:inherit;cursor:pointer;}
 }
 @media (max-width:760px){
   html{scroll-padding-top:80px;}
+  .hero-inner{padding-top:17vh;}
+  .hero-strip-in{grid-template-columns:repeat(2,1fr);gap:14px;}
   .nav{position:relative;}
   .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
     background:var(--cream-50);border-bottom:1px solid var(--cream-200);padding:0 22px;
