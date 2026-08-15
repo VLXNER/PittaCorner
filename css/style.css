@@ -487,6 +487,44 @@ button{font:inherit;cursor:pointer;}
              color var(--t-mid) var(--e-soft);}
 .order-link:hover{background:var(--gold-500);border-color:var(--gold-500);color:#1d1502;}
 
+
+/* ═══════════ ORDER CARDS ═══════════
+   Each platform in its own brand colour with the name set in type.
+   Not redrawn logos: an approximated trademark looks amateur and
+   misrepresents someone else's mark. If the official partner assets are
+   ever dropped into photos/, swapping the wordmark for an <img> is a
+   one-line change per card. Brand colours are Just Eat orange, Deliveroo
+   teal and Uber Eats green. */
+.order-card{position:relative;display:flex;flex-direction:column;gap:2px;
+  padding:26px 26px 24px;border-radius:var(--r-md);overflow:hidden;
+  border:1px solid rgba(246,230,189,.24);background:rgba(255,255,255,.05);
+  color:var(--cream-50);
+  transition:transform var(--t-mid) var(--e-out),border-color var(--t-mid) var(--e-soft),
+             background var(--t-mid) var(--e-soft);}
+.order-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:var(--brandc);}
+.order-card::after{content:"";position:absolute;inset:0;opacity:0;
+  background:radial-gradient(circle at 15% 50%,var(--brandc),transparent 62%);
+  transition:opacity var(--t-mid) var(--e-soft);}
+.order-card > *{position:relative;z-index:1;}
+.order-card:hover{transform:translateY(-4px);border-color:var(--brandc);
+  background:rgba(255,255,255,.09);}
+.order-card:hover::after{opacity:.22;}
+.oc-mark{font-family:var(--font-display);font-size:1.42rem;font-weight:600;
+  letter-spacing:-.015em;line-height:1.2;}
+.oc-meta{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-200);}
+.order-card .ico{position:absolute;right:22px;top:26px;width:1.15em;height:1.15em;
+  color:var(--brandc);transition:transform var(--t-mid) var(--e-out);}
+.order-card:hover .ico{transform:translateX(4px);}
+.order-card.je{--brandc:#ff8000;}
+.order-card.dl{--brandc:#00ccbc;}
+.order-card.ue{--brandc:#06c167;}
+.order-card.call{--brandc:var(--gold-400);}
+.order-card.call .oc-mark{font-family:var(--font);font-size:1.2rem;font-weight:800;}
+@media (max-width:1040px){ .order-links{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:640px){ .order-links{grid-template-columns:1fr;} }
+
 /* ═══════════ VISIT ═══════════ */
 .visit-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,72px);align-items:center;}
 .info-list{margin:26px 0 32px;}
