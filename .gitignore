@@ -1,0 +1,7 @@
+# Python bytecode — regenerated whenever the .claude/skills tooling runs
+__pycache__/
+*.py[cod]
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
