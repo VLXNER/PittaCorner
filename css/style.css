@@ -848,7 +848,12 @@ button{font:inherit;cursor:pointer;}
 @media (max-width:640px){ .order-links{grid-template-columns:1fr;} }
 
 /* ═══════════ VISIT ═══════════ */
-.visit-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,72px);align-items:center;}
+.visit-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,72px);
+  align-items:stretch;}
+.visit-col{display:flex;flex-direction:column;justify-content:center;}
+/* the column is a flex container so it can centre against the map;
+   without this the Get Directions button stretches to its full width */
+.visit-col > .btn{align-self:flex-start;}
 .info-list{margin:26px 0 32px;}
 .info-list li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--cream-200);}
 .info-list .ico{width:1.3em;height:1.3em;color:var(--gold-700);margin-top:4px;}
@@ -857,8 +862,17 @@ button{font:inherit;cursor:pointer;}
 .info-list span{color:var(--ink-900);font-size:.97rem;line-height:1.55;}
 .info-list a{color:var(--blue-700);font-weight:700;}
 .info-list a:hover{text-decoration:underline;}
-.map{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--cream-300);min-height:440px;}
-.map iframe{width:100%;height:100%;min-height:438px;}
+/* The map gets the same double hairline as the platter cards, so it
+   reads as part of the set rather than a pasted-in widget. */
+.map{position:relative;border-radius:var(--r-md);overflow:hidden;
+  border:1px solid var(--cream-300);background:var(--cream-200);
+  min-height:520px;box-shadow:0 30px 56px -34px rgba(20,27,40,.4);}
+.map::after{content:"";position:absolute;inset:7px;pointer-events:none;z-index:2;
+  border:1px solid var(--gold-100);border-radius:calc(var(--r-md) - 3px);}
+.map iframe{width:100%;height:100%;min-height:518px;}
+.info-list li{transition:padding-left var(--t-mid) var(--e-out);}
+.info-list li:hover{padding-left:6px;}
+.info-list li:hover .ico{color:var(--gold-600);}
 
 /* ═══════════ ALLERGENS ═══════════ */
 .allergens{background:var(--cream-100);border-top:1px solid var(--cream-200);
@@ -868,10 +882,17 @@ button{font:inherit;cursor:pointer;}
 .allergens p{max-width:76ch;margin:0 auto;font-size:.9rem;color:var(--ink-700);}
 
 /* ═══════════ FOOTER ═══════════ */
-.footer{background:var(--blue-900);color:var(--cream-50);padding:clamp(52px,6vw,76px) 0 30px;}
+.footer{position:relative;background:var(--blue-900);color:var(--cream-50);
+  padding:clamp(52px,6vw,76px) 0 30px;}
+/* the gold edge off the printed menus, closing the page the way the
+   badge opens it */
+.footer::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--gold-700),var(--gold-400) 42%,
+             var(--gold-300) 66%,var(--gold-600));}
 .footer-top{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(30px,5vw,64px);
-            padding-bottom:38px;}
+  align-items:start;padding-bottom:38px;}
 .footer .brand-name{color:var(--gold-300);font-size:2rem;}
+.footer .brand-badge{width:46px;height:46px;}
 .footer .brand-badge{color:var(--gold-300);}
 .footer-tag{margin:.8em 0 0;font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--blue-200);line-height:2;}
@@ -879,6 +900,7 @@ button{font:inherit;cursor:pointer;}
 .footer-cols h3{font-family:var(--font);font-size:.72rem;font-weight:800;letter-spacing:.14em;
   text-transform:uppercase;color:var(--gold-300);margin-bottom:1em;}
 .footer-cols p{color:var(--blue-200);line-height:2;font-size:.92rem;margin:0;}
+.footer-cols a{text-underline-offset:4px;transition:color var(--t-fast) var(--e-soft);}
 .footer-cols a:hover{color:var(--gold-300);text-decoration:underline;}
 .footer-fine{border-top:1px solid rgba(246,230,189,.16);padding-top:22px;text-align:center;
   font-size:.75rem;color:#b4c8e6;max-width:78ch;margin:0 auto;}
@@ -1219,6 +1241,27 @@ button{font:inherit;cursor:pointer;}
   .hero-facts{gap:22px;}
   .map{min-height:320px;}
   .map iframe{min-height:318px;}
+}
+
+/* ═══════════ HIGH CONTRAST ═══════════
+   Where the reader has asked the OS for more contrast, the muted greys
+   and the photo scrims are the first things to give. Secondary text goes
+   darker, text over photographs gets a heavier scrim, and the hairlines
+   that separate menu rows become visible rather than suggested. */
+@media (prefers-contrast: more){
+  :root{
+    --ink-600:#394452; --ink-700:#232d3a;
+    --blue-200:#dfeafb; --gold-300:#f7e3ae; --gold-700:#6f5008;
+    --cream-300:#c3b492;
+  }
+  .has-bg{--scrim:.88 !important;}
+  .has-bg > .shell::before{background:rgba(10,28,64,.5);}
+  .hero::after{background:linear-gradient(180deg,rgba(6,16,36,.9) 0%,rgba(6,16,36,.66) 32%,
+               rgba(6,16,36,.86) 68%,rgba(6,16,36,.97) 100%);}
+  .dish,.plist li{border-bottom-color:var(--cream-300);}
+  .dots{border-bottom-style:solid;}
+  .btn-line,.order-card{border-width:2px;}
+  .nav-links a{color:var(--ink-700);}
 }
 
 /* ═══════════ PRINT ═══════════
