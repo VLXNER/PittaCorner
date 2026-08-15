@@ -406,15 +406,15 @@ button{font:inherit;cursor:pointer;}
 
 /* ═══════════ ALBUM ═══════════ */
 .album-section{background:var(--cream-100);}
-.album{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px);
-  grid-auto-flow:dense;}
-.shot{margin:0;overflow:hidden;border-radius:var(--r-md);background:var(--cream-200);}
+/* Nine shots in three columns: three full rows, no leftovers. Mixed
+   column and row spans with dense flow left holes the grid could not
+   backfill, so every tile is now the same 4:3 and the photos are
+   object-fit cropped into it. */
+.album{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px);}
+.shot{margin:0;overflow:hidden;border-radius:var(--r-md);background:var(--cream-200);
+  aspect-ratio:4/3;}
 .shot img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform 700ms var(--e-out);}
-.shot.wide{grid-column:span 2;}
-.shot.tall{grid-row:span 2;}
-.shot{aspect-ratio:4/3;}
-.shot.tall{aspect-ratio:2/3;}
 .shot:hover img{transform:scale(1.05);}
 
 /* Scroll-driven motion: each shot lifts and settles as it enters view.
@@ -438,7 +438,6 @@ button{font:inherit;cursor:pointer;}
 @media (max-width:1040px){ .album{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:640px){
   .album{grid-template-columns:1fr;}
-  .shot.wide,.shot.tall{grid-column:auto;grid-row:auto;aspect-ratio:4/3;}
   .band-media{height:80svh;}
   .band-copy{margin-top:-56svh;padding-bottom:18svh;}
 }
