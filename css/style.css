@@ -34,6 +34,10 @@
   --leaf:#4f9d3f;
   --leaf-deep:#2f6b26;
 
+  /* Two-tone focus ring — see "FOCUS VISIBILITY" at the end of the file */
+  --focus-ink:#10161c;
+  --focus-glow:#ffc233;
+
   --font-script:'Kaushan Script', 'Brush Script MT', cursive;
   --font-body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
@@ -64,7 +68,7 @@ ul{list-style:none;margin:0;padding:0;}
 img,iframe{max-width:100%;display:block;}
 em{font-style:italic;}
 
-:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:4px;}
+/* Focus styling lives at the end of the file — see "FOCUS VISIBILITY". */
 
 .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 24px;}
 
@@ -75,13 +79,23 @@ em{font-style:italic;}
 }
 .skip-link:focus{left:0;}
 
+/* Available to screen readers, out of the visual flow */
+.visually-hidden{
+  position:absolute;
+  width:1px;height:1px;
+  margin:-1px;padding:0;border:0;
+  overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
+}
+
 /* ---------- Shared type ---------- */
 .eyebrow{
   text-transform:uppercase;
   letter-spacing:.18em;
   font-size:.74rem;
   font-weight:800;
-  color:var(--cyan-deep);
+  color:var(--cyan-ink);
   margin:0 0 .8em;
 }
 .eyebrow.light{color:var(--cyan-bright);}
@@ -107,7 +121,9 @@ h2.light,h3.light{color:var(--white);}
   border-radius:999px;
   font-weight:800;font-size:.94rem;letter-spacing:.01em;
   border:2px solid transparent;cursor:pointer;
-  transition:transform .18s ease, box-shadow .18s ease, background .18s ease,
+  /* box-shadow is deliberately not transitioned: the focus ring is drawn with
+     it, and animating it makes the indicator fade in instead of appearing. */
+  transition:transform .18s ease, background .18s ease,
              color .18s ease, border-color .18s ease;
   white-space:nowrap;
 }
@@ -328,7 +344,7 @@ h2.light,h3.light{color:var(--white);}
   display:block;font-size:1.9rem;font-weight:800;
   color:var(--slate-deep);line-height:1.1;
 }
-.story-stats .star{color:var(--cyan);font-size:1.1rem;margin-left:3px;vertical-align:top;}
+.story-stats .star{color:var(--cyan-ink);font-size:1.1rem;margin-left:3px;vertical-align:top;}
 .story-stats span{color:var(--muted);font-size:.86rem;}
 
 /* Petrol-blue shop window, with a planter on the sill */
@@ -453,7 +469,7 @@ h2.light,h3.light{color:var(--white);}
   border-bottom:1px solid rgba(255,255,255,.3);
   padding-bottom:.4em;margin-bottom:.7em;
 }
-.platter-cols h3 span{font-size:1.15rem;color:#ffe27a;}
+.platter-cols h3 span{font-size:1.15rem;color:#fff3c4;}
 .platter-cols li{
   font-size:.9rem;opacity:.9;padding:2px 0 2px 16px;position:relative;
 }
@@ -504,7 +520,7 @@ h2.light,h3.light{color:var(--white);}
   border:2px solid var(--paper-3);
   background:var(--white);color:var(--muted);
   cursor:pointer;
-  transition:all .16s ease;
+  transition:background .16s ease, border-color .16s ease, color .16s ease;
 }
 .chip:hover{border-color:var(--cyan);color:var(--cyan-ink);}
 .chip.is-active{
@@ -531,8 +547,9 @@ h2.light,h3.light{color:var(--white);}
 .dish-no{
   flex:0 0 auto;
   min-width:26px;
-  font-size:.78rem;font-weight:800;color:var(--cyan);
-  border:1.5px solid var(--paper-3);border-radius:6px;
+  font-size:.78rem;font-weight:800;color:var(--cyan-ink);
+  background:#e8f5f8;
+  border:1.5px solid #bfdfe7;border-radius:6px;
   text-align:center;padding:1px 4px;
 }
 .dish-top h4{
@@ -544,9 +561,10 @@ h2.light,h3.light{color:var(--white);}
 }
 .veg{
   display:inline-block;
-  background:var(--leaf);color:var(--white);
-  font-size:.6rem;font-weight:800;text-transform:uppercase;
-  border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:middle;
+  background:var(--leaf-deep);color:var(--white);
+  font-size:.68rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.04em;
+  border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle;
 }
 
 .price-list li{
@@ -584,7 +602,7 @@ h2.light,h3.light{color:var(--white);}
 }
 .drink-col h3 em{
   text-transform:none;letter-spacing:0;font-size:.78rem;
-  color:rgba(255,255,255,.5);font-weight:500;
+  color:rgba(255,255,255,.72);font-weight:500;
 }
 .drink-col h3.mt{margin-top:1.8em;}
 .drink-note{color:rgba(255,255,255,.7);font-size:.92rem;}
@@ -719,8 +737,27 @@ h2.light,h3.light{color:var(--white);}
 .footer-cols a:hover{color:var(--cyan-bright);text-decoration:underline;}
 .footer-fine{
   max-width:720px;margin:0 auto;text-align:center;
-  font-size:.74rem;color:rgba(255,255,255,.38);
+  font-size:.74rem;color:rgba(255,255,255,.62);
   border-top:1px solid rgba(255,255,255,.1);padding-top:24px;
+}
+
+/* =========================================================
+   FOCUS VISIBILITY
+   The page runs cyan buttons on dark panels and dark text on light
+   panels, so no single ring colour clears 3:1 everywhere — a cyan ring
+   on a cyan button is literally 1:1. This is the two-tone ring: a near
+   black outline for light surfaces and cyan fills, wrapped in a
+   marigold glow (the window-box yellow) for dark surfaces. At least one
+   of the two always contrasts, whatever it lands on.
+
+   Declared last on purpose: .btn-primary and .btn-order set their own
+   box-shadow at equal specificity, and would otherwise overwrite the
+   glow and leave the ring half-drawn.
+   ========================================================= */
+:focus-visible{
+  outline:3px solid var(--focus-ink);
+  outline-offset:2px;
+  box-shadow:0 0 0 7px var(--focus-glow);
 }
 
 /* =========================================================
