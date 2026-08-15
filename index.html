@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pitta Corner | Greek Grill, Coffee &amp; Crepes — Wood Green, London</title>
-<meta name="description" content="Pitta Corner, 43 High Road, Wood Green. Charcoal kalamakia, gyros wraps, skepasti, mix grill platters, hand-cut fries and homemade dips. Restaurant, coffee and crepes — breakfast, lunch and dinner, seven days a week.">
-<meta name="theme-color" content="#20313d">
+<meta name="description" content="Pitta Corner, 43 High Road, Wood Green. Charcoal kalamakia, gyros wraps, skepasti and mix grill platters, with hand-cut fries and homemade dips. Restaurant, coffee and crepes — breakfast, lunch and dinner, seven days a week.">
+<meta name="theme-color" content="#0c1620">
 <meta property="og:title" content="Pitta Corner — Greek Grill, Coffee &amp; Crepes, Wood Green">
 <meta property="og:description" content="Charcoal skewers, gyros wraps and platters on the High Road. Breakfast, lunch and dinner, every day.">
 <meta property="og:type" content="restaurant">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2320313d%22/><text x=%2250%22 y=%2272%22 font-size=%2264%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 fill=%22%2325c6e0%22 text-anchor=%22middle%22>P</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230c1620%22/><text x=%2250%22 y=%2272%22 font-size=%2264%22 font-family=%22Georgia,serif%22 font-style=%22italic%22 fill=%22%2325c6e0%22 text-anchor=%22middle%22>P</text></svg>">
 <link rel="preload" href="fonts/manrope-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/kaushan-script-latin-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
@@ -18,241 +18,276 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="topbar">
-  <div class="container topbar-inner">
-    <span class="topbar-item">43 High Road, Wood Green, London N22 6BH</span>
-    <span class="topbar-dot" aria-hidden="true"></span>
-    <span class="topbar-item"><a href="tel:+442088269594">020 8826 9594</a></span>
-    <span class="topbar-dot" aria-hidden="true"></span>
-    <span class="topbar-item">Open every day, 8:00 – 23:00</span>
-  </div>
+<!-- Icon sprite: SVG, never emoji (ui-ux-pro-max pre-delivery checklist) -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h3.5l1.8 4.4-2.2 1.6a12 12 0 0 0 5.9 5.9l1.6-2.2L20 14.5V18a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 5.2 2 2 0 0 1 5 3Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3s5.5 4.2 5.5 9.2A5.5 5.5 0 0 1 12 21a5.5 5.5 0 0 1-5.5-8.8C6.5 8 12 3 12 3Z"/><path d="M12 17.5a2.4 2.4 0 0 0 2.4-2.4c0-1.9-2.4-3.7-2.4-3.7s-2.4 1.8-2.4 3.7a2.4 2.4 0 0 0 2.4 2.4Z"/></symbol>
+    <symbol id="i-knife" viewBox="0 0 24 24"><path d="M5 3v8a3 3 0 0 0 6 0V3"/><path d="M8 11v10"/><path d="M17 3c1.6 1.8 2.4 4.2 2.4 6.6 0 2-1 3.4-2.4 3.4s-2.4-1.4-2.4-3.4C14.6 7.2 15.4 4.8 17 3Z"/><path d="M17 13v8"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4S8 4 6 10s2 9 2 9 8-1 10-7c1.2-4 2-8 2-8Z"/><path d="M17 7 7 19"/></symbol>
+    <symbol id="i-plate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.6 2.6 5.5 5.9.8-4.3 4.2 1 6-5.2-2.9-5.2 2.9 1-6L3.5 9.9l5.9-.8L12 3.6Z"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24"><path d="M9.5 5C6.5 6.6 5 9.2 5 12.8V19h6v-6.4H8.2c0-2 .6-3.6 2.4-4.8L9.5 5Zm9 0c-3 1.6-4.5 4.2-4.5 7.8V19h6v-6.4h-2.8c0-2 .6-3.6 2.4-4.8L18.5 5Z"/></symbol>
+  </defs>
+</svg>
+
+<!-- Ambient background: gradient mesh + grain, behind everything -->
+<div class="ambient" aria-hidden="true">
+  <span class="mesh mesh-1"></span>
+  <span class="mesh mesh-2"></span>
+  <span class="mesh mesh-3"></span>
+  <span class="grain"></span>
 </div>
 
-<header class="site-header" id="top">
-  <div class="container header-inner">
-    <a href="#top" class="logo" aria-label="Pitta Corner, home">
-      <span class="logo-script">Pitta Corner</span>
-    </a>
-    <nav class="main-nav" id="main-nav" aria-label="Main">
-      <a href="#story">Our Story</a>
-      <a href="#kitchen">The Kitchen</a>
-      <a href="#menu">Menu</a>
-      <a href="#drinks">Drinks</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#find-us">Find Us</a>
-    </nav>
-    <div class="header-cta">
-      <a href="#order" class="btn btn-primary">Order Online</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
-        <span></span><span></span><span></span>
-      </button>
+<header class="nav" id="top">
+  <div class="nav-glass">
+    <div class="shell nav-inner">
+      <a href="#top" class="brand" aria-label="Pitta Corner, home">
+        <span class="brand-mark">Pitta Corner</span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Main">
+        <a href="#story">Story</a>
+        <a href="#kitchen">Kitchen</a>
+        <a href="#specials">Specials</a>
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#order" class="btn btn-primary btn-sm">Order Online</a>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- ============ HERO: the shopfront on the High Road ============ -->
+  <!-- ══════════════ HERO ══════════════ -->
   <section class="hero">
-    <div class="hero-sky" aria-hidden="true"></div>
+    <div class="shell hero-shell">
+      <div class="hero-copy">
+        <p class="kicker reveal"><span class="kicker-dot"></span>43 High Road · Wood Green · N22</p>
 
-    <div class="shopfront" aria-hidden="true">
-      <div class="bloom-band" id="bloom-band"></div>
-      <div class="fascia">
-        <p class="fascia-name">Pitta Corner</p>
-        <p class="fascia-line">Restaurant &nbsp;·&nbsp; Coffee &nbsp;·&nbsp; Crepe</p>
-        <p class="fascia-line">Breakfast &nbsp;·&nbsp; Lunch &nbsp;·&nbsp; Dinner</p>
-      </div>
-      <div class="awnings">
-        <span class="awning">Souvlaki · Kalamaki · Grill</span>
-        <span class="awning">Coffee · Iced Coffee · Hot Drinks</span>
-      </div>
-    </div>
+        <h1 class="hero-title">
+          <span class="line"><span class="word">Charcoal,</span> <span class="word">pitta</span></span>
+          <span class="line"><span class="word">and</span> <span class="word">a</span> <span class="word">shopfront</span></span>
+          <span class="line"><span class="word">full</span> <span class="word accent">of flowers.</span></span>
+        </h1>
 
-    <div class="container hero-inner">
-      <p class="eyebrow light">Wood Green's Greek corner</p>
-      <h1>Charcoal, pitta and<br>a shopfront full of flowers.</h1>
-      <p class="hero-lead">
-        Kalamakia turned over the coals, gyros carved to order, chips cut by hand
-        and dips made in our kitchen — served from 8 in the morning until 11 at
-        night, under the brightest flower boxes on the High Road.
-      </p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary btn-lg">See the Full Menu</a>
-        <a href="#order" class="btn btn-outline btn-lg">Order for Delivery</a>
-      </div>
-      <ul class="hero-badges">
-        <li><strong>Kalamaki from £2.50</strong><span>Straight off the charcoal</span></li>
-        <li><strong>Mix Grill for 2 — £19.99</strong><span>Everything on one board</span></li>
-        <li><strong>5 ★ Food Hygiene</strong><span>Haringey Council rating</span></li>
-      </ul>
-    </div>
-  </section>
+        <p class="hero-lead reveal" data-delay="1">
+          Kalamakia turned over the coals, gyros carved to order, chips cut by hand
+          and dips made in our kitchen — from 8 in the morning until 11 at night.
+        </p>
 
-  <!-- ============ STORY ============ -->
-  <section class="story" id="story">
-    <div class="container story-grid">
-      <div class="story-copy">
-        <p class="eyebrow">Our Story</p>
-        <h2>A family grill on a busy High Road</h2>
-        <p>
-          Pitta Corner sits at 43 High Road, a few minutes from Wood Green tube — a
-          family-run Greek kitchen wedged into a parade of shops, with a dark blue
-          front, a turquoise sign and window boxes spilling over with petunias and
-          ivy. People spot the flowers first and the charcoal smell second.
-        </p>
-        <p>
-          Inside it works three ways at once. It's a coffee stop in the morning, a
-          souvlaki counter at lunch, and a proper sit-down grill at night — coffee,
-          crepes, breakfast, lunch and dinner, exactly as it says on the sign. The
-          grill runs the whole time, in view of the counter, so the wrap in your
-          hand was on the coals about ninety seconds ago.
-        </p>
-        <p>
-          The cooking is Greek and Cypriot home cooking scaled up for a takeaway
-          queue: skewers seasoned with lemon and oregano, gyros carved off the spit,
-          fries cut from whole potatoes, tzatziki and htipiti mixed in-house. Nothing
-          clever. Just the things that are worth doing properly.
-        </p>
-        <div class="story-stats">
-          <div><strong>5.0<span class="star">★</span></strong><span>Just Eat · 900+ ratings</span></div>
-          <div><strong>4.5<span class="star">★</span></strong><span>Uber Eats</span></div>
-          <div><strong>7 days</strong><span>Dine in &amp; takeaway</span></div>
+        <div class="hero-actions reveal" data-delay="2">
+          <a href="#menu" class="btn btn-primary btn-lg">
+            See the Menu <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a href="#order" class="btn btn-ghost btn-lg">Order for Delivery</a>
         </div>
+
+        <ul class="hero-stats reveal" data-delay="3">
+          <li>
+            <strong class="count" data-count="5.0" data-decimals="1">5.0</strong>
+            <span>Just Eat · 900+ ratings</span>
+          </li>
+          <li>
+            <strong class="count" data-count="4.5" data-decimals="1">4.5</strong>
+            <span>Uber Eats rating</span>
+          </li>
+          <li>
+            <strong class="count" data-count="2.50" data-decimals="2" data-prefix="£">£2.50</strong>
+            <span>Kalamaki, off the charcoal</span>
+          </li>
+        </ul>
       </div>
 
-      <aside class="story-visual" aria-hidden="true">
-        <div class="window-frame">
-          <div class="window-pane">
-            <span class="pane-flare"></span>
-          </div>
-          <div class="window-pane">
-            <span class="pane-flare"></span>
-          </div>
-          <p class="window-caption">Push</p>
+      <!-- The shopfront sign, rebuilt as a glass panel -->
+      <aside class="hero-sign reveal-scale" data-delay="2" aria-hidden="true">
+        <div class="sign-glass" data-tilt>
+          <div class="bloom-band" id="bloom-band"></div>
+          <div class="sign-glow"></div>
+          <p class="sign-name">Pitta Corner</p>
+          <p class="sign-sub">Restaurant · Coffee · Crepe</p>
+          <p class="sign-sub">Breakfast · Lunch · Dinner</p>
+          <div class="sign-rule"></div>
+          <p class="sign-awning">Souvlaki · Kalamaki · Grill</p>
         </div>
-        <div class="planter" id="planter"></div>
       </aside>
     </div>
+
+    <a class="scroll-cue" href="#story" aria-label="Scroll to our story">
+      <span class="scroll-line"></span>
+    </a>
   </section>
 
-  <!-- ============ THE KITCHEN — what we emphasise ============ -->
-  <section class="kitchen" id="kitchen">
-    <div class="container">
-      <p class="eyebrow center light">On The Grill</p>
-      <h2 class="center light">Four things we won't cut corners on</h2>
-      <p class="section-lead center light">
-        Read our menu board and the same words keep coming back — charcoal,
-        hand cut, homemade. That's not copywriting, it's the prep list.
-      </p>
+  <!-- ══════════════ MARQUEE ══════════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Pork Gyros</span><i></i><span>Chicken Kalamaki</span><i></i><span>Skepasti</span><i></i>
+      <span>Hand-Cut Fries</span><i></i><span>Halloumi</span><i></i><span>Loukaniko</span><i></i>
+      <span>Tzatziki</span><i></i><span>Baklava</span><i></i><span>Iced Coffee</span><i></i>
+      <span>Pork Gyros</span><i></i><span>Chicken Kalamaki</span><i></i><span>Skepasti</span><i></i>
+      <span>Hand-Cut Fries</span><i></i><span>Halloumi</span><i></i><span>Loukaniko</span><i></i>
+      <span>Tzatziki</span><i></i><span>Baklava</span><i></i><span>Iced Coffee</span><i></i>
+    </div>
+  </div>
 
-      <div class="pillars">
-        <article class="pillar">
+  <!-- ══════════════ STORY ══════════════ -->
+  <section class="section" id="story">
+    <div class="shell story-grid">
+      <div class="story-copy">
+        <p class="eyebrow reveal">Our Story</p>
+        <h2 class="reveal" data-delay="1">A family grill on a<br><em>busy</em> High Road</h2>
+        <p class="reveal" data-delay="2">
+          Pitta Corner sits at 43 High Road, a few minutes from Wood Green tube — a
+          family-run Greek and Cypriot kitchen wedged into a parade of shops, with a
+          dark blue front, a turquoise sign, and window boxes spilling over with
+          petunias and ivy. People spot the flowers first and the charcoal second.
+        </p>
+        <p class="reveal" data-delay="3">
+          It works three ways at once: a coffee stop in the morning, a souvlaki
+          counter at lunch, a proper sit-down grill at night. The grill runs the whole
+          time, in view of the counter, so the wrap in your hand was on the coals
+          about ninety seconds ago.
+        </p>
+        <p class="reveal" data-delay="4">
+          Skewers seasoned with lemon and oregano. Gyros carved off the spit. Fries
+          cut from whole potatoes. Tzatziki and htipiti mixed in-house. Nothing
+          clever — just the things worth doing properly.
+        </p>
+      </div>
+
+      <div class="story-side">
+        <div class="glass story-card reveal-scale" data-delay="2" data-tilt>
+          <div class="story-card-top">
+            <svg class="ico ico-lg" aria-hidden="true"><use href="#i-plate"/></svg>
+            <p class="story-card-label">On the counter since</p>
+          </div>
+          <p class="story-card-big">8<span>am</span></p>
+          <p class="story-card-note">
+            Coffee machine on, grill lit, crepes going. Open until 11 at night,
+            seven days a week.
+          </p>
+          <div class="story-card-row">
+            <div><strong>5</strong><span>Food hygiene</span></div>
+            <div><strong>N22</strong><span>Wood Green</span></div>
+          </div>
+        </div>
+        <div class="planter" id="planter" aria-hidden="true" data-parallax="8"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ KITCHEN ══════════════ -->
+  <section class="section section-tint" id="kitchen">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow reveal">On The Grill</p>
+        <h2 class="reveal" data-delay="1">Four things we won't cut corners on</h2>
+        <p class="section-lead reveal" data-delay="2">
+          Read the menu board and the same words keep coming back — charcoal,
+          hand cut, homemade. That's not copywriting, it's the prep list.
+        </p>
+      </div>
+
+      <div class="pillars stagger">
+        <article class="glass pillar" data-tilt>
+          <div class="pillar-ico"><svg class="ico" aria-hidden="true"><use href="#i-flame"/></svg></div>
           <span class="pillar-num">01</span>
           <h3>Charcoal kalamakia</h3>
-          <p>
-            Pork, chicken, beef, lamb and village loukaniko, threaded on skewers and
-            cooked over coals. Served the traditional way — lemon, oregano, bread and
-            cheese — from £2.50 a stick.
-          </p>
+          <p>Pork, chicken, beef, lamb and village loukaniko on skewers over coals. Served the traditional way — lemon, oregano, bread and cheese.</p>
+          <p class="pillar-tag">From £2.50 a stick</p>
         </article>
-        <article class="pillar">
+        <article class="glass pillar" data-tilt>
+          <div class="pillar-ico"><svg class="ico" aria-hidden="true"><use href="#i-knife"/></svg></div>
           <span class="pillar-num">02</span>
           <h3>Hand-cut fries</h3>
-          <p>
-            Cut from whole potatoes every day, and they go <em>inside</em> the wrap,
-            not next to it. That's the Greek way, and it's why the pittas come out
-            heavier than you expect.
-          </p>
+          <p>Cut from whole potatoes every day, and they go <em>inside</em> the wrap, not beside it. That's the Greek way, and it's why the pittas come out heavier than you expect.</p>
+          <p class="pillar-tag">In every wrap</p>
         </article>
-        <article class="pillar">
+        <article class="glass pillar" data-tilt>
+          <div class="pillar-ico"><svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg></div>
           <span class="pillar-num">03</span>
           <h3>Homemade dips</h3>
-          <p>
-            Tzatziki, houmous, spicy feta htipiti and Russian salad, all mixed in our
-            own kitchen. £2.99 a pot, and they're what most regulars add to the order
-            without thinking.
-          </p>
+          <p>Tzatziki, houmous, spicy feta htipiti and Russian salad, all mixed in our own kitchen — what most regulars add without thinking.</p>
+          <p class="pillar-tag">£2.99 a pot</p>
         </article>
-        <article class="pillar">
+        <article class="glass pillar" data-tilt>
+          <div class="pillar-ico"><svg class="ico" aria-hidden="true"><use href="#i-plate"/></svg></div>
           <span class="pillar-num">04</span>
           <h3>Boards to share</h3>
-          <p>
-            The Mix Grill Platter is the table centrepiece — pittas, fries, dips and
-            a run of skewers. £19.99 for two, £41.99 for four, and nobody has ever
-            finished it hungry.
-          </p>
+          <p>The Mix Grill Platter is the table centrepiece — pittas, fries, dips and a run of skewers. Nobody has ever finished it hungry.</p>
+          <p class="pillar-tag">£19.99 for two</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ SIGNATURE BOXES — mirrors the printed board ============ -->
-  <section class="signatures">
-    <div class="container">
-      <p class="eyebrow center">Straight Off The Board</p>
-      <h2 class="center">The house specials</h2>
+  <!-- ══════════════ SPECIALS ══════════════ -->
+  <section class="section" id="specials">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow reveal">Straight Off The Board</p>
+        <h2 class="reveal" data-delay="1">The house specials</h2>
+      </div>
 
-      <div class="sig-grid">
+      <div class="sig-grid stagger">
 
-        <article class="sig-card sig-burger">
-          <p class="sig-kicker">Greek Burger</p>
-          <h3>Greek Beef Burger</h3>
-          <p class="sig-desc">
-            Signature handmade beef burger, cheese, lettuce, onion, tomato and
-            homemade sauce. Served with hand-cut fries.
-          </p>
+        <article class="sig sig-burger" data-tilt>
+          <div class="sig-body">
+            <p class="sig-kicker">Greek Burger</p>
+            <h3>Greek Beef Burger</h3>
+            <p class="sig-desc">Signature handmade beef burger, cheese, lettuce, onion, tomato and homemade sauce. Served with hand-cut fries.</p>
+          </div>
           <p class="sig-price">£7</p>
         </article>
 
-        <article class="sig-card sig-platter">
+        <article class="sig sig-platter" data-tilt>
           <p class="sig-kicker">Mix Grill Platter</p>
           <div class="platter-cols">
             <div>
               <h3>For 2 <span>£19.99</span></h3>
               <ul>
-                <li>2 pittas</li>
-                <li>1 hand-cut fries</li>
-                <li>1 tzatziki or houmous</li>
-                <li>2 pork souvlaki skewers</li>
-                <li>2 chicken skewers</li>
-                <li>2 sausage kalamaki</li>
-                <li>2 beef kalamaki</li>
+                <li>2 pittas</li><li>1 hand-cut fries</li><li>1 tzatziki or houmous</li>
+                <li>2 pork souvlaki skewers</li><li>2 chicken skewers</li>
+                <li>2 sausage kalamaki</li><li>2 beef kalamaki</li>
               </ul>
             </div>
             <div>
               <h3>For 4 <span>£41.99</span></h3>
               <ul>
-                <li>4 pittas</li>
-                <li>2 hand-cut fries</li>
-                <li>2 tzatziki or houmous</li>
-                <li>Pork gyros portion</li>
-                <li>Chicken gyros portion</li>
-                <li>2 pork souvlaki skewers</li>
-                <li>3 chicken skewers</li>
-                <li>2 sausage &amp; 2 beef kalamaki</li>
+                <li>4 pittas</li><li>2 hand-cut fries</li><li>2 tzatziki or houmous</li>
+                <li>Pork &amp; chicken gyros portions</li><li>2 pork souvlaki skewers</li>
+                <li>3 chicken skewers</li><li>2 sausage &amp; 2 beef kalamaki</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <article class="sig-card sig-crepe">
+        <article class="sig sig-crepe" data-tilt>
           <p class="sig-kicker">Crepe of the Day</p>
           <ul class="sig-list">
-            <li><span>Sweet crepe</span><span class="price">£4.40</span></li>
+            <li><span>Sweet crepe</span><b>£4.40</b></li>
             <li class="sub">Nutella, grated biscuit, banana</li>
-            <li><span>Salted crepe</span><span class="price">£5.00</span></li>
+            <li><span>Salted crepe</span><b>£5.00</b></li>
             <li class="sub">Ham, cheese, tomatoes</li>
           </ul>
         </article>
 
-        <article class="sig-card sig-dessert">
+        <article class="sig sig-dessert" data-tilt>
           <p class="sig-kicker">Dessert</p>
-          <ul class="sig-list">
-            <li><span>Baklava</span><span class="price">£4.00</span></li>
-            <li><span>Kataifi</span><span class="price">£4.00</span></li>
-            <li><span>Ravani</span><span class="price">£4.00</span></li>
-            <li><span>Tiramisu</span><span class="price">£4.00</span></li>
+          <ul class="sig-list grid-2">
+            <li><span>Baklava</span><b>£4.00</b></li>
+            <li><span>Kataifi</span><b>£4.00</b></li>
+            <li><span>Ravani</span><b>£4.00</b></li>
+            <li><span>Tiramisu</span><b>£4.00</b></li>
           </ul>
         </article>
 
@@ -260,466 +295,358 @@
     </div>
   </section>
 
-  <!-- ============ FULL MENU ============ -->
-  <section class="menu" id="menu">
-    <div class="container">
-      <p class="eyebrow center">Everything We Serve</p>
-      <h2 class="center">The Menu</h2>
-      <p class="section-lead center">
-        The full board, as it hangs in the shop — numbered so you can order by
-        number at the counter. All prices in pounds.
-      </p>
+  <!-- ══════════════ MENU ══════════════ -->
+  <section class="section section-tint" id="menu">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow reveal">Everything We Serve</p>
+        <h2 class="reveal" data-delay="1">The Menu</h2>
+        <p class="section-lead reveal" data-delay="2">
+          The full board as it hangs in the shop — numbered, so you can order by
+          number at the counter.
+        </p>
+      </div>
 
-      <nav class="menu-filter" id="menu-filter" aria-label="Menu categories">
-        <button class="chip is-active" data-cat="all" aria-pressed="true">All</button>
-        <button class="chip" data-cat="salad" aria-pressed="false">Salads</button>
-        <button class="chip" data-cat="wraps" aria-pressed="false">Souvlaki Pita Wraps</button>
-        <button class="chip" data-cat="skepasti" aria-pressed="false">Skepasti</button>
-        <button class="chip" data-cat="merides" aria-pressed="false">Merides</button>
-        <button class="chip" data-cat="skewers" aria-pressed="false">Kalamakia</button>
-        <button class="chip" data-cat="steak" aria-pressed="false">Steak</button>
-        <button class="chip" data-cat="fish" aria-pressed="false">Fish</button>
-        <button class="chip" data-cat="sides" aria-pressed="false">Sides</button>
-        <button class="chip" data-cat="dips" aria-pressed="false">Dips</button>
-      </nav>
+      <div class="filter-wrap">
+        <nav class="filter" id="filter" aria-label="Menu categories">
+          <span class="filter-pill" id="filter-pill" aria-hidden="true"></span>
+          <button class="chip is-active" data-cat="all" aria-pressed="true">All</button>
+          <button class="chip" data-cat="salad" aria-pressed="false">Salads</button>
+          <button class="chip" data-cat="wraps" aria-pressed="false">Pita Wraps</button>
+          <button class="chip" data-cat="skepasti" aria-pressed="false">Skepasti</button>
+          <button class="chip" data-cat="merides" aria-pressed="false">Merides</button>
+          <button class="chip" data-cat="skewers" aria-pressed="false">Kalamakia</button>
+          <button class="chip" data-cat="steak" aria-pressed="false">Steak</button>
+          <button class="chip" data-cat="fish" aria-pressed="false">Fish</button>
+          <button class="chip" data-cat="sides" aria-pressed="false">Sides</button>
+          <button class="chip" data-cat="dips" aria-pressed="false">Dips</button>
+        </nav>
+      </div>
 
-      <div class="menu-groups" id="menu-groups">
+      <div class="glass menu-panel" id="menu-groups">
 
-        <!-- SALAD -->
-        <section class="menu-group" data-cat="salad">
-          <header class="group-head">
-            <h3>Salad</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">1</span><h4>Greek Salad</h4><span class="dish-price">£4.90</span></div>
-              <p class="dish-desc">Tomatoes, cucumber, green pepper, olives, feta cheese, olive oil, oregano</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">2</span><h4>Dakos Salad</h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Cracker bread, grated feta, tomatoes, onions, olives, capers, fresh parsley, olive oil</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">3</span><h4>Special Salad</h4><span class="dish-price">£6.50</span></div>
-              <p class="dish-desc">Lettuce, special sauce, boiled egg, croutons, chicken, tomatoes, cucumber, grated cheese, olive oil</p>
-            </article>
+        <section class="mgroup" data-cat="salad">
+          <header class="mhead"><h3>Salad</h3><span class="mrule"></span></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">1</span><span class="dname">Greek Salad</span><span class="dprice">£4.90</span></p><p class="ddesc">Tomatoes, cucumber, green pepper, olives, feta cheese, olive oil, oregano</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">2</span><span class="dname">Dakos Salad</span><span class="dprice">£5.50</span></p><p class="ddesc">Cracker bread, grated feta, tomatoes, onions, olives, capers, fresh parsley, olive oil</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">3</span><span class="dname">Special Salad</span><span class="dprice">£6.50</span></p><p class="ddesc">Lettuce, special sauce, boiled egg, croutons, chicken, tomatoes, cucumber, grated cheese, olive oil</p></article>
           </div>
         </section>
 
-        <!-- SOUVLAKI PITA WRAP -->
-        <section class="menu-group" data-cat="wraps">
-          <header class="group-head">
-            <h3>Souvlaki Pita Wrap</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-            <p class="group-note">Wrapped with hand-cut fries inside, the way it's done back home.</p>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">4</span><h4>Pork Gyros</h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, fresh hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">5</span><h4>Chicken Gyros</h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Lettuce, tomatoes, special sauce, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">6</span><h4>Pork Kalamaki</h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">7</span><h4>Beef Kalamaki</h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">8</span><h4>Lamb Kalamaki</h4><span class="dish-price">£6.00</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">9</span><h4>Sausage Kalamaki</h4><span class="dish-price">£5.70</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">10</span><h4>Halloumi Kalamaki <span class="veg">Veg</span></h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">11</span><h4>Falafel Wrap <span class="veg">Veg</span></h4><span class="dish-price">£5.00</span></div>
-              <p class="dish-desc">Houmous, tomatoes, hand-cut fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">12</span><h4>Chicken Kalamaki</h4><span class="dish-price">£5.50</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, hand-cut fries</p>
-            </article>
+        <section class="mgroup" data-cat="wraps">
+          <header class="mhead"><h3>Souvlaki Pita Wrap</h3><span class="mrule"></span><p class="mnote">Wrapped with hand-cut fries inside, the way it's done back home.</p></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">4</span><span class="dname">Pork Gyros</span><span class="dprice">£5.50</span></p><p class="ddesc">Onion, tomatoes, tzatziki, fresh hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">5</span><span class="dname">Chicken Gyros</span><span class="dprice">£5.50</span></p><p class="ddesc">Lettuce, tomatoes, special sauce, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">6</span><span class="dname">Pork Kalamaki</span><span class="dprice">£5.50</span></p><p class="ddesc">Onion, tomatoes, tzatziki, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">7</span><span class="dname">Beef Kalamaki</span><span class="dprice">£5.50</span></p><p class="ddesc">Onion, tomatoes, tzatziki, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">8</span><span class="dname">Lamb Kalamaki</span><span class="dprice">£6.00</span></p><p class="ddesc">Onion, tomatoes, tzatziki, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">9</span><span class="dname">Sausage Kalamaki</span><span class="dprice">£5.70</span></p><p class="ddesc">Onion, tomatoes, tzatziki, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">10</span><span class="dname">Halloumi Kalamaki <span class="veg">Veg</span></span><span class="dprice">£5.50</span></p><p class="ddesc">Onion, tomatoes, tzatziki, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">11</span><span class="dname">Falafel Wrap <span class="veg">Veg</span></span><span class="dprice">£5.00</span></p><p class="ddesc">Houmous, tomatoes, hand-cut fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">12</span><span class="dname">Chicken Kalamaki</span><span class="dprice">£5.50</span></p><p class="ddesc">Onion, tomatoes, tzatziki, hand-cut fries</p></article>
           </div>
         </section>
 
-        <!-- SKEPASTI -->
-        <section class="menu-group" data-cat="skepasti">
-          <header class="group-head">
-            <h3>Skepasti</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-            <p class="group-note">Open pitta, loaded and covered — a knife-and-fork job.</p>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">13</span><h4>Pork Gyros Skepasti</h4><span class="dish-price">£8.00</span></div>
-              <p class="dish-desc">Onion, tomatoes, tzatziki, homemade fries, grated cheese</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">14</span><h4>Chicken Gyros Skepasti</h4><span class="dish-price">£8.00</span></div>
-              <p class="dish-desc">Lettuce, tomatoes, special sauce, hand-cut fries, grated cheese</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">15</span><h4>Halloumi Skepasti <span class="veg">Veg</span></h4><span class="dish-price">£8.00</span></div>
-              <p class="dish-desc">Onion, tomatoes, special sauce, hand-cut fries, grated feta cheese</p>
-            </article>
+        <section class="mgroup" data-cat="skepasti">
+          <header class="mhead"><h3>Skepasti</h3><span class="mrule"></span><p class="mnote">Open pitta, loaded and covered — a knife-and-fork job.</p></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">13</span><span class="dname">Pork Gyros Skepasti</span><span class="dprice">£8.00</span></p><p class="ddesc">Onion, tomatoes, tzatziki, homemade fries, grated cheese</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">14</span><span class="dname">Chicken Gyros Skepasti</span><span class="dprice">£8.00</span></p><p class="ddesc">Lettuce, tomatoes, special sauce, hand-cut fries, grated cheese</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">15</span><span class="dname">Halloumi Skepasti <span class="veg">Veg</span></span><span class="dprice">£8.00</span></p><p class="ddesc">Onion, tomatoes, special sauce, hand-cut fries, grated feta cheese</p></article>
           </div>
         </section>
 
-        <!-- MERIDES -->
-        <section class="menu-group" data-cat="merides">
-          <header class="group-head">
-            <h3>Merides &mdash; Portions</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-            <p class="group-note">The full plate: meat, pitta, dips and fries, all separate.</p>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">16</span><h4>Pork Gyros</h4><span class="dish-price">£8.50</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">17</span><h4>Chicken Gyros</h4><span class="dish-price">£8.50</span></div>
-              <p class="dish-desc">Pitta, special sauce, lettuce, tomatoes &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">18</span><h4>Pork Kalamaki</h4><span class="dish-price">£9.50</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">19</span><h4>Beef Kalamaki</h4><span class="dish-price">£9.00</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">20</span><h4>Lamb Kalamaki</h4><span class="dish-price">£9.00</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">21</span><h4>Sausage Kalamaki</h4><span class="dish-price">£8.70</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">22</span><h4>Falafel Portion <span class="veg">Veg</span></h4><span class="dish-price">£8.00</span></div>
-              <p class="dish-desc">Houmous, lettuce, pitta, tomatoes &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">23</span><h4>Halloumi Kalamaki <span class="veg">Veg</span></h4><span class="dish-price">£8.50</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">24</span><h4>Beef Stuffed with Cheese on the Grill</h4><span class="dish-price">£8.50</span></div>
-              <p class="dish-desc">Served with rice or fries of your choice</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">25</span><h4>Chicken Kalamaki</h4><span class="dish-price">£8.50</span></div>
-              <p class="dish-desc">Pitta, onions, tzatziki &amp; fresh fries</p>
-            </article>
+        <section class="mgroup" data-cat="merides">
+          <header class="mhead"><h3>Merides — Portions</h3><span class="mrule"></span><p class="mnote">The full plate: meat, pitta, dips and fries, all separate.</p></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">16</span><span class="dname">Pork Gyros</span><span class="dprice">£8.50</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">17</span><span class="dname">Chicken Gyros</span><span class="dprice">£8.50</span></p><p class="ddesc">Pitta, special sauce, lettuce, tomatoes &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">18</span><span class="dname">Pork Kalamaki</span><span class="dprice">£9.50</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">19</span><span class="dname">Beef Kalamaki</span><span class="dprice">£9.00</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">20</span><span class="dname">Lamb Kalamaki</span><span class="dprice">£9.00</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">21</span><span class="dname">Sausage Kalamaki</span><span class="dprice">£8.70</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">22</span><span class="dname">Falafel Portion <span class="veg">Veg</span></span><span class="dprice">£8.00</span></p><p class="ddesc">Houmous, lettuce, pitta, tomatoes &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">23</span><span class="dname">Halloumi Kalamaki <span class="veg">Veg</span></span><span class="dprice">£8.50</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">24</span><span class="dname">Beef Stuffed with Cheese</span><span class="dprice">£8.50</span></p><p class="ddesc">On the grill, served with rice or fries of your choice</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">25</span><span class="dname">Chicken Kalamaki</span><span class="dprice">£8.50</span></p><p class="ddesc">Pitta, onions, tzatziki &amp; fresh fries</p></article>
           </div>
         </section>
 
-        <!-- KALAMAKIA -->
-        <section class="menu-group" data-cat="skewers">
-          <header class="group-head">
-            <h3>Kalamakia &mdash; Skewers</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-            <p class="group-note">Order two, order six. Everything here comes off the charcoal.</p>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">26</span><h4>Pork</h4><span class="dish-price">£2.50</span></div>
-              <p class="dish-desc">Served with lemon, oregano, bread &amp; cheese</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">27</span><h4>Chicken</h4><span class="dish-price">£2.50</span></div>
-              <p class="dish-desc">Served with lemon, oregano, bread &amp; cheese</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">28</span><h4>Beef</h4><span class="dish-price">£2.50</span></div>
-              <p class="dish-desc">Served with lemon, oregano, bread &amp; cheese</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">29</span><h4>Lamb</h4><span class="dish-price">£3.00</span></div>
-              <p class="dish-desc">Served with lemon, oregano, bread &amp; cheese</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">30</span><h4>Village Sausage</h4><span class="dish-price">£2.70</span></div>
-              <p class="dish-desc">Loukaniko horiatiko</p>
-            </article>
+        <section class="mgroup" data-cat="skewers">
+          <header class="mhead"><h3>Kalamakia — Skewers</h3><span class="mrule"></span><p class="mnote">Order two, order six. Everything here comes off the charcoal.</p></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">26</span><span class="dname">Pork</span><span class="dprice">£2.50</span></p><p class="ddesc">Served with lemon, oregano, bread &amp; cheese</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">27</span><span class="dname">Chicken</span><span class="dprice">£2.50</span></p><p class="ddesc">Served with lemon, oregano, bread &amp; cheese</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">28</span><span class="dname">Beef</span><span class="dprice">£2.50</span></p><p class="ddesc">Served with lemon, oregano, bread &amp; cheese</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">29</span><span class="dname">Lamb</span><span class="dprice">£3.00</span></p><p class="ddesc">Served with lemon, oregano, bread &amp; cheese</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">30</span><span class="dname">Village Sausage</span><span class="dprice">£2.70</span></p><p class="ddesc">Loukaniko horiatiko</p></article>
           </div>
         </section>
 
-        <!-- STEAK -->
-        <section class="menu-group" data-cat="steak">
-          <header class="group-head">
-            <h3>Steak &amp; Grill</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">31</span><h4>Beef Stuffed with Cheese on the Grill</h4><span class="dish-price">£8.50</span></div>
-              <p class="dish-desc">Served with rice or hand-cut fries of your choice</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">32</span><h4>Ribeye</h4><span class="dish-price">£15.99</span></div>
-              <p class="dish-desc">Served with hand-cut fries and salad</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">33</span><h4>Lamb Cutlets</h4><span class="dish-price">£13.50</span></div>
-              <p class="dish-desc">Served with hand-cut fries and salad</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">34</span><h4>Grilled Chicken (Half)</h4><span class="dish-price">£7.50</span></div>
-              <p class="dish-desc">Marinated with mustard sauce, served with hand-cut fries and grilled vegetables</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">35</span><h4>Pork Steak</h4><span class="dish-price">£7.99</span></div>
-              <p class="dish-desc">Marinated with mustard sauce, served with hand-cut fries and grilled vegetables</p>
-            </article>
+        <section class="mgroup" data-cat="steak">
+          <header class="mhead"><h3>Steak &amp; Grill</h3><span class="mrule"></span></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">31</span><span class="dname">Beef Stuffed with Cheese</span><span class="dprice">£8.50</span></p><p class="ddesc">On the grill, served with rice or hand-cut fries of your choice</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">32</span><span class="dname">Ribeye</span><span class="dprice">£15.99</span></p><p class="ddesc">Served with hand-cut fries and salad</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">33</span><span class="dname">Lamb Cutlets</span><span class="dprice">£13.50</span></p><p class="ddesc">Served with hand-cut fries and salad</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">34</span><span class="dname">Grilled Chicken (Half)</span><span class="dprice">£7.50</span></p><p class="ddesc">Marinated with mustard sauce, hand-cut fries and grilled vegetables</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">35</span><span class="dname">Pork Steak</span><span class="dprice">£7.99</span></p><p class="ddesc">Marinated with mustard sauce, hand-cut fries and grilled vegetables</p></article>
           </div>
         </section>
 
-        <!-- FISH -->
-        <section class="menu-group" data-cat="fish">
-          <header class="group-head">
-            <h3>Fish</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-          </header>
-          <div class="dish-list">
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">36</span><h4>Char-Grilled Sea Bass</h4><span class="dish-price">£11.99</span></div>
-              <p class="dish-desc">Served with hand-cut fries &amp; salad</p>
-            </article>
-            <article class="dish">
-              <div class="dish-top"><span class="dish-no">47</span><h4>Char-Grilled Sea Bream</h4><span class="dish-price">£11.99</span></div>
-              <p class="dish-desc">Served with hand-cut fries &amp; salad</p>
-            </article>
+        <section class="mgroup" data-cat="fish">
+          <header class="mhead"><h3>Fish</h3><span class="mrule"></span></header>
+          <div class="dishes">
+            <article class="dish"><p class="dtop"><span class="dno">36</span><span class="dname">Char-Grilled Sea Bass</span><span class="dprice">£11.99</span></p><p class="ddesc">Served with hand-cut fries &amp; salad</p></article>
+            <article class="dish"><p class="dtop"><span class="dno">47</span><span class="dname">Char-Grilled Sea Bream</span><span class="dprice">£11.99</span></p><p class="ddesc">Served with hand-cut fries &amp; salad</p></article>
           </div>
         </section>
 
-        <!-- SIDES -->
-        <section class="menu-group" data-cat="sides">
-          <header class="group-head">
-            <h3>Sides</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-          </header>
-          <ul class="price-list">
-            <li><span>Pitta bread</span><span class="dots" aria-hidden="true"></span><span class="price">£1.00</span></li>
-            <li><span>Fresh fries</span><span class="dots" aria-hidden="true"></span><span class="price">£3.50</span></li>
-            <li><span>Greek olives</span><span class="dots" aria-hidden="true"></span><span class="price">£2.50</span></li>
-            <li><span>Feta cheese</span><span class="dots" aria-hidden="true"></span><span class="price">£3.50</span></li>
-            <li><span>Grilled saganaki</span><span class="dots" aria-hidden="true"></span><span class="price">£4.00</span></li>
-            <li><span>Talagani</span><span class="dots" aria-hidden="true"></span><span class="price">£4.00</span></li>
-            <li><span>Rice</span><span class="dots" aria-hidden="true"></span><span class="price">£3.50</span></li>
-            <li><span>Fresh fries with feta</span><span class="dots" aria-hidden="true"></span><span class="price">£4.50</span></li>
+        <section class="mgroup" data-cat="sides">
+          <header class="mhead"><h3>Sides</h3><span class="mrule"></span></header>
+          <ul class="plist">
+            <li><span>Pitta bread</span><i aria-hidden="true"></i><b>£1.00</b></li>
+            <li><span>Fresh fries</span><i aria-hidden="true"></i><b>£3.50</b></li>
+            <li><span>Greek olives</span><i aria-hidden="true"></i><b>£2.50</b></li>
+            <li><span>Feta cheese</span><i aria-hidden="true"></i><b>£3.50</b></li>
+            <li><span>Grilled saganaki</span><i aria-hidden="true"></i><b>£4.00</b></li>
+            <li><span>Talagani</span><i aria-hidden="true"></i><b>£4.00</b></li>
+            <li><span>Rice</span><i aria-hidden="true"></i><b>£3.50</b></li>
+            <li><span>Fresh fries with feta</span><i aria-hidden="true"></i><b>£4.50</b></li>
           </ul>
         </section>
 
-        <!-- DIPS -->
-        <section class="menu-group" data-cat="dips">
-          <header class="group-head">
-            <h3>Pitta Corner Dips</h3>
-            <span class="diamonds" aria-hidden="true">◇◇◇◇</span>
-            <p class="group-note">All homemade, all £2.99.</p>
-          </header>
-          <ul class="price-list">
-            <li><span>Spicy feta &mdash; htipiti</span><span class="dots" aria-hidden="true"></span><span class="price">£2.99</span></li>
-            <li><span>Tzatziki</span><span class="dots" aria-hidden="true"></span><span class="price">£2.99</span></li>
-            <li><span>Houmous</span><span class="dots" aria-hidden="true"></span><span class="price">£2.99</span></li>
-            <li><span>Russian salad dressing</span><span class="dots" aria-hidden="true"></span><span class="price">£2.99</span></li>
+        <section class="mgroup" data-cat="dips">
+          <header class="mhead"><h3>Pitta Corner Dips</h3><span class="mrule"></span><p class="mnote">All homemade, all £2.99.</p></header>
+          <ul class="plist">
+            <li><span>Spicy feta — htipiti</span><i aria-hidden="true"></i><b>£2.99</b></li>
+            <li><span>Tzatziki</span><i aria-hidden="true"></i><b>£2.99</b></li>
+            <li><span>Houmous</span><i aria-hidden="true"></i><b>£2.99</b></li>
+            <li><span>Russian salad dressing</span><i aria-hidden="true"></i><b>£2.99</b></li>
           </ul>
         </section>
 
       </div>
 
-      <p class="menu-note">
-        <span class="veg">Veg</span> marks a vegetarian dish. Prices are taken from
-        our in-store menu board and may change. Ask about allergens at the counter
-        before ordering — we'll tell you exactly what's in it.
+      <p class="menu-foot">
+        <span class="veg">Veg</span> marks a vegetarian dish. Prices are from our
+        in-store board and may change. Ask about allergens at the counter — we'll
+        tell you exactly what's in it.
       </p>
     </div>
   </section>
 
-  <!-- ============ DRINKS ============ -->
-  <section class="drinks" id="drinks">
-    <div class="container">
-      <p class="eyebrow center light">The Fridge &amp; The Bar</p>
-      <h2 class="center light">Drinks</h2>
-
-      <div class="drinks-grid">
-        <div class="drink-col">
+  <!-- ══════════════ DRINKS ══════════════ -->
+  <section class="section" id="drinks">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow reveal">The Fridge &amp; The Bar</p>
+        <h2 class="reveal" data-delay="1">Drinks</h2>
+      </div>
+      <div class="drinks-grid stagger">
+        <div class="glass drink-col">
           <h3>Soft Drinks</h3>
-          <ul class="price-list light">
-            <li><span>Can drinks</span><span class="dots" aria-hidden="true"></span><span class="price">£1.50</span></li>
-            <li><span>Bottle drinks</span><span class="dots" aria-hidden="true"></span><span class="price">£2.00</span></li>
-            <li><span>Ayran</span><span class="dots" aria-hidden="true"></span><span class="price">£1.50</span></li>
-            <li><span>Water</span><span class="dots" aria-hidden="true"></span><span class="price">£1.50</span></li>
+          <ul class="plist">
+            <li><span>Can drinks</span><i aria-hidden="true"></i><b>£1.50</b></li>
+            <li><span>Bottle drinks</span><i aria-hidden="true"></i><b>£2.00</b></li>
+            <li><span>Ayran</span><i aria-hidden="true"></i><b>£1.50</b></li>
+            <li><span>Water</span><i aria-hidden="true"></i><b>£1.50</b></li>
           </ul>
         </div>
-        <div class="drink-col">
+        <div class="glass drink-col">
           <h3>Beers</h3>
-          <ul class="price-list light">
-            <li><span>Corona</span><span class="dots" aria-hidden="true"></span><span class="price">£3.00</span></li>
-            <li><span>Budweiser</span><span class="dots" aria-hidden="true"></span><span class="price">£3.00</span></li>
-            <li><span>Heineken</span><span class="dots" aria-hidden="true"></span><span class="price">£3.50</span></li>
-            <li><span>Peroni</span><span class="dots" aria-hidden="true"></span><span class="price">£3.50</span></li>
-            <li><span>Moretti</span><span class="dots" aria-hidden="true"></span><span class="price">£3.50</span></li>
+          <ul class="plist">
+            <li><span>Corona</span><i aria-hidden="true"></i><b>£3.00</b></li>
+            <li><span>Budweiser</span><i aria-hidden="true"></i><b>£3.00</b></li>
+            <li><span>Heineken</span><i aria-hidden="true"></i><b>£3.50</b></li>
+            <li><span>Peroni</span><i aria-hidden="true"></i><b>£3.50</b></li>
+            <li><span>Moretti</span><i aria-hidden="true"></i><b>£3.50</b></li>
           </ul>
         </div>
-        <div class="drink-col">
-          <h3>Wine <em>glass / bottle</em></h3>
-          <ul class="price-list light">
-            <li><span>Red wine</span><span class="dots" aria-hidden="true"></span><span class="price">£5.00 / £25.00</span></li>
-            <li><span>White wine</span><span class="dots" aria-hidden="true"></span><span class="price">£5.00 / £22.00</span></li>
-          </ul>
-          <h3 class="mt">Spirits</h3>
-          <ul class="price-list light">
-            <li><span>Single</span><span class="dots" aria-hidden="true"></span><span class="price">£3.00</span></li>
-            <li><span>Double</span><span class="dots" aria-hidden="true"></span><span class="price">£6.00</span></li>
+        <div class="glass drink-col">
+          <h3>Wine &amp; Spirits</h3>
+          <ul class="plist">
+            <li><span>Red wine <em>glass / bottle</em></span><i aria-hidden="true"></i><b>£5 / £25</b></li>
+            <li><span>White wine <em>glass / bottle</em></span><i aria-hidden="true"></i><b>£5 / £22</b></li>
+            <li><span>Single spirits</span><i aria-hidden="true"></i><b>£3.00</b></li>
+            <li><span>Double spirits</span><i aria-hidden="true"></i><b>£6.00</b></li>
           </ul>
         </div>
-        <div class="drink-col">
+        <div class="glass drink-col drink-feature">
           <h3>Coffee Counter</h3>
-          <p class="drink-note">
-            The sign says <em>Restaurant · Coffee · Crepe</em> for a reason. We open
-            at 8 with the coffee machine on — espresso, filter, iced coffee and hot
-            drinks to take up the High Road, with a sweet or salted crepe if you want one.
+          <p>
+            The sign says <em>Restaurant · Coffee · Crepe</em> for a reason. We open at
+            8 with the machine on — espresso, filter, iced coffee and hot drinks to
+            take up the High Road, with a sweet or salted crepe if you want one.
           </p>
-          <a href="#order" class="btn btn-primary">Order Ahead</a>
+          <a href="#order" class="btn btn-primary btn-sm">
+            Order Ahead <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ REVIEWS ============ -->
-  <section class="reviews" id="reviews">
-    <div class="container">
-      <p class="eyebrow center">What Wood Green Says</p>
-      <h2 class="center">Rated by the people who queue here</h2>
-
-      <div class="ratings-row">
-        <div class="rating"><strong>5.0</strong><span>Just Eat</span><em>900+ ratings</em></div>
-        <div class="rating"><strong>4.5</strong><span>Uber Eats</span><em>Delivery rating</em></div>
-        <div class="rating"><strong>4.2</strong><span>Restaurant Guru</span><em>582 reviews</em></div>
-        <div class="rating"><strong>5</strong><span>Food Hygiene</span><em>Haringey, Nov 2024</em></div>
+  <!-- ══════════════ REVIEWS ══════════════ -->
+  <section class="section section-tint" id="reviews">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow reveal">What Wood Green Says</p>
+        <h2 class="reveal" data-delay="1">Rated by the people who queue here</h2>
       </div>
 
-      <div class="reviews-grid">
-        <blockquote>
+      <div class="ratings stagger">
+        <div class="glass rating">
+          <strong class="count" data-count="5.0" data-decimals="1">5.0</strong>
+          <span class="rating-src">Just Eat</span><em>900+ ratings</em>
+        </div>
+        <div class="glass rating">
+          <strong class="count" data-count="4.5" data-decimals="1">4.5</strong>
+          <span class="rating-src">Uber Eats</span><em>Delivery rating</em>
+        </div>
+        <div class="glass rating">
+          <strong class="count" data-count="4.2" data-decimals="1">4.2</strong>
+          <span class="rating-src">Restaurant Guru</span><em>582 reviews</em>
+        </div>
+        <div class="glass rating">
+          <strong class="count" data-count="5" data-decimals="0">5</strong>
+          <span class="rating-src">Food Hygiene</span><em>Haringey, Nov 2024</em>
+        </div>
+      </div>
+
+      <div class="quotes stagger">
+        <blockquote class="glass quote">
+          <svg class="ico ico-quote" aria-hidden="true"><use href="#i-quote"/></svg>
           <p>Genuinely hard to find Greek food and service to match this in London. Quality food, generous portions.</p>
           <cite>Tripadvisor review</cite>
         </blockquote>
-        <blockquote>
+        <blockquote class="glass quote">
+          <svg class="ico ico-quote" aria-hidden="true"><use href="#i-quote"/></svg>
           <p>Massive portions — we took half of it home. Watching it come off the grill is half the appeal.</p>
           <cite>Google review</cite>
         </blockquote>
-        <blockquote>
+        <blockquote class="glass quote">
+          <svg class="ico ico-quote" aria-hidden="true"><use href="#i-quote"/></svg>
           <p>Friendly, fast, and the pitta wraps are stuffed properly full. Our go-to on the High Road.</p>
           <cite>Just Eat review</cite>
         </blockquote>
       </div>
-      <p class="reviews-note">
-        Quotes paraphrased from public customer feedback across Google, Tripadvisor,
-        Just Eat, Deliveroo and Uber Eats. Ratings correct at time of writing.
+
+      <p class="fine reveal">
+        Quotes paraphrased from public feedback across Google, Tripadvisor, Just Eat,
+        Deliveroo and Uber Eats. Ratings correct at time of writing.
       </p>
     </div>
   </section>
 
-  <!-- ============ ORDER ============ -->
+  <!-- ══════════════ ORDER ══════════════ -->
   <section class="order" id="order">
-    <div class="container order-inner">
-      <p class="eyebrow center light">Delivery &amp; Collection</p>
-      <h2 class="center light">Order Online</h2>
-      <p class="section-lead center light">
-        Same grill, same portions, delivered across N22 and beyond — or call the
-        shop and collect it hot.
-      </p>
-      <div class="order-buttons">
-        <a href="https://www.just-eat.co.uk/restaurants-pittacorner-woodgreen/menu" target="_blank" rel="noopener" class="btn btn-order">Just&nbsp;Eat<span class="visually-hidden"> (opens in a new tab)</span></a>
-        <a href="https://deliveroo.co.uk/menu/london/wood-green/pitta-souvlakia" target="_blank" rel="noopener" class="btn btn-order">Deliveroo<span class="visually-hidden"> (opens in a new tab)</span></a>
-        <a href="https://www.ubereats.com/gb/store/pitta-corner/O8aSZpdnVc6AbdoEVceK2g" target="_blank" rel="noopener" class="btn btn-order">Uber&nbsp;Eats<span class="visually-hidden"> (opens in a new tab)</span></a>
-        <a href="tel:+442088269594" class="btn btn-order btn-order-call">Call 020 8826 9594</a>
+    <div class="shell order-inner">
+      <div class="order-copy">
+        <p class="eyebrow reveal">Delivery &amp; Collection</p>
+        <h2 class="reveal" data-delay="1">Same grill.<br>Your front door.</h2>
+        <p class="section-lead reveal" data-delay="2">
+          Same portions, delivered across N22 and beyond — or call the shop and
+          collect it hot.
+        </p>
+      </div>
+      <div class="order-actions stagger">
+        <a href="https://www.just-eat.co.uk/restaurants-pittacorner-woodgreen/menu" target="_blank" rel="noopener" class="glass order-link">
+          <span>Just Eat<span class="visually-hidden"> (opens in a new tab)</span></span>
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="https://deliveroo.co.uk/menu/london/wood-green/pitta-souvlakia" target="_blank" rel="noopener" class="glass order-link">
+          <span>Deliveroo<span class="visually-hidden"> (opens in a new tab)</span></span>
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="https://www.ubereats.com/gb/store/pitta-corner/O8aSZpdnVc6AbdoEVceK2g" target="_blank" rel="noopener" class="glass order-link">
+          <span>Uber Eats<span class="visually-hidden"> (opens in a new tab)</span></span>
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a href="tel:+442088269594" class="order-link order-call">
+          <span>Call 020 8826 9594</span>
+          <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============ FIND US ============ -->
-  <section class="find-us" id="find-us">
-    <div class="container find-us-grid">
-      <div class="find-us-info">
-        <p class="eyebrow">Visit Us</p>
-        <h2>Find Pitta Corner</h2>
-        <p>
+  <!-- ══════════════ VISIT ══════════════ -->
+  <section class="section" id="visit">
+    <div class="shell visit-grid">
+      <div class="visit-info">
+        <p class="eyebrow reveal">Visit Us</p>
+        <h2 class="reveal" data-delay="1">Find Pitta Corner</h2>
+        <p class="section-lead reveal" data-delay="2">
           Look for the turquoise sign and the flower boxes — you'll smell the
           charcoal before you read the name.
         </p>
-        <ul class="info-list">
-          <li><strong>Address</strong><span>43 High Road, Wood Green, London N22 6BH</span></li>
-          <li><strong>Phone</strong><span><a href="tel:+442088269594">020 8826 9594</a></span></li>
-          <li><strong>Nearest tube</strong><span>Wood Green &amp; Turnpike Lane, Piccadilly line</span></li>
-          <li><strong>Good for</strong><span>Dine in · Takeaway · Delivery · Breakfast &amp; coffee</span></li>
+
+        <ul class="info-list stagger">
+          <li class="glass">
+            <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+            <div><strong>Address</strong><span>43 High Road, Wood Green<br>London N22 6BH</span></div>
+          </li>
+          <li class="glass">
+            <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+            <div><strong>Phone</strong><span><a href="tel:+442088269594">020 8826 9594</a></span></div>
+          </li>
+          <li class="glass">
+            <svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>
+            <div><strong>Hours</strong><span>Every day, 8:00 – 23:00<br>Coffee &amp; breakfast from 8:00</span></div>
+          </li>
         </ul>
 
-        <h3 class="hours-title">Opening Hours</h3>
-        <ul class="hours-list">
-          <li><span>Monday &ndash; Sunday</span><span>8:00 &ndash; 23:00</span></li>
-          <li><span>Coffee &amp; breakfast</span><span>From 8:00</span></li>
-          <li><span>Grill &amp; kitchen</span><span>All day, every day</span></li>
-        </ul>
-
-        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Pitta+Corner+43+High+Road+Wood+Green+London+N22+6BH" target="_blank" rel="noopener">Get Directions<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Pitta+Corner+43+High+Road+Wood+Green+London+N22+6BH" target="_blank" rel="noopener">
+          Get Directions<span class="visually-hidden"> (opens in a new tab)</span>
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
       </div>
-      <div class="find-us-map">
+
+      <div class="visit-map reveal-scale" data-delay="2">
         <iframe
           title="Map showing Pitta Corner at 43 High Road, Wood Green, London"
           src="https://www.google.com/maps?q=43+High+Road,+Wood+Green,+London+N22+6BH&amp;output=embed"
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="logo-script">Pitta Corner</span>
-      <p class="footer-tag">Restaurant · Coffee · Crepe &nbsp;|&nbsp; Breakfast · Lunch · Dinner</p>
-    </div>
-    <div class="footer-cols">
-      <div>
-        <h4>Find us</h4>
-        <p>43 High Road<br>Wood Green<br>London N22 6BH</p>
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-mark">Pitta Corner</span>
+        <p>Restaurant · Coffee · Crepe<br>Breakfast · Lunch · Dinner</p>
       </div>
-      <div>
-        <h4>Contact</h4>
-        <p><a href="tel:+442088269594">020 8826 9594</a><br>Open daily 8:00 &ndash; 23:00</p>
-      </div>
-      <div>
-        <h4>Order</h4>
-        <p>
-          <a href="https://www.just-eat.co.uk/restaurants-pittacorner-woodgreen/menu" target="_blank" rel="noopener">Just Eat<span class="visually-hidden"> (opens in a new tab)</span></a><br>
-          <a href="https://deliveroo.co.uk/menu/london/wood-green/pitta-souvlakia" target="_blank" rel="noopener">Deliveroo<span class="visually-hidden"> (opens in a new tab)</span></a><br>
-          <a href="https://www.ubereats.com/gb/store/pitta-corner/O8aSZpdnVc6AbdoEVceK2g" target="_blank" rel="noopener">Uber Eats<span class="visually-hidden"> (opens in a new tab)</span></a>
-        </p>
+      <div class="footer-cols">
+        <div>
+          <h3>Find us</h3>
+          <p>43 High Road<br>Wood Green<br>London N22 6BH</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p><a href="tel:+442088269594">020 8826 9594</a><br>Open daily 8:00 – 23:00</p>
+        </div>
+        <div>
+          <h3>Order</h3>
+          <p>
+            <a href="https://www.just-eat.co.uk/restaurants-pittacorner-woodgreen/menu" target="_blank" rel="noopener">Just Eat<span class="visually-hidden"> (opens in a new tab)</span></a><br>
+            <a href="https://deliveroo.co.uk/menu/london/wood-green/pitta-souvlakia" target="_blank" rel="noopener">Deliveroo<span class="visually-hidden"> (opens in a new tab)</span></a><br>
+            <a href="https://www.ubereats.com/gb/store/pitta-corner/O8aSZpdnVc6AbdoEVceK2g" target="_blank" rel="noopener">Uber Eats<span class="visually-hidden"> (opens in a new tab)</span></a>
+          </p>
+        </div>
       </div>
     </div>
     <p class="footer-fine">
-      &copy; <span id="year"></span> Pitta Corner. Unofficial informational website —
-      not affiliated with or endorsed by the restaurant. Menu and prices transcribed
-      from the in-store board and public listings; always confirm before ordering.
+      © <span id="year"></span> Pitta Corner. Unofficial informational website — not
+      affiliated with or endorsed by the restaurant. Menu and prices transcribed from
+      the in-store board and public listings; always confirm before ordering.
     </p>
   </div>
 </footer>
