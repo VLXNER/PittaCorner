@@ -81,6 +81,44 @@ No build step, no dependencies. The only external requests are Google Fonts
 (Kaushan Script for the wordmark, Manrope for everything else) and the embedded
 Google map.
 
+## Design skills (`.claude/skills/`)
+
+The repo vendors the **UI/UX Pro Max** skill bundle
+([nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill),
+MIT, v2.13.0) so Claude Code sessions on this repo have design guidance available
+without reinstalling each time:
+
+| Skill | What it covers |
+| --- | --- |
+| `ui-ux-pro-max` | Searchable local database — UI styles, colour palettes, font pairings, UX/accessibility guidelines, icons, GSAP presets, chart types, and per-stack guidance |
+| `ui-styling` | shadcn/ui, Tailwind, responsive layout and theming |
+| `design-system` | Token architecture (primitive → semantic → component), component specs |
+| `design` | Brand identity, logos, mockups, icons |
+| `brand` | Brand voice, messaging, asset conventions |
+| `banner-design` | Social/ad/hero banner formats |
+| `slides` | HTML presentations with Chart.js |
+
+Everything runs locally — the search tool is plain Python 3 with no third-party
+dependencies and makes no network calls:
+
+```bash
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "restaurant menu" --design-system
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "contrast focus ring" --domain ux
+```
+
+Two local adjustments to the upstream files: `ui-ux-pro-max/SKILL.md` had its
+`${CLAUDE_PLUGIN_ROOT}` script paths rewritten to repo-relative paths (upstream
+assumes a plugin install; this is a vendored project skill), and the surrounding
+note was updated to match. Nothing else was changed.
+
+To update, re-copy `.claude/skills/` from the upstream repo and redo those two
+path edits — or install upstream properly with
+`/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill` and drop this copy.
+
+Note: Pages serves the repository root, so these files are publicly fetchable
+under the site URL. They're MIT-licensed public data, but they do add ~11 MB to
+each deploy.
+
 ## Running locally
 
 ```bash
