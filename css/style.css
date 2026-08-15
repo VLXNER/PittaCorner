@@ -29,6 +29,8 @@
 
 /* ═══════════ PRIMITIVES ═══════════ */
 :root{
+  --nav-h:84px;
+
   /* Royal blue — the menu and breakfast card */
   --blue-900:#0f2a5c;
   --blue-800:#173a78;
@@ -241,7 +243,8 @@ button{font:inherit;cursor:pointer;}
            padding-top:14px;padding-bottom:14px;}
 .brand{display:flex;align-items:center;gap:12px;}
 .brand-badge{width:40px;height:40px;flex:0 0 auto;color:var(--blue-900);}
-.brand-name{font-family:var(--font-script);font-size:1.5rem;color:var(--blue-900);line-height:1.5;}
+.brand-name{font-family:var(--font-script);font-size:1.5rem;color:var(--blue-900);
+  line-height:1.5;white-space:nowrap;}
 .nav-links{display:flex;gap:clamp(16px,2.2vw,30px);}
 .nav-links a{position:relative;font-size:.86rem;font-weight:600;letter-spacing:.04em;
   text-transform:uppercase;color:var(--ink-600);padding:6px 0;
@@ -265,7 +268,8 @@ button{font:inherit;cursor:pointer;}
    seconds to make someone hungry, and a line-drawn badge on cream paper
    does not do that -- the flames do. Type sits on a scrim heavy enough to
    hold 4.5:1 without washing the fire out. */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
+.hero{position:relative;min-height:calc(100svh - var(--nav-h,84px));
+  display:flex;flex-direction:column;
   justify-content:flex-end;isolation:isolate;overflow:hidden;background:var(--blue-900);
   view-timeline-name:--hero;view-timeline-axis:block;}
 .hero-media{position:absolute;inset:0;z-index:-2;}
@@ -273,9 +277,10 @@ button{font:inherit;cursor:pointer;}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg,rgba(8,20,44,.82) 0%,rgba(8,20,44,.42) 32%,
              rgba(8,20,44,.72) 68%,rgba(8,20,44,.95) 100%);}
-.hero-inner{position:relative;text-align:center;padding-top:22vh;
-  padding-bottom:clamp(40px,7vw,80px);display:flex;flex-direction:column;align-items:center;}
-.hero-badge{width:64px;height:64px;color:var(--gold-300);margin-bottom:20px;}
+.hero-inner{position:relative;text-align:center;padding-top:clamp(80px,15vh,190px);
+  padding-bottom:clamp(26px,3.4vw,50px);display:flex;flex-direction:column;align-items:center;}
+.hero-badge{width:clamp(50px,4.4vw,60px);height:clamp(50px,4.4vw,60px);
+  color:var(--gold-300);margin-bottom:16px;}
 .hero-kicker{display:inline-flex;align-items:center;gap:.8em;margin:0 0 .8em;
   font-size:.74rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;
   color:var(--gold-300);}
@@ -284,7 +289,7 @@ button{font:inherit;cursor:pointer;}
   letter-spacing:-.03em;margin-bottom:.32em;text-shadow:0 2px 30px rgba(0,0,0,.5);}
 .hero h1 em{font-style:italic;color:var(--gold-300);}
 .hero-lead{color:rgba(255,255,255,.92);font-size:clamp(1.02rem,1.4vw,1.2rem);
-  max-width:46ch;margin:0 auto 2.2em;text-shadow:0 1px 14px rgba(0,0,0,.6);}
+  max-width:46ch;margin:0 auto 1.8em;text-shadow:0 1px 14px rgba(0,0,0,.6);}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
 .btn-glass{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.5);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
@@ -292,7 +297,7 @@ button{font:inherit;cursor:pointer;}
 .hero-strip{position:relative;border-top:1px solid rgba(246,230,189,.22);
   background:rgba(8,20,44,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
 .hero-strip-in{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
-  padding-top:20px;padding-bottom:20px;text-align:center;}
+  padding-top:15px;padding-bottom:15px;text-align:center;}
 .hero-strip strong{display:block;font-family:var(--font-display);font-size:1.15rem;
   font-weight:600;color:var(--gold-300);line-height:1.25;}
 .hero-strip span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
@@ -1192,7 +1197,11 @@ button{font:inherit;cursor:pointer;}
 }
 @media (max-width:760px){
   html{scroll-padding-top:80px;}
-  .hero-inner{padding-top:17vh;}
+  .hero-inner{padding-top:clamp(56px,11vh,120px);}
+  .brand-name{font-size:1.2rem;}
+  .brand-badge{width:34px;height:34px;}
+  .nav-inner{gap:12px;padding-top:10px;padding-bottom:10px;}
+  .nav-cta .btn{padding:.68em 1.05em;font-size:.8rem;white-space:nowrap;}
   .hero-strip-in{grid-template-columns:repeat(2,1fr);gap:14px;}
   .nav{position:relative;}
   .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
@@ -1210,6 +1219,73 @@ button{font:inherit;cursor:pointer;}
   .hero-facts{gap:22px;}
   .map{min-height:320px;}
   .map iframe{min-height:318px;}
+}
+
+/* ═══════════ PRINT ═══════════
+   People print restaurant menus — stick one on the fridge, take it to
+   the counter, hand it round a table. Printing this page previously gave
+   you thirty sheets of navy panels and photographs. What comes out now
+   is the board: address and phone at the top, every category expanded
+   whatever the filter was set to, prices intact, nothing that only makes
+   sense on a screen, and no dish split across a page break. */
+@media print{
+  @page{margin:14mm;}
+  /* One reset, then re-tint what should stay grey. Selective overrides
+     lost to component rules every time -- .footer-cols p sets blue-200,
+     which on white paper prints as nothing at all. */
+  *,*::before,*::after{
+    color:#000 !important;background:transparent !important;
+    box-shadow:none !important;text-shadow:none !important;
+    filter:none !important;animation:none !important;transform:none !important;}
+  html{scroll-behavior:auto;}
+  body{background:#fff;font-size:10.5pt;line-height:1.45;overflow:visible;}
+  /* The JS reveal leaves .reveal / .stagger children at opacity 0 until
+     an IntersectionObserver fires. Anything the reader never scrolled
+     past would otherwise print blank. */
+  .reveal,.stagger > *{opacity:1 !important;transform:none !important;}
+
+  /* screen-only furniture */
+  .nav,.hero,.band,.process,.ticker,.album-section,.signature,.map,
+  .order-links,.filter-wrap,.floaters,.embers,.featured,.story-stack,
+  .reviews-grid,.quotes,.skip-link,.proc-dots,.dish-photo,
+  .eyebrow,.rule,.lead,.pull,.btn,.dish-ico,.dish-mark,.stars{display:none !important;}
+
+  .section,.allergens,.footer{padding:0 0 8mm !important;}
+  .shell{max-width:none;padding:0;}
+  h1,h2,h3{break-after:avoid;}
+  /* !important because .head-split > h2 is more specific than a bare h2
+     and was printing display headings at 44px */
+  h2{font-size:15pt !important;margin-bottom:2mm !important;}
+  h1{font-size:18pt !important;}
+  .mhead h3{font-size:12.5pt;}
+  .head-split{display:block;padding:0;border:0;}
+  .head-split::after{display:none !important;}
+
+  /* the board itself */
+  #menu-groups .mgroup.is-hidden{display:block !important;}   /* print every category */
+  .mgroup{break-inside:auto;margin-bottom:6mm;display:block !important;}
+  .mhead{text-align:left !important;margin-bottom:3mm;}
+  .dishes{grid-template-columns:1fr 1fr !important;gap:0 8mm !important;}
+  .dish,.plist li{break-inside:avoid;padding:1.2mm 0;border-bottom:1px dotted #999;}
+  .dish::before{display:none;}
+  .dots{border-bottom:1px dotted #bbb;}
+  .tag{border:1px solid #000;padding:0 4px;}
+  .card-blue,.platter-card,.rating-list li,.step,.ask-note{
+    border:1px solid #999 !important;break-inside:avoid;}
+  .ask-note{border:0 !important;border-left:2px solid #000 !important;}
+  .story-grid,.visit-grid,.bfast-grid,.drinks-grid,.platter,.burgers{
+    display:block !important;}
+  a{text-decoration:none;}
+
+  /* secondary text, put back after the reset */
+  .ddesc,.plist li em,.note,.footer-fine,.allergens p,.featured-lead{color:#333 !important;}
+  .dno,.footer-tag{color:#666 !important;}
+
+  /* the two things a printed menu is useless without */
+  main::before{
+    content:"Pitta Corner · 43 High Road, Wood Green, London N22 6BH · 020 8826 9594 · open every day 8:00–23:00";
+    display:block;font-weight:700;font-size:11pt;
+    padding-bottom:3mm;margin-bottom:6mm;border-bottom:1.5pt solid #000;}
 }
 
 /* ═══════════ REDUCED MOTION ═══════════ */
