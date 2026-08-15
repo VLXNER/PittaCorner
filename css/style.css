@@ -510,6 +510,21 @@ button{font:inherit;cursor:pointer;}
 .order-card:hover{transform:translateY(-4px);border-color:var(--brandc);
   background:rgba(255,255,255,.09);}
 .order-card:hover::after{opacity:.22;}
+
+/* Each platform's own mark, set in a light badge. The Uber Eats artwork
+   is two-tone -- green plus a near-black slate -- and that dark half all
+   but vanishes on the navy panel, so every mark sits on cream rather than
+   recolouring someone else's logo to suit our background. */
+.oc-logo{display:grid;place-items:center;width:46px;height:46px;margin-bottom:12px;
+  border-radius:12px;background:var(--cream-50);
+  box-shadow:0 6px 16px -8px rgba(0,0,0,.6);}
+.oc-logo img{width:30px;height:30px;object-fit:contain;display:block;}
+.order-card.call .oc-logo{background:var(--gold-400);}
+.order-card.call .oc-logo .ico{width:24px;height:24px;color:#1d1502;stroke-width:1.9;}
+/* the arrow would collide with the badge now, so it drops to the corner */
+.order-card .ico{top:auto;bottom:24px;}
+.order-card.call .oc-logo .ico{position:static;}
+
 .oc-mark{font-family:var(--font-display);font-size:1.42rem;font-weight:600;
   letter-spacing:-.015em;line-height:1.2;}
 .oc-meta{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
