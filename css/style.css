@@ -66,7 +66,18 @@
 
   --focus-ink:#10161c;
   --focus-glow:#dcb04a;
+
+  /* the scrollbar is part of the page too */
+  scrollbar-color:var(--gold-500) var(--cream-200);
 }
+
+/* Registered so the cursor-follow highlight can interpolate between
+   positions instead of jumping. Without @property these are unanimatable
+   strings and the glow snaps from point to point. */
+@property --mx{syntax:'<percentage>';initial-value:50%;inherits:false;}
+@property --my{syntax:'<percentage>';initial-value:50%;inherits:false;}
+
+::selection{background:var(--gold-300);color:var(--ink-900);}
 
 /* ═══════════ BASE ═══════════ */
 *,*::before,*::after{box-sizing:border-box;}
@@ -79,13 +90,15 @@ body{
 h1,h2,h3{
   font-family:var(--font-display);font-weight:600;
   line-height:1.14;letter-spacing:-.012em;margin:0 0 .5em;
+  /* stops a five-word heading breaking as four words + one orphan */
+  text-wrap:balance;
 }
 h1{font-size:clamp(2.5rem,5.4vw,4.3rem);}
 h2{font-size:clamp(1.9rem,3.5vw,2.9rem);}
 h3{font-size:clamp(1.15rem,1.7vw,1.35rem);}
 h4{font-family:var(--font);font-size:.78rem;font-weight:800;margin:0 0 .8em;
    letter-spacing:.16em;text-transform:uppercase;}
-p{margin:0 0 1.1em;}
+p{margin:0 0 1.1em;text-wrap:pretty;}
 a{color:inherit;text-decoration:none;}
 ul{list-style:none;margin:0;padding:0;}
 iframe{display:block;border:0;max-width:100%;}
@@ -122,7 +135,48 @@ button{font:inherit;cursor:pointer;}
 .on-blue .rule::before,.on-blue .rule::after,.on-blue .rule i{background:var(--gold-400);}
 
 .section{padding:clamp(64px,8.5vw,124px) 0;}
-.section-head{text-align:center;max-width:720px;margin:0 auto clamp(38px,5vw,62px);}
+.section-head{text-align:center;max-width:720px;margin:0 auto clamp(38px,5vw,62px);
+  view-timeline-name:--head;view-timeline-axis:block;}
+
+/* ── Split head ──────────────────────────────────────────────
+   Every section opening the same way — centred eyebrow, centred
+   heading, centred rule — is what made the page read as one block
+   repeated eleven times. This variant hangs the eyebrow and heading
+   on the left, sets the lead paragraph beside them on the same
+   baseline, and rules the pair off with a gold hairline that draws
+   itself in. Alternated with the centred head, section by section. */
+.head-split{
+  max-width:none;text-align:left;position:relative;
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:6px clamp(24px,5vw,80px);align-items:end;
+  margin-bottom:clamp(34px,4.6vw,58px);
+  padding-bottom:clamp(18px,2.2vw,28px);
+}
+.head-split > .eyebrow{grid-column:1;grid-row:1;margin-bottom:.7em;}
+.head-split > h2{grid-column:1;grid-row:2;margin:0;
+  font-size:clamp(2rem,4.2vw,3.3rem);
+  /* slack top and bottom so the clip-path unveil cannot shave an
+     ascender or a Playfair descender; pulled back with margin */
+  padding:.16em 0 .2em;margin:-.16em 0 -.2em;}
+.head-split > .lead{grid-column:2;grid-row:2;margin:0 0 .3em;max-width:44ch;}
+.head-split > .rule{display:none;}
+.head-split::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--gold-500) 0%,var(--gold-500) 20%,var(--cream-300) 65%);
+  transform:scaleX(0);transform-origin:left;
+}
+.on-blue .head-split::after,.tint .head-split::after{
+  background:linear-gradient(90deg,var(--gold-400) 0%,var(--gold-400) 20%,rgba(246,230,189,.28) 65%);}
+.tint .head-split::after{
+  background:linear-gradient(90deg,var(--gold-500) 0%,var(--gold-500) 20%,var(--cream-300) 65%);}
+
+@media (max-width:880px){
+  .head-split{grid-template-columns:1fr;gap:0;}
+  .head-split > .eyebrow,.head-split > h2,.head-split > .lead{grid-column:1;}
+  .head-split > h2{grid-row:2;}
+  .head-split > .lead{grid-row:3;margin-top:.9em;max-width:60ch;}
+}
+
 .on-blue{background:var(--blue-900);color:var(--cream-50);}
 .on-blue h2,.on-blue h3{color:var(--cream-50);}
 .tint{background:var(--cream-100);}
@@ -139,6 +193,29 @@ button{font:inherit;cursor:pointer;}
 .btn-primary:hover{background:var(--blue-700);border-color:var(--blue-700);}
 .btn-gold{background:var(--gold-500);color:#1d1502;border-color:var(--gold-500);}
 .btn-gold:hover{background:var(--gold-400);border-color:var(--gold-400);}
+.btn-lg{padding:1.05em 2.3em;font-size:.98rem;}
+
+/* ── Cursor-follow highlight ──────────────────────────────────
+   A soft light that tracks the pointer across the button face.
+   z-index:-1 inside the button's own stacking context so it paints
+   over the fill but under the label — and every glow colour is
+   LIGHTER than the fill on a dark-text button and DARKER than it on
+   a light-text one, so the label's contrast can only improve.
+   Fine pointers only: on touch there is no cursor to follow. */
+@media (hover:hover) and (pointer:fine){
+  .btn-gold,.btn-primary{position:relative;isolation:isolate;overflow:hidden;
+    transition:background var(--t-mid) var(--e-soft),color var(--t-mid) var(--e-soft),
+               border-color var(--t-mid) var(--e-soft),
+               --mx 220ms linear,--my 220ms linear;}
+  .btn-gold::after,.btn-primary::after{
+    content:"";position:absolute;inset:0;z-index:-1;opacity:0;
+    transition:opacity var(--t-mid) var(--e-soft);}
+  .btn-gold::after{background:radial-gradient(140px circle at var(--mx) var(--my),
+    rgba(255,247,224,.85),transparent 62%);}
+  .btn-primary::after{background:radial-gradient(160px circle at var(--mx) var(--my),
+    var(--blue-700),transparent 66%);}
+  .btn-gold:hover::after,.btn-primary:hover::after{opacity:1;}
+}
 .btn-line{background:transparent;color:var(--ink-900);border-color:var(--cream-300);}
 .btn-line:hover{border-color:var(--blue-900);}
 .on-blue .btn-line{color:var(--cream-50);border-color:rgba(246,230,189,.4);}
@@ -148,6 +225,18 @@ button{font:inherit;cursor:pointer;}
 .nav{position:sticky;top:0;z-index:100;background:var(--cream-50);
      border-bottom:1px solid var(--cream-200);transition:box-shadow var(--t-mid) var(--e-soft);}
 .nav.is-stuck{box-shadow:0 2px 20px -12px rgba(20,27,40,.45);}
+/* Reading progress, drawn on the header's own bottom edge. Driven by
+   the document scroll timeline, so there is no scroll listener and no
+   layout read — the compositor advances it. */
+.nav::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--gold-700),var(--gold-400) 60%,var(--gold-300));
+  transform:scaleX(0);transform-origin:left;}
+@supports (animation-timeline: scroll()){
+  @media (prefers-reduced-motion: no-preference){
+    .nav::after{animation:nav-progress linear both;animation-timeline:scroll(root block);}
+    @keyframes nav-progress{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+  }
+}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;
            padding-top:14px;padding-bottom:14px;}
 .brand{display:flex;align-items:center;gap:12px;}
@@ -177,7 +266,8 @@ button{font:inherit;cursor:pointer;}
    does not do that -- the flames do. Type sits on a scrim heavy enough to
    hold 4.5:1 without washing the fire out. */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
-  justify-content:flex-end;isolation:isolate;overflow:hidden;background:var(--blue-900);}
+  justify-content:flex-end;isolation:isolate;overflow:hidden;background:var(--blue-900);
+  view-timeline-name:--hero;view-timeline-axis:block;}
 .hero-media{position:absolute;inset:0;z-index:-2;}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 62%;}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
@@ -207,6 +297,25 @@ button{font:inherit;cursor:pointer;}
   font-weight:600;color:var(--gold-300);line-height:1.25;}
 .hero-strip span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
   color:rgba(255,255,255,.8);}
+
+/* The photograph drifts and the headline block lifts away as the hero
+   scrolls off — the depth cue that makes the fold feel like a scene
+   rather than a banner. Both ride the hero's own view timeline. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .hero-media img{animation:hero-drift linear both;
+      animation-timeline:--hero;animation-range:cover;}
+    @keyframes hero-drift{from{transform:scale(1.04) translateY(0);}
+                          to  {transform:scale(1.16) translateY(3.5%);}}
+    .hero-inner{animation:hero-lift linear both;
+      animation-timeline:--hero;animation-range:exit 0% exit 74%;}
+    @keyframes hero-lift{from{opacity:1;transform:none;}
+                         to  {opacity:0;transform:translateY(-46px);}}
+    .hero-badge{animation:hero-badge-in 900ms var(--e-out) both;}
+    @keyframes hero-badge-in{from{opacity:0;transform:scale(.7) rotate(-14deg);}
+                             to{opacity:1;transform:none;}}
+  }
+}
 
 /* ═══════════ STORY ═══════════ */
 .story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,84px);align-items:center;}
@@ -416,7 +525,15 @@ button{font:inherit;cursor:pointer;}
 
 .mgroup{margin-bottom:clamp(44px,5vw,68px);}
 .mgroup.is-hidden{display:none;}
-.mhead{text-align:center;margin-bottom:clamp(24px,3vw,36px);}
+/* A board with a photograph at the top gets its heading pulled left and
+   set against the picture, rather than centred under it like the rest. */
+.mgroup:has(> .dish-photo) .mhead{text-align:left;}
+.mgroup:has(> .dish-photo) .mhead .rule{justify-content:flex-start;}
+.mgroup:has(> .dish-photo) .mhead .rule::after{display:none;}
+.mgroup:has(> .dish-photo) .mhead .dish-mark{margin-left:0;}
+.mgroup:has(> .dish-photo) .mhead .note{margin-left:0;}
+.mhead{text-align:center;margin-bottom:clamp(24px,3vw,36px);
+  view-timeline-name:--head;view-timeline-axis:block;}
 /* Line-art dish marks. Deliberately drawings, not photographs: nobody
    mistakes a line drawing for the plate that will arrive, so they add
    character without implying a dish we cannot photograph. */
@@ -426,7 +543,18 @@ button{font:inherit;cursor:pointer;}
 .mhead h3{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:.35em;}
 .mhead .note{color:var(--ink-600);font-size:.93rem;max-width:56ch;margin:0 auto;font-style:italic;}
 .dishes{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(32px,5vw,72px);}
-.dish{padding:15px 0;border-bottom:1px dotted var(--cream-300);}
+.dish{position:relative;padding:15px 0 15px 0;border-bottom:1px dotted var(--cream-300);
+  transition:padding-left var(--t-mid) var(--e-out);}
+/* Hovering a row lights its leader and its price, and a gold tick grows
+   in the margin — the same gesture as running a finger down the board. */
+.dish::before{content:"";position:absolute;left:-14px;top:50%;width:3px;height:0;
+  transform:translateY(-50%);background:var(--gold-500);border-radius:2px;
+  transition:height var(--t-mid) var(--e-out);}
+.dish:hover::before{height:64%;}
+.dish:hover{padding-left:6px;}
+.dish:hover .dots{border-bottom-color:var(--gold-500);}
+.dish:hover .dprice{color:var(--gold-700);}
+.dish:hover .dish-ico{opacity:1;color:var(--gold-700);}
 .dtop{display:flex;align-items:baseline;gap:10px;margin:0;}
 .dno{flex:0 0 auto;min-width:24px;font-family:var(--font-display);font-size:.85rem;
   font-weight:600;color:var(--gold-700);}
@@ -452,7 +580,12 @@ button{font:inherit;cursor:pointer;}
   font-size:.63rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
   background:var(--blue-900);color:var(--gold-300);vertical-align:middle;}
 .plist li{display:flex;align-items:baseline;gap:10px;padding:11px 0;
-  border-bottom:1px dotted var(--cream-300);font-weight:600;color:var(--ink-900);}
+  border-bottom:1px dotted var(--cream-300);font-weight:600;color:var(--ink-900);
+  transition:padding-left var(--t-mid) var(--e-out);}
+.plist li:hover{padding-left:6px;}
+.plist li:hover .dots{border-bottom-color:var(--gold-500);}
+.plist li:hover .dish-ico{opacity:1;}
+.on-blue .plist li:hover .dots{border-bottom-color:var(--gold-300);}
 .plist li b{font-family:var(--font-display);font-weight:600;color:var(--blue-900);white-space:nowrap;}
 .plist li em{font-weight:400;font-size:.85rem;color:var(--ink-600);}
 .on-blue .plist li{color:var(--cream-50);border-bottom-color:rgba(246,230,189,.18);}
@@ -614,8 +747,31 @@ button{font:inherit;cursor:pointer;}
    up with a negative margin. The negative-margin version let the copy
    render below the band's own box and overlap the section beneath, which
    put dark heading text on top of a dark photograph. */
-.band{position:relative;height:180svh;background:var(--blue-900);color:var(--cream-50);}
+.band{position:relative;height:180svh;background:var(--blue-900);color:var(--cream-50);
+  view-timeline-name:--band;view-timeline-axis:block;}
 .band-media{position:sticky;top:0;height:100svh;overflow:hidden;}
+
+/* Embers off the coals. Drawn, not photographed, and hung on the band's
+   own timeline rather than each spark's — a 4px dot has almost no view
+   range of its own, so on view() they all complete instantly and never
+   appear. Each one is staggered by shifting its range, because
+   animation-delay is ignored against a scroll timeline. */
+.embers{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;}
+.embers span{position:absolute;bottom:-3%;left:var(--x);width:var(--s);height:var(--s);
+  border-radius:50%;background:#ffcf7a;opacity:0;
+  box-shadow:0 0 10px 3px rgba(255,150,44,.55);}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .embers span{animation:ember-rise linear both;animation-timeline:--band;
+      animation-range:cover calc(2% + var(--d)) cover calc(78% + var(--d));}
+    @keyframes ember-rise{
+      0%  {opacity:0;transform:translate3d(0,0,0) scale(.6);}
+      14% {opacity:.95;}
+      70% {opacity:.8;}
+      100%{opacity:0;transform:translate3d(var(--sway,10px),-88svh,0) scale(1.1);}
+    }
+  }
+}
 .band-media img{width:100%;height:100%;object-fit:cover;opacity:.55;}
 .band-media::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(15,42,92,.75),rgba(15,42,92,.35) 45%,rgba(15,42,92,.9));}
@@ -634,11 +790,20 @@ button{font:inherit;cursor:pointer;}
    backfill, so every tile is now the same 4:3 and the photos are
    object-fit cropped into it. */
 .album{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px);}
-.shot{margin:0;overflow:hidden;border-radius:var(--r-md);background:var(--cream-200);
-  aspect-ratio:4/3;}
+.shot{position:relative;margin:0;overflow:hidden;border-radius:var(--r-md);
+  background:var(--cream-200);aspect-ratio:4/3;
+  transition:transform var(--t-mid) var(--e-out),box-shadow var(--t-mid) var(--e-soft);}
 .shot img{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform 700ms var(--e-out);}
-.shot:hover img{transform:scale(1.05);}
+  transition:filter 600ms var(--e-soft);}
+/* the frame lifts and the picture warms — the image's own transform is
+   left free for the scroll parallax below, which would otherwise fight
+   a hover scale for the same property */
+.shot:hover{transform:translateY(-5px);box-shadow:0 28px 46px -26px rgba(20,27,40,.62);}
+.shot:hover img{filter:saturate(1.1) brightness(1.04);}
+.shot::after{content:"";position:absolute;inset:0;pointer-events:none;
+  border-radius:inherit;box-shadow:inset 0 0 0 0 var(--gold-400);
+  transition:box-shadow var(--t-mid) var(--e-soft);}
+.shot:hover::after{box-shadow:inset 0 0 0 2px var(--gold-400);}
 
 /* Scroll-driven motion: each shot lifts and settles as it enters view.
    Native animation-timeline runs on the compositor, so it stays smooth on
@@ -647,9 +812,23 @@ button{font:inherit;cursor:pointer;}
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
     .shot{animation:shot-in linear both;animation-timeline:view();
-          animation-range:entry 0% entry 60%;}
+          animation-range:entry 0% entry calc(58% + var(--lag,0%));}
     @keyframes shot-in{from{opacity:0;transform:translateY(38px) scale(.94);}
                        to{opacity:1;transform:none;}}
+    /* Columns arrive at slightly different times and the pictures drift
+       inside their frames at slightly different rates. Uniform timing is
+       what makes a nine-up grid read as a contact sheet; a little offset
+       makes it read as a wall. */
+    .shot:nth-child(3n+2){--lag:14%;}
+    .shot:nth-child(3n+3){--lag:7%;}
+    .shot img{animation:shot-pan linear both;animation-timeline:view();
+              animation-range:cover;}
+    @keyframes shot-pan{from{transform:scale(1.13) translateY(-2.6%);}
+                        to  {transform:scale(1.13) translateY(2.6%);}}
+    .shot:nth-child(even) img{animation-name:shot-pan-alt;}
+    @keyframes shot-pan-alt{from{transform:scale(1.13) translateY(2.2%);}
+                            to  {transform:scale(1.13) translateY(-2.2%);}}
+
     /* the pinned photo drifts a little as its band passes */
     .band-media img{animation:band-drift linear both;animation-timeline:view();
                     animation-range:cover;}
@@ -667,22 +846,128 @@ button{font:inherit;cursor:pointer;}
 }
 
 
+/* ═══════════ HOW IT'S MADE ═══════════
+   Five steps that run sideways while the page scrolls down: the section
+   is three screens tall, the panel inside it pins to the top, and the
+   row of cards is translated left by the section's own view timeline.
+   The whole travel is one keyframe — translateX(calc(-100% + 100vw)) —
+   because a percentage translate resolves against the element's own
+   width, so the run ends with the last card flush right whatever the
+   cards measure. No JS, no width probing, no resize listener.
+
+   The base state is a plain responsive grid. That is what reduced-motion
+   users and browsers without scroll-driven animation get, and it is a
+   real layout rather than a degraded one — no horizontal scroll region,
+   so there is nothing a keyboard cannot reach. */
+.process{position:relative;background:var(--cream-100);
+  border-block:1px solid var(--cream-200);padding:clamp(56px,7vw,92px) 0;}
+.proc-head{margin-bottom:clamp(28px,3.4vw,46px);}
+.proc-track{position:relative;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:clamp(16px,2vw,26px);
+  padding-inline:calc(max((100vw - var(--shell)) / 2, 0px) + clamp(20px,4vw,40px));}
+/* the route the food takes, visible only in the gaps between cards */
+.proc-track::before{content:"";position:absolute;z-index:0;
+  left:0;right:0;top:50%;height:1px;
+  background:repeating-linear-gradient(90deg,var(--gold-500) 0 5px,transparent 5px 12px);
+  opacity:.55;}
+
+.step{position:relative;z-index:1;background:var(--cream-50);
+  border:1px solid var(--cream-300);border-radius:var(--r-md);
+  padding:clamp(24px,2.6vw,34px) clamp(22px,2.4vw,30px) clamp(26px,2.8vw,34px);}
+.step::before{content:"";position:absolute;inset:7px;border:1px solid var(--gold-100);
+  border-radius:calc(var(--r-md) - 3px);pointer-events:none;}
+.step > *{position:relative;}
+.step-top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--cream-200);}
+.step-no{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.2rem,3vw,2.9rem);line-height:.85;color:var(--gold-600);}
+.step-ico{width:40px;height:40px;flex:0 0 auto;color:var(--gold-700);
+  fill:none;stroke:currentColor;stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round;display:block;}
+.step h3{font-size:1.22rem;margin-bottom:.4em;}
+.step p{margin:0;font-size:.92rem;color:var(--ink-600);line-height:1.6;}
+
+.proc-dots{display:none;gap:9px;justify-content:center;margin-top:clamp(24px,3vw,38px);}
+.proc-dots i{width:38px;height:3px;border-radius:2px;background:var(--cream-300);
+  position:relative;overflow:hidden;}
+.proc-dots i::after{content:"";position:absolute;inset:0;background:var(--gold-600);
+  transform:scaleX(0);transform-origin:left;}
+
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .process{height:300svh;padding:0;
+      view-timeline-name:--proc;view-timeline-axis:block;}
+    .proc-pin{position:sticky;top:0;height:100svh;overflow:hidden;
+      display:flex;flex-direction:column;justify-content:center;
+      padding-top:64px;}
+    .proc-track{display:flex;width:max-content;
+      animation:proc-slide linear both;animation-timeline:--proc;
+      animation-range:contain 0% contain 100%;}
+    @keyframes proc-slide{from{transform:translateX(0);}
+                          to  {transform:translateX(calc(-100% + 100vw));}}
+    .step{flex:0 0 min(78vw,400px);}
+    .proc-dots{display:flex;}
+    .proc-dots i::after{animation:dot-fill linear both;animation-timeline:--proc;
+      animation-range:contain calc(var(--i) * 20%) contain calc((var(--i) + 1) * 20%);}
+    @keyframes dot-fill{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+    /* each card tilts upright as it reaches the middle of the run */
+    .step{animation:step-settle linear both;animation-timeline:--proc;
+      animation-range:contain calc(var(--i) * 18%) contain calc(var(--i) * 18% + 26%);}
+    /* transform only — an opacity ramp here would put the card's body
+       copy below 4.5:1 for the first part of every card's run */
+    @keyframes step-settle{from{transform:translateY(26px) scale(.955);}
+                           to  {transform:none;}}
+  }
+}
+
 /* ═══════════ PHOTO-BACKED SECTIONS ═══════════
    A photograph behind a whole section, dimmed hard enough that the copy
    over it still clears 4.5:1. The scrim is two layers: a flat navy wash
    for contrast and a vertical gradient so the section edges blend into
    the panels above and below rather than cutting off. */
 .has-bg{position:relative;isolation:isolate;overflow:hidden;}
+/* The file name lives HERE, in a class, and not in a custom property set
+   on the element. A url() carried through a custom property is resolved
+   against the stylesheet that *substitutes* it, not the one that declares
+   it — so `--bg-img:url(photos/grill.jpg)` written in index.html was
+   being fetched as css/photos/grill.jpg and 404ing on every one of these
+   sections. They had been rendering as flat navy panels the whole time.
+   Numbers (scrim depth, brightness) can still come in as inline vars;
+   only URLs cannot. */
 .has-bg::before{
   content:"";position:absolute;inset:0;z-index:-2;
-  background-image:var(--bg-img);background-size:cover;background-position:center;
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  /* the charcoal shots are very dark; lifting them before the scrim goes
+     on is what makes the picture readable rather than a navy rectangle */
+  filter:brightness(var(--bg-bright,1)) saturate(var(--bg-sat,1));
 }
+.bg-grill::before    {background-image:url(../photos/grill.jpg);}
+.bg-breakfast::before{background-image:url(../photos/breakfast.jpg);}
+.bg-spit::before     {background-image:url(../photos/spit.jpg);}
+.bg-shopfront::before{background-image:url(../photos/shopfront.jpg);}
+/* One scrim layer, not two. The previous version stacked an .82 gradient
+   on top of a flat .72 wash, which composites to .95 — the photograph
+   behind it was 5% visible and the sections read as flat navy panels.
+   A single gradient at .78 in the middle lets the grill actually show
+   while still carrying cream text at 4.5:1 (measured, not assumed). */
 .has-bg::after{
   content:"";position:absolute;inset:0;z-index:-1;
-  background:
-    linear-gradient(180deg,var(--blue-900),rgba(15,42,92,.82) 30%,
-                    rgba(15,42,92,.82) 70%,var(--blue-900)),
-    rgba(15,42,92,.72);
+  background:linear-gradient(180deg,
+    var(--blue-900) 0%,
+    rgba(15,42,92,calc(var(--scrim,.72) + .16)) 15%,
+    rgba(15,42,92,var(--scrim,.72)) 40%,
+    rgba(15,42,92,var(--scrim,.72)) 60%,
+    rgba(15,42,92,calc(var(--scrim,.72) + .16)) 85%,
+    var(--blue-900) 100%);
+}
+/* and a soft pool of extra darkness directly under the reading column,
+   so the copy keeps its contrast wherever a bright flame lands */
+.has-bg > .shell{position:relative;}
+.has-bg > .shell::before{
+  content:"";position:absolute;inset:-9% -12%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 96% 78% at 50% 52%,
+    rgba(10,28,64,.52) 0%,rgba(10,28,64,.38) 55%,rgba(10,28,64,.14) 80%,transparent 94%);
 }
 
 /* ═══════════ SECTION MOTION ═══════════
@@ -696,10 +981,26 @@ button{font:inherit;cursor:pointer;}
     @keyframes bg-drift{from{transform:scale(1.14) translateY(-2.5%);}
                         to{transform:scale(1.04) translateY(2.5%);}}
 
-    /* section headings rise as they come in */
-    .section-head{animation:head-in linear both;animation-timeline:view();
-                  animation-range:entry 5% entry 55%;}
+    /* Centred heads rise as one block. Split heads animate in parts —
+       eyebrow and lead lift, the heading unveils from under a clip, and
+       the hairline draws left to right. All three ride --head, the
+       timeline named on the head itself: a 1px rule or a 20px eyebrow
+       has almost no view range of its own, so on view() they would each
+       complete the instant they appeared. */
+    .section-head:not(.head-split){animation:head-in linear both;
+                  animation-timeline:view();animation-range:entry 5% entry 55%;}
     @keyframes head-in{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+
+    .head-split > .eyebrow{animation:head-in linear both;
+      animation-timeline:--head;animation-range:entry 2% entry 42%;}
+    .head-split > .lead{animation:head-in linear both;
+      animation-timeline:--head;animation-range:entry 14% entry 58%;}
+    .head-split > h2{animation:h-unveil linear both;
+      animation-timeline:--head;animation-range:entry 5% entry 52%;}
+    @keyframes h-unveil{from{clip-path:inset(0 0 100% 0);}
+                        to  {clip-path:inset(0 0 0 0);}}
+    .head-split::after{animation:rule-draw linear both;
+      animation-timeline:--head;animation-range:entry 16% entry 64%;}
 
     /* menu photographs settle in with a slight scale */
     .dish-photo{animation:photo-in linear both;animation-timeline:view();
@@ -713,9 +1014,9 @@ button{font:inherit;cursor:pointer;}
       animation-range:entry 5% entry 50%;}
     @keyframes card-in{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
 
-    /* the gold rule draws itself outward */
+    /* the gold rule draws itself outward, on its head's timeline */
     .rule::before,.rule::after{animation:rule-draw linear both;
-      animation-timeline:view();animation-range:entry 10% entry 45%;}
+      animation-timeline:--head;animation-range:entry 10% entry 48%;}
     @keyframes rule-draw{from{transform:scaleX(0);}to{transform:scaleX(1);}}
   }
 }

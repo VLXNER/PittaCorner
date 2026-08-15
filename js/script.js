@@ -61,7 +61,10 @@
     targets.forEach(el => io.observe(el));
   }
 
-  /* ── Menu filter ── */
+  /* ── Menu filter ──
+     Wrapped in a view transition where the browser has one, so groups
+     cross-fade instead of snapping. Everything else is unchanged, and a
+     browser without startViewTransition takes the direct path. */
   const filter = $('#filter');
   const groups = $$('#menu-groups .mgroup');
   if (filter && groups.length) {
@@ -76,7 +79,34 @@
       });
       chip.scrollIntoView({ block: 'nearest', inline: 'center',
         behavior: reduced.matches ? 'auto' : 'smooth' });
-      groups.forEach(g => g.classList.toggle('is-hidden', cat !== 'all' && g.dataset.cat !== cat));
+
+      const apply = () => groups.forEach(g =>
+        g.classList.toggle('is-hidden', cat !== 'all' && g.dataset.cat !== cat));
+
+      if (document.startViewTransition && !reduced.matches) {
+        document.startViewTransition(apply);
+      } else {
+        apply();
+      }
+    });
+  }
+
+  /* ── Cursor-follow highlight on the primary buttons ──
+     Two custom properties per button; the gradient that reads them is in
+     the stylesheet, and @property makes them interpolate so the light
+     trails the pointer rather than teleporting to it. Bound once per
+     button on first hover, and only where there is a real cursor. */
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced.matches) {
+    $$('.btn-gold, .btn-primary').forEach(btn => {
+      btn.addEventListener('pointermove', e => {
+        const r = btn.getBoundingClientRect();
+        btn.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+        btn.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+      });
+      btn.addEventListener('pointerleave', () => {
+        btn.style.removeProperty('--mx');
+        btn.style.removeProperty('--my');
+      });
     });
   }
 
