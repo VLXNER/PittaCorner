@@ -49,11 +49,15 @@ python3 -m http.server 8000
 
 ## Deployment
 
-The site is published with GitHub Pages via `.github/workflows/deploy-pages.yml`.
-Every push to `main` uploads the repository root as-is (there is no build step)
-and deploys it. The workflow enables Pages on first run, so no manual setup is
-needed; the live URL appears in the workflow run's `deploy` job summary and under
-the repository's **Settings → Pages**.
+The site is published with GitHub Pages served straight from the `main` branch
+(**Settings → Pages → Source: Deploy from a branch → `main` → `/` (root)**).
+There is no build step and no deploy workflow — the files in the repository root
+are the site, so every push to `main` republishes it.
+
+`.nojekyll` is present to tell Pages to serve the files as-is instead of running
+them through Jekyll.
+
+Live site: https://vlxner.github.io/PittaCorner/
 
 ## Note
 
