@@ -18,7 +18,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://vlxner.github.io/PittaCorner/photos/wrap.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%230f2a5c%22/><text x=%2250%22 y=%2270%22 font-size=%2258%22 font-family=%22Georgia,serif%22 fill=%22%23dcb04a%22 text-anchor=%22middle%22>P</text></svg>">
-<link rel="preload" href="photos/grill.jpg" as="image" fetchpriority="high">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="photos/grill.jpg" as="image" fetchpriority="high"
+      imagesrcset="photos/webp/grill-480.webp 480w, photos/webp/grill-960.webp 960w, photos/webp/grill-1200.webp 1200w" imagesizes="100vw">
 <link rel="preload" href="fonts/manrope-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/playfair-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
@@ -74,10 +77,12 @@
     <symbol id="t-soup" viewBox="0 0 24 24"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0Z"/><path d="M9 7.5c0-1.2 1-1.6 1-2.8M13 7.5c0-1.2 1-1.6 1-2.8"/><path d="M5 20h14"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12"/><path d="M18 6 6 18"/></symbol>
   </defs>
 </svg>
 
-<header class="nav" id="top">
+<header class="nav">
   <div class="shell nav-inner">
     <a href="#top" class="brand" aria-label="Pitta Corner, home">
       <svg class="brand-badge" aria-hidden="true"><use href="#i-badge"/></svg>
@@ -90,6 +95,7 @@
       <a href="#album">Album</a>
       <a href="#drinks">Drinks</a>
       <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
       <a href="#visit">Visit</a>
     </nav>
     <div class="nav-cta">
@@ -106,7 +112,7 @@
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
     <div class="hero-media">
-      <img src="photos/grill.jpg" alt="" width="1200" height="1600" fetchpriority="high" decoding="async">
+      <picture><source type="image/webp" srcset="photos/webp/grill-480.webp 480w, photos/webp/grill-960.webp 960w, photos/webp/grill-1200.webp 1200w" sizes="100vw"><img src="photos/grill.jpg" alt="" width="1200" height="1600" fetchpriority="high" decoding="async"></picture>
     </div>
     <div class="hero-inner shell">
       <svg class="hero-badge" aria-hidden="true"><use href="#i-badge"/></svg>
@@ -123,7 +129,8 @@
     </div>
     <div class="hero-strip">
       <div class="shell hero-strip-in">
-        <div><strong>8am – 11pm</strong><span>Every day</span></div>
+        <div><strong>8am – 11pm</strong><span>Every day</span>
+          <span class="open-pill" data-open-pill hidden><i aria-hidden="true"></i><b></b></span></div>
         <div><strong>5.0</strong><span>Just Eat · 900+ ratings</span></div>
         <div><strong>Rating 5</strong><span>Food hygiene</span></div>
         <div><strong>43 High Road</strong><span>Wood Green N22</span></div>
@@ -134,7 +141,7 @@
   <!-- ══════════ STORY ══════════ -->
   <section class="section tint" id="story">
     <div class="floaters" aria-hidden="true">
-          <span class="floater l" style="--t:14%;--sz:148px;--rot:-9deg;--spd:1.5"><img src="photos/wrap.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
+          <span class="floater l" style="--t:14%;--sz:148px;--rot:-9deg;--spd:1.5"><picture><source type="image/webp" srcset="photos/webp/wrap-480.webp 480w, photos/webp/wrap-960.webp 960w, photos/webp/wrap-1600.webp 1600w" sizes="160px"><img src="photos/wrap.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture></span>
         </div>
     <div class="shell story-grid">
       <div class="story-copy">
@@ -160,8 +167,8 @@
 
       <div class="story-stack">
         <figure class="story-photo">
-          <img src="photos/shopfront.jpg" alt="The Pitta Corner shopfront on the High Road, window boxes in flower"
-               width="1206" height="869" loading="lazy" decoding="async">
+          <picture><source type="image/webp" srcset="photos/webp/shopfront-480.webp 480w, photos/webp/shopfront-960.webp 960w, photos/webp/shopfront-1206.webp 1206w" sizes="(max-width:1040px) 92vw, 560px"><img src="photos/shopfront.jpg" alt="The Pitta Corner shopfront on the High Road, window boxes in flower"
+               width="1206" height="869" loading="lazy" decoding="async"></picture>
         </figure>
         <aside class="card-blue">
           <h3>Open every day</h3>
@@ -216,8 +223,8 @@
   <!-- ══════════ STICKY PHOTO BAND ══════════ -->
   <section class="band" aria-labelledby="band-h">
     <div class="band-media">
-      <img src="photos/grill.jpg" alt="Skewers over the open charcoal grill at Pitta Corner"
-           width="1600" height="1200" loading="lazy" decoding="async">
+      <picture><source type="image/webp" srcset="photos/webp/grill-480.webp 480w, photos/webp/grill-960.webp 960w, photos/webp/grill-1200.webp 1200w" sizes="100vw"><img src="photos/grill.jpg" alt="Skewers over the open charcoal grill at Pitta Corner"
+           width="1600" height="1200" loading="lazy" decoding="async"></picture>
       <div class="embers" aria-hidden="true">
         <span style="--x:7%;--d:0%;--s:4px;--sway:26px"></span>
         <span style="--x:13%;--d:11%;--s:3px;--sway:-18px"></span>
@@ -301,8 +308,8 @@
   <!-- ══════════ PLATTERS & BURGERS ══════════ -->
   <section class="section" id="specials">
     <div class="floaters" aria-hidden="true">
-          <span class="floater r" style="--t:8%;--sz:132px;--rot:12deg;--spd:-1.4"><img src="photos/skepasti.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
-          <span class="floater l" style="--t:66%;--sz:160px;--rot:-11deg;--spd:1.2"><img src="photos/burger.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
+          <span class="floater r" style="--t:8%;--sz:132px;--rot:12deg;--spd:-1.4"><picture><source type="image/webp" srcset="photos/webp/skepasti-480.webp 480w, photos/webp/skepasti-960.webp 960w, photos/webp/skepasti-991.webp 991w" sizes="160px"><img src="photos/skepasti.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture></span>
+          <span class="floater l" style="--t:66%;--sz:160px;--rot:-11deg;--spd:1.2"><picture><source type="image/webp" srcset="photos/webp/burger-480.webp 480w" sizes="160px"><img src="photos/burger.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture></span>
         </div>
     <div class="shell">
       <div class="section-head head-split">
@@ -376,8 +383,8 @@
       <div class="sig-stage" aria-hidden="true">
         <div class="sig-glow"></div>
         <div class="sig-plate">
-          <img src="photos/kalamakia.jpg" alt="" width="1200" height="1600"
-               loading="lazy" decoding="async">
+          <picture><source type="image/webp" srcset="photos/webp/kalamakia-480.webp 480w, photos/webp/kalamakia-960.webp 960w, photos/webp/kalamakia-1200.webp 1200w" sizes="(max-width:900px) 86vw, 520px"><img src="photos/kalamakia.jpg" alt="" width="1200" height="1600"
+               loading="lazy" decoding="async"></picture>
         </div>
         <div class="seasoning">
           <span class="grain" style="--x:8%;--d:0%;--r:18deg;--s:3px"></span>
@@ -423,42 +430,42 @@
         <p class="featured-lead">Six to start with. The full board is underneath.</p>
         <div class="fd-grid stagger">
         <article class="fd">
-          <div class="fd-img"><img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips" width="800" height="600" loading="lazy" decoding="async"></div>
+          <div class="fd-img"><picture><source type="image/webp" srcset="photos/webp/wrap-480.webp 480w, photos/webp/wrap-960.webp 960w, photos/webp/wrap-1600.webp 1600w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips" width="800" height="600" loading="lazy" decoding="async"></picture></div>
           <div class="fd-body">
             <h3>Pork Gyros Wrap<span class="fd-price">Ask in store</span></h3>
             <p>Onion, tomatoes, tzatziki and hand-cut chips, wrapped in warm pitta</p>
           </div>
         </article>
         <article class="fd">
-          <div class="fd-img"><img src="photos/kalamakia.jpg" alt="A plate of mixed kalamakia with salad, chips and tzatziki" width="800" height="600" loading="lazy" decoding="async"></div>
+          <div class="fd-img"><picture><source type="image/webp" srcset="photos/webp/kalamakia-480.webp 480w, photos/webp/kalamakia-960.webp 960w, photos/webp/kalamakia-1200.webp 1200w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/kalamakia.jpg" alt="A plate of mixed kalamakia with salad, chips and tzatziki" width="800" height="600" loading="lazy" decoding="async"></picture></div>
           <div class="fd-body">
             <h3>Kalamakia<span class="fd-price">From £3.50</span></h3>
             <p>Pork, chicken, beef or lamb on the skewer, off the charcoal</p>
           </div>
         </article>
         <article class="fd">
-          <div class="fd-img"><img src="photos/merida.jpg" alt="A gyros portion with chips, salad and pitta" width="800" height="600" loading="lazy" decoding="async"></div>
+          <div class="fd-img"><picture><source type="image/webp" srcset="photos/webp/merida-480.webp 480w, photos/webp/merida-960.webp 960w, photos/webp/merida-1200.webp 1200w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/merida.jpg" alt="A gyros portion with chips, salad and pitta" width="800" height="600" loading="lazy" decoding="async"></picture></div>
           <div class="fd-body">
             <h3>Gyros Merida<span class="fd-price">£11.99</span></h3>
             <p>The full plate — pitta, onions, tzatziki and fresh chips</p>
           </div>
         </article>
         <article class="fd">
-          <div class="fd-img"><img src="photos/skepasti.jpg" alt="Skepasti with chips and grated cheese" width="800" height="600" loading="lazy" decoding="async"></div>
+          <div class="fd-img"><picture><source type="image/webp" srcset="photos/webp/skepasti-480.webp 480w, photos/webp/skepasti-960.webp 960w, photos/webp/skepasti-991.webp 991w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/skepasti.jpg" alt="Skepasti with chips and grated cheese" width="800" height="600" loading="lazy" decoding="async"></picture></div>
           <div class="fd-body">
             <h3>Skepasti<span class="fd-price">£12.99</span></h3>
             <p>Open pitta, loaded and covered with grated cheese</p>
           </div>
         </article>
         <article class="fd">
-          <div class="fd-img"><img src="photos/burger.jpg" alt="The Greek burger with hand-cut chips" width="800" height="600" loading="lazy" decoding="async"></div>
+          <div class="fd-img"><picture><source type="image/webp" srcset="photos/webp/burger-480.webp 480w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/burger.jpg" alt="The Greek burger with hand-cut chips" width="800" height="600" loading="lazy" decoding="async"></picture></div>
           <div class="fd-body">
             <h3>Greek Beef Burger<span class="fd-price">£7.99</span></h3>
             <p>Handmade patty, cheese, homemade sauce, hand-cut chips</p>
           </div>
         </article>
         <article class="fd">
-          <div class="fd-img"><img src="photos/trilece.jpg" alt="Trilece dessert on a white plate" width="800" height="600" loading="lazy" decoding="async"></div>
+          <div class="fd-img"><picture><source type="image/webp" srcset="photos/webp/trilece-480.webp 480w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/trilece.jpg" alt="Trilece dessert on a white plate" width="800" height="600" loading="lazy" decoding="async"></picture></div>
           <div class="fd-body">
             <h3>Trilece<span class="fd-price">£4.00</span></h3>
             <p>Soaked sponge under a caramel top</p>
@@ -468,7 +475,15 @@
       </div>
 
     <div class="filter-wrap">
-      <div class="shell">
+      <div class="shell filter-row">
+        <form id="menu-search-form" class="msearch" role="search" aria-label="Search the menu">
+          <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="menu-search" type="search" placeholder="Search the board… try “halloumi” or 21"
+                 aria-label="Search dishes by name, ingredient or board number" autocomplete="off">
+          <button type="button" id="search-clear" aria-label="Clear search" hidden>
+            <svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>
+          </button>
+        </form>
         <nav class="filter" id="filter" aria-label="Menu categories">
           <button class="chip is-active" data-cat="all" aria-pressed="true">All</button>
           <button class="chip" data-cat="specials" aria-pressed="false">Specials</button>
@@ -483,6 +498,7 @@
           <button class="chip" data-cat="sweet" aria-pressed="false">Sweet</button>
         </nav>
       </div>
+      <p class="shell" id="search-count" role="status" aria-live="polite"></p>
     </div>
 
     <div class="shell" id="menu-groups">
@@ -490,8 +506,8 @@
       <!-- PITTA CORNER SPECIALS -->
       <section class="mgroup" data-cat="specials">
         <figure class="dish-photo">
-            <img src="photos/kalamakia.jpg" alt="A plate of mixed kalamakia with salad, chips, tzatziki and pitta" width="1200" height="900"
-                 loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="photos/webp/kalamakia-480.webp 480w, photos/webp/kalamakia-960.webp 960w, photos/webp/kalamakia-1200.webp 1200w" sizes="(max-width:900px) 92vw, 420px"><img src="photos/kalamakia.jpg" alt="A plate of mixed kalamakia with salad, chips, tzatziki and pitta" width="1200" height="900"
+                 loading="lazy" decoding="async"></picture>
           </figure>
           <header class="mhead"><svg class="dish-mark" aria-hidden="true"><use href="#i-flame"/></svg><h3>Pitta Corner Specials</h3><div class="rule"><i></i></div>
           <p class="note">Off the spit and the charcoal — the plates we are known for.</p></header>
@@ -521,8 +537,8 @@
       <!-- SOYVLAKI PITA WRAP -->
       <section class="mgroup flip" data-cat="wraps">
         <figure class="dish-photo">
-            <img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips, in Pitta Corner paper" width="1200" height="900"
-                 loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="photos/webp/wrap-480.webp 480w, photos/webp/wrap-960.webp 960w, photos/webp/wrap-1600.webp 1600w" sizes="(max-width:900px) 92vw, 420px"><img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips, in Pitta Corner paper" width="1200" height="900"
+                 loading="lazy" decoding="async"></picture>
           </figure>
           <header class="mhead"><svg class="dish-mark" aria-hidden="true"><use href="#d-wrap"/></svg><h3>Souvlaki Pita Wraps</h3><div class="rule"><i></i></div>
           <p class="note">Wrapped with hand-cut fries inside, the way it's done back home.</p></header>
@@ -543,8 +559,8 @@
       <!-- MERIDES -->
       <section class="mgroup" data-cat="merides">
         <figure class="dish-photo">
-            <img src="photos/merida.jpg" alt="A gyros portion with chips, salad, sauce and warm pitta" width="1200" height="900"
-                 loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="photos/webp/merida-480.webp 480w, photos/webp/merida-960.webp 960w, photos/webp/merida-1200.webp 1200w" sizes="(max-width:900px) 92vw, 420px"><img src="photos/merida.jpg" alt="A gyros portion with chips, salad, sauce and warm pitta" width="1200" height="900"
+                 loading="lazy" decoding="async"></picture>
           </figure>
           <header class="mhead"><svg class="dish-mark" aria-hidden="true"><use href="#d-plate2"/></svg><h3>Merides — Portions</h3><div class="rule"><i></i></div>
           <p class="note">The full plate: meat, pitta, dips and fries, all separate.</p></header>
@@ -579,8 +595,8 @@
       <!-- SKEPASTI -->
       <section class="mgroup flip" data-cat="skepasti">
         <figure class="dish-photo">
-            <img src="photos/skepasti.jpg" alt="Skepasti — open pitta loaded with chips and grated cheese" width="1200" height="900"
-                 loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="photos/webp/skepasti-480.webp 480w, photos/webp/skepasti-960.webp 960w, photos/webp/skepasti-991.webp 991w" sizes="(max-width:900px) 92vw, 420px"><img src="photos/skepasti.jpg" alt="Skepasti — open pitta loaded with chips and grated cheese" width="1200" height="900"
+                 loading="lazy" decoding="async"></picture>
           </figure>
           <header class="mhead"><svg class="dish-mark" aria-hidden="true"><use href="#d-wrap"/></svg><h3>Skepasti</h3><div class="rule"><i></i></div>
           <p class="note">Open pitta, loaded and covered — a knife-and-fork job.</p></header>
@@ -635,8 +651,8 @@
       <!-- SWEET -->
       <section class="mgroup" data-cat="sweet">
         <figure class="dish-photo">
-            <img src="photos/trilece.jpg" alt="Trilece — soaked sponge under a caramel top" width="1200" height="900"
-                 loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="photos/webp/trilece-480.webp 480w" sizes="(max-width:900px) 92vw, 420px"><img src="photos/trilece.jpg" alt="Trilece — soaked sponge under a caramel top" width="1200" height="900"
+                 loading="lazy" decoding="async"></picture>
           </figure>
           <header class="mhead"><svg class="dish-mark" aria-hidden="true"><use href="#d-crepe"/></svg><h3>Crepes &amp; Dessert</h3><div class="rule"><i></i></div></header>
         <ul class="plist">
@@ -809,8 +825,8 @@
   <!-- ══════════ REVIEWS ══════════ -->
   <section class="section tint" id="reviews">
     <div class="floaters" aria-hidden="true">
-          <span class="floater l" style="--t:14%;--sz:140px;--rot:-13deg;--spd:1.3"><img src="photos/merida.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
-          <span class="floater r" style="--t:60%;--sz:124px;--rot:9deg;--spd:-1.5"><img src="photos/breakfast.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
+          <span class="floater l" style="--t:14%;--sz:140px;--rot:-13deg;--spd:1.3"><picture><source type="image/webp" srcset="photos/webp/merida-480.webp 480w, photos/webp/merida-960.webp 960w, photos/webp/merida-1200.webp 1200w" sizes="160px"><img src="photos/merida.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture></span>
+          <span class="floater r" style="--t:60%;--sz:124px;--rot:9deg;--spd:-1.5"><picture><source type="image/webp" srcset="photos/webp/breakfast-480.webp 480w, photos/webp/breakfast-960.webp 960w, photos/webp/breakfast-1200.webp 1200w" sizes="160px"><img src="photos/breakfast.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture></span>
         </div>
     <div class="shell">
       <div class="section-head head-split">
@@ -904,32 +920,106 @@
       </div>
       <div class="album">
         <figure class="shot wide">
-          <img src="photos/spit.jpg" alt="The gyros spit turning at night, platters of carved meat in front" width="1200" height="900" loading="lazy" decoding="async">
+          <button class="shot-btn" type="button" data-full="photos/spit.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/spit-480.webp 480w, photos/webp/spit-960.webp 960w, photos/webp/spit-1200.webp 1200w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/spit.jpg" alt="The gyros spit turning at night, platters of carved meat in front" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
-        <figure class="shot ">
-          <img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips, in Pitta Corner paper" width="1200" height="900" loading="lazy" decoding="async">
+        <figure class="shot">
+          <button class="shot-btn" type="button" data-full="photos/wrap.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/wrap-480.webp 480w, photos/webp/wrap-960.webp 960w, photos/webp/wrap-1600.webp 1600w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/wrap.jpg" alt="A chicken gyros wrap packed with hand-cut chips, in Pitta Corner paper" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
-        <figure class="shot ">
-          <img src="photos/kalamakia.jpg" alt="A plate of mixed kalamakia with salad, chips, tzatziki and pitta" width="1200" height="900" loading="lazy" decoding="async">
+        <figure class="shot">
+          <button class="shot-btn" type="button" data-full="photos/kalamakia.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/kalamakia-480.webp 480w, photos/webp/kalamakia-960.webp 960w, photos/webp/kalamakia-1200.webp 1200w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/kalamakia.jpg" alt="A plate of mixed kalamakia with salad, chips, tzatziki and pitta" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
-        <figure class="shot ">
-          <img src="photos/merida.jpg" alt="A gyros portion with chips, salad, sauce and warm pitta" width="1200" height="900" loading="lazy" decoding="async">
+        <figure class="shot">
+          <button class="shot-btn" type="button" data-full="photos/merida.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/merida-480.webp 480w, photos/webp/merida-960.webp 960w, photos/webp/merida-1200.webp 1200w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/merida.jpg" alt="A gyros portion with chips, salad, sauce and warm pitta" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
-        <figure class="shot ">
-          <img src="photos/skepasti.jpg" alt="Skepasti — open pitta loaded with chips and grated cheese" width="1200" height="900" loading="lazy" decoding="async">
+        <figure class="shot">
+          <button class="shot-btn" type="button" data-full="photos/skepasti.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/skepasti-480.webp 480w, photos/webp/skepasti-960.webp 960w, photos/webp/skepasti-991.webp 991w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/skepasti.jpg" alt="Skepasti — open pitta loaded with chips and grated cheese" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
         <figure class="shot tall">
-          <img src="photos/burger.jpg" alt="The Greek burger with hand-cut chips" width="1200" height="900" loading="lazy" decoding="async">
+          <button class="shot-btn" type="button" data-full="photos/burger.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/burger-480.webp 480w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/burger.jpg" alt="The Greek burger with hand-cut chips" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
-        <figure class="shot ">
-          <img src="photos/breakfast.jpg" alt="Eggs Benedict with fresh orange juice" width="1200" height="900" loading="lazy" decoding="async">
+        <figure class="shot">
+          <button class="shot-btn" type="button" data-full="photos/breakfast.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/breakfast-480.webp 480w, photos/webp/breakfast-960.webp 960w, photos/webp/breakfast-1200.webp 1200w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/breakfast.jpg" alt="Eggs Benedict with fresh orange juice" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
-        <figure class="shot ">
-          <img src="photos/trilece.jpg" alt="Trilece, soaked sponge under caramel" width="1200" height="900" loading="lazy" decoding="async">
+        <figure class="shot">
+          <button class="shot-btn" type="button" data-full="photos/trilece.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/trilece-480.webp 480w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/trilece.jpg" alt="Trilece, soaked sponge under caramel" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
         <figure class="shot wide">
-          <img src="photos/shopfront.jpg" alt="The Pitta Corner shopfront on the High Road, window boxes in flower" width="1200" height="900" loading="lazy" decoding="async">
+          <button class="shot-btn" type="button" data-full="photos/shopfront.jpg">
+            <picture><source type="image/webp" srcset="photos/webp/shopfront-480.webp 480w, photos/webp/shopfront-960.webp 960w, photos/webp/shopfront-1206.webp 1206w" sizes="(max-width:640px) 92vw, (max-width:1040px) 46vw, 380px"><img src="photos/shopfront.jpg" alt="The Pitta Corner shopfront on the High Road, window boxes in flower" width="1200" height="900" loading="lazy" decoding="async"></picture>
+          </button>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section class="section tint" id="faq">
+    <div class="shell">
+      <div class="section-head head-split">
+        <p class="eyebrow">Good To Know</p>
+        <h2>Questions we get<br>at the counter</h2>
+        <p class="lead">The short answers. For anything about allergens, ingredients
+           or today's prices, the staff at the counter are the authority.</p>
+        <div class="rule"><i></i></div>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What are your opening hours?
+            <svg class="ico faq-chev" aria-hidden="true"><use href="#i-arrow"/></svg></summary>
+          <div class="faq-a"><p>Every day from 8am to 11pm — breakfast and coffee from
+            eight, and the grill runs all day until close.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you deliver?
+            <svg class="ico faq-chev" aria-hidden="true"><use href="#i-arrow"/></svg></summary>
+          <div class="faq-a"><p>Yes — Just Eat, Deliveroo and Uber Eats all carry the menu
+            across N22 and beyond. Or call <a href="tel:+442088269594">020 8826 9594</a>
+            and collect it hot from the counter.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you have vegetarian or vegan dishes?
+            <svg class="ico faq-chev" aria-hidden="true"><use href="#i-arrow"/></svg></summary>
+          <div class="faq-a"><p>Yes — look for the tags on the board: halloumi kalamaki as
+            a wrap, portion or skepasti (vegetarian), and the falafel wrap and portion
+            (vegan). Several salads, dips and sides are meat-free too — ask a member of
+            staff about ingredients and allergens.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What's the £250 Lamb Souvla?
+            <svg class="ico faq-chev" aria-hidden="true"><use href="#i-arrow"/></svg></summary>
+          <div class="faq-a"><p>A whole lamb, slow-turned on the spit. It's pre-order
+            only, so call ahead and give us notice.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why do some prices say “ask in store”?
+            <svg class="ico faq-chev" aria-hidden="true"><use href="#i-arrow"/></svg></summary>
+          <div class="faq-a"><p>Those prices were recently changed by hand on our board,
+            and we'd rather tell you the current figure at the counter than publish one
+            that's out of date.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you do halal?
+            <svg class="ico faq-chev" aria-hidden="true"><use href="#i-arrow"/></svg></summary>
+          <div class="faq-a"><p>The breakfast menu has halal versions — beef sausage and
+            turkey rashers in place of pork. For any other dish, ask a member of staff
+            before ordering.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -937,7 +1027,7 @@
   <!-- ══════════ VISIT ══════════ -->
   <section class="section" id="visit">
     <div class="floaters" aria-hidden="true">
-          <span class="floater r" style="--t:12%;--sz:136px;--rot:10deg;--spd:-1.2"><img src="photos/kalamakia.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></span>
+          <span class="floater r" style="--t:12%;--sz:136px;--rot:10deg;--spd:-1.2"><picture><source type="image/webp" srcset="photos/webp/kalamakia-480.webp 480w, photos/webp/kalamakia-960.webp 960w, photos/webp/kalamakia-1200.webp 1200w" sizes="160px"><img src="photos/kalamakia.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture></span>
         </div>
     <div class="shell visit-grid">
       <div class="visit-col">
@@ -953,7 +1043,8 @@
           <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
             <div><strong>Phone</strong><span><a href="tel:+442088269594">020 8826 9594</a></span></div></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>
-            <div><strong>Hours</strong><span>Every day, 8:00 – 23:00<br>Breakfast from 8, grill all day</span></div></li>
+            <div><strong>Hours</strong><span>Every day, 8:00 – 23:00<br>Breakfast from 8, grill all day</span>
+              <span class="open-pill" data-open-pill hidden><i aria-hidden="true"></i><b></b></span></div></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
             <div><strong>Getting here</strong><span>A few minutes' walk from Wood Green<br>station, on the High Road parade</span></div></li>
         </ul>
@@ -1022,18 +1113,44 @@
 </footer>
 
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org","@type":"Restaurant","name":"Pitta Corner",
-  "servesCuisine":["Greek","Cypriot","Mediterranean"],"priceRange":"££",
-  "telephone":"+44 20 8826 9594",
-  "address":{"@type":"PostalAddress","streetAddress":"43 High Road, Wood Green",
-    "addressLocality":"London","postalCode":"N22 6BH","addressCountry":"GB"},
-  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification",
-    "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens":"08:00","closes":"23:00"}],
-  "acceptsReservations":"False"
-}
+{"@context": "https://schema.org", "@type": "Restaurant", "name": "Pitta Corner", "url": "https://vlxner.github.io/PittaCorner/", "image": ["https://vlxner.github.io/PittaCorner/photos/shopfront.jpg", "https://vlxner.github.io/PittaCorner/photos/wrap.jpg", "https://vlxner.github.io/PittaCorner/photos/grill.jpg"], "servesCuisine": ["Greek", "Cypriot", "Mediterranean"], "priceRange": "££", "telephone": "+44 20 8826 9594", "address": {"@type": "PostalAddress", "streetAddress": "43 High Road, Wood Green", "addressLocality": "London", "postalCode": "N22 6BH", "addressCountry": "GB"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "08:00", "closes": "23:00"}], "acceptsReservations": "False", "hasMenu": {"@type": "Menu", "name": "Pitta Corner Menu", "inLanguage": "en-GB", "url": "https://vlxner.github.io/PittaCorner/#menu", "hasMenuSection": [{"@type": "MenuSection", "name": "Pitta Corner Specials", "hasMenuItem": [{"@type": "MenuItem", "name": "Koto Sufli", "description": "Served with pitta, tzatziki, hand-cut fries & salad", "offers": {"@type": "Offer", "price": "14.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Ribeye", "description": "Served with pitta, tzatziki, hand-cut fries & salad", "offers": {"@type": "Offer", "price": "22.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Grilled Chicken (Half)", "description": "Marinated with mustard sauce, served with pitta, tzatziki & hand-cut fries", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Baby Chicken Souvla", "description": "Served with pitta, tzatziki, hand-cut fries & salad", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Lamb Cutlets", "description": "Served with pitta, tzatziki, hand-cut fries & salad", "offers": {"@type": "Offer", "price": "19.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Pork Steak", "description": "Marinated with mustard sauce, served with pitta, tzatziki & hand-cut fries", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Kokoretsi", "description": "Served with pitta, tzatziki, hand-cut fries & salad", "offers": {"@type": "Offer", "price": "16.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Lamb Chops Souvla", "description": "Served with pitta, tzatziki, hand-cut fries & salad", "offers": {"@type": "Offer", "price": "19.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Lamb Souvla", "description": "Whole lamb on the spit — pre-order only", "offers": {"@type": "Offer", "price": "250.00", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Fish", "hasMenuItem": [{"@type": "MenuItem", "name": "Sea Bass or Sea Bream", "description": "Grilled, served with hand-cut fries & salad", "offers": {"@type": "Offer", "price": "13.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Calamari", "offers": {"@type": "Offer", "price": "8.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Grilled Prawns", "description": "Served with hand-cut fries & salad", "offers": {"@type": "Offer", "price": "13.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Souvlaki Pita Wraps", "hasMenuItem": [{"@type": "MenuItem", "name": "Pork Gyros", "description": "Onion, tomatoes, tzatziki & fresh hand-cut fries"}, {"@type": "MenuItem", "name": "Pork Kalamaki", "description": "Onion, tomatoes, tzatziki & hand-cut fries"}, {"@type": "MenuItem", "name": "Chicken Gyros", "description": "Lettuce, tomatoes, special sauce & hand-cut fries"}, {"@type": "MenuItem", "name": "Mix Pork & Chicken"}, {"@type": "MenuItem", "name": "Chicken Kalamaki", "description": "Onion, tomatoes, tzatziki & hand-cut fries"}, {"@type": "MenuItem", "name": "Kebab", "description": "Onion, tomatoes, tzatziki & hand-cut fries"}, {"@type": "MenuItem", "name": "Lamb Kalamaki", "description": "Onion, tomatoes, tzatziki & hand-cut fries"}, {"@type": "MenuItem", "name": "Sausage Kalamaki", "description": "Onion, tomatoes, tzatziki & hand-cut fries"}, {"@type": "MenuItem", "name": "Halloumi Kalamaki", "description": "Onion, tomatoes, tzatziki & hand-cut fries", "suitableForDiet": "https://schema.org/VegetarianDiet"}, {"@type": "MenuItem", "name": "Falafel Wrap", "description": "Houmous, lettuce, tomatoes & hand-cut fries", "suitableForDiet": "https://schema.org/VeganDiet"}]}, {"@type": "MenuSection", "name": "Merides — Portions", "hasMenuItem": [{"@type": "MenuItem", "name": "Pancetta", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Pork Gyros", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries", "offers": {"@type": "Offer", "price": "11.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Pork Kalamaki", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries", "offers": {"@type": "Offer", "price": "11.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Chicken Gyros", "description": "Pitta, special sauce, lettuce, tomatoes & fresh fries"}, {"@type": "MenuItem", "name": "Chicken Kalamaki", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries"}, {"@type": "MenuItem", "name": "Mix Gyros", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries"}, {"@type": "MenuItem", "name": "Kebab", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries"}, {"@type": "MenuItem", "name": "Lamb Kalamaki", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries"}, {"@type": "MenuItem", "name": "Sausage Kalamaki", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries"}, {"@type": "MenuItem", "name": "Falafel Portion", "description": "Houmous, lettuce, pitta, tomatoes & fresh fries", "suitableForDiet": "https://schema.org/VeganDiet"}, {"@type": "MenuItem", "name": "Halloumi Kalamaki", "description": "Pitta, tomatoes, onions, tzatziki & fresh fries", "suitableForDiet": "https://schema.org/VegetarianDiet"}]}, {"@type": "MenuSection", "name": "Kalamakia — Skewers", "hasMenuItem": [{"@type": "MenuItem", "name": "Pork", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Chicken"}, {"@type": "MenuItem", "name": "Beef", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Lamb", "offers": {"@type": "Offer", "price": "3.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Village Sausage", "description": "Loukaniko horiatiko", "offers": {"@type": "Offer", "price": "3.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Skepasti", "hasMenuItem": [{"@type": "MenuItem", "name": "Pork Gyros", "description": "Onion, tomatoes, tzatziki, homemade french fries & grated cheese"}, {"@type": "MenuItem", "name": "Chicken Gyros", "description": "Lettuce, tomatoes, special sauce, hand-cut fries & grated cheese", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Mix Pork & Chicken", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Halloumi Skepasti", "description": "Lettuce, tomatoes, special sauce, hand-cut fries & grated feta cheese", "offers": {"@type": "Offer", "price": "11.99", "priceCurrency": "GBP"}, "suitableForDiet": "https://schema.org/VegetarianDiet"}]}, {"@type": "MenuSection", "name": "Salad", "hasMenuItem": [{"@type": "MenuItem", "name": "Greek Salad", "description": "Tomatoes, cucumber, pepper, olives, feta cheese, olive oil & oregano", "offers": {"@type": "Offer", "price": "7.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Dakos Salad", "description": "Cracker bread, grated feta cheese, tomatoes, olives, capers & olive oil", "offers": {"@type": "Offer", "price": "6.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Special Salad", "description": "Lettuce, special sauce, boiled egg, croutons, chicken, tomatoes, cucumber, grated cheese & olive oil", "offers": {"@type": "Offer", "price": "8.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Green Salad", "description": "Lettuce, spring onion, lemon & olive oil", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Caesar Salad", "description": "Served with special sauce", "offers": {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Sides", "hasMenuItem": [{"@type": "MenuItem", "name": "Pitta bread", "offers": {"@type": "Offer", "price": "1.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Small sauces", "offers": {"@type": "Offer", "price": "1.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Fresh cut chips", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Greek olives", "offers": {"@type": "Offer", "price": "3.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Feta cheese", "offers": {"@type": "Offer", "price": "4.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Grilled saganaki", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Halloumi", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Fresh cut fries with feta cheese", "offers": {"@type": "Offer", "price": "5.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Grilled feta cheese", "description": "with tomato & olive oil", "offers": {"@type": "Offer", "price": "6.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "English breakfast", "description": "sausage, chips, egg, beans, mushrooms", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Pitta Corner Dips", "hasMenuItem": [{"@type": "MenuItem", "name": "Spicy feta trokafteri", "offers": {"@type": "Offer", "price": "3.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Tzatziki", "offers": {"@type": "Offer", "price": "3.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Houmous", "offers": {"@type": "Offer", "price": "3.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Crepes & Dessert", "hasMenuItem": [{"@type": "MenuItem", "name": "Sweet crepe", "description": "nutella, grated biscuit, banana", "offers": {"@type": "Offer", "price": "6.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Salted crepe", "description": "ham, cheese, tomatoes", "offers": {"@type": "Offer", "price": "6.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Trilece", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Baklava", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Kadaifi", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Mix Grill Platter", "hasMenuItem": [{"@type": "MenuItem", "name": "Mix Grill Platter For Two", "description": "2 pittas, 2 hand-cut fries, 1 tzatziki salad & spicy feta, 1 pork souvlaki skewer · 1 chicken skewer, 1 pancetta · 1 kebab, Pork gyros portion · chicken portion, 1 sausage kalamaki · 2 lamb chops", "offers": {"@type": "Offer", "price": "42.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Mix Grill Platter For Four", "description": "4 pittas, 2 hand-cut fries, 2 tzatziki salad & spicy feta, 2 pork souvlaki skewers · 2 chicken skewers, 2 pancetta · 2 kebab, Pork gyros portion · chicken portion, 2 sausage kalamaki · 4 lamb chops", "offers": {"@type": "Offer", "price": "84.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Greek Burgers", "hasMenuItem": [{"@type": "MenuItem", "name": "Greek Beef Burger", "description": "Signature handmade beef burger, cheese, lettuce, tomato & homemade sauce. Served with hand-cut fries.", "offers": [{"@type": "Offer", "price": "7.99", "priceCurrency": "GBP", "name": "Single"}, {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP", "name": "Double"}]}, {"@type": "MenuItem", "name": "Greek Chicken Burger", "description": "Signature handmade chicken burger, cheese, lettuce, tomato & homemade sauce. Served with hand-cut fries.", "offers": [{"@type": "Offer", "price": "7.99", "priceCurrency": "GBP", "name": "Single"}, {"@type": "Offer", "price": "12.99", "priceCurrency": "GBP", "name": "Double"}]}]}, {"@type": "MenuSection", "name": "Breakfast", "hasMenuItem": [{"@type": "MenuItem", "name": "Egg, bacon, loukaniko sausage, beans, mushrooms, chips & pitta", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Halal version", "description": "egg, turkey rashers, beef sausage, beans, mushrooms, chips & pitta", "offers": {"@type": "Offer", "price": "9.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Chicken", "offers": {"@type": "Offer", "price": "7.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Lentil", "offers": {"@type": "Offer", "price": "6.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Goulash", "description": "taskebab", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Eggs Benedict", "description": "hollandaise sauce & bacon", "offers": {"@type": "Offer", "price": "7.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Omelette", "description": "cheese and chips or salad on the side", "offers": {"@type": "Offer", "price": "5.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Bacon and egg", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Beef patty and egg", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Avocado, egg and Philadelphia cheese", "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "GBP"}}]}, {"@type": "MenuSection", "name": "Drinks", "hasMenuItem": [{"@type": "MenuItem", "name": "Cappuccino", "offers": {"@type": "Offer", "price": "2.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Latte", "offers": {"@type": "Offer", "price": "2.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Espresso", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Double espresso", "offers": {"@type": "Offer", "price": "2.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Macchiato", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Mocha", "offers": {"@type": "Offer", "price": "2.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Tea", "offers": {"@type": "Offer", "price": "2.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Red Bull, B52, Golden Eagle", "offers": {"@type": "Offer", "price": "2.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Coke, Diet Coke, Fanta", "description": "bottle", "offers": {"@type": "Offer", "price": "2.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Fresh orange juice", "offers": {"@type": "Offer", "price": "3.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Smoothie juice", "offers": {"@type": "Offer", "price": "4.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Ayran", "offers": {"@type": "Offer", "price": "1.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Water", "offers": {"@type": "Offer", "price": "1.95", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Lux, Santal, Ivi, Fanta Exotic", "offers": {"@type": "Offer", "price": "2.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Corona", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Budweiser", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Heineken", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Peroni", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Moretti", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Fix", "description": "Greek", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Alfa", "description": "Greek", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Mythos", "description": "Greek", "offers": {"@type": "Offer", "price": "4.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Red wine", "description": "glass", "offers": {"@type": "Offer", "price": "7.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "White wine", "description": "glass", "offers": {"@type": "Offer", "price": "6.00", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Wine", "description": "bottle"}, {"@type": "MenuItem", "name": "Retsina Malamatina", "description": "500ml"}, {"@type": "MenuItem", "name": "Spirits", "description": "single", "offers": {"@type": "Offer", "price": "3.50", "priceCurrency": "GBP"}}, {"@type": "MenuItem", "name": "Spirits", "description": "double"}]}]}}
 </script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are your opening hours?", "acceptedAnswer": {"@type": "Answer", "text": "Every day from 8am to 11pm — breakfast and coffee from eight, and the grill runs all day until close."}}, {"@type": "Question", "name": "Do you deliver?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Just Eat, Deliveroo and Uber Eats all carry the menu across N22 and beyond. Or call 020 8826 9594 and collect it hot from the counter."}}, {"@type": "Question", "name": "Do you have vegetarian or vegan dishes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — look for the tags on the board: halloumi kalamaki as a wrap, portion or skepasti (vegetarian), and the falafel wrap and portion (vegan). Several salads, dips and sides are meat-free too — ask a member of staff about ingredients and allergens."}}, {"@type": "Question", "name": "What's the £250 Lamb Souvla?", "acceptedAnswer": {"@type": "Answer", "text": "A whole lamb, slow-turned on the spit. It's pre-order only, so call ahead and give us notice."}}, {"@type": "Question", "name": "Why do some prices say “ask in store”?", "acceptedAnswer": {"@type": "Answer", "text": "Those prices were recently changed by hand on our board, and we'd rather tell you the current figure at the counter than publish one that's out of date."}}, {"@type": "Question", "name": "Do you do halal?", "acceptedAnswer": {"@type": "Answer", "text": "The breakfast menu has halal versions — beef sausage and turkey rashers in place of pork. For any other dish, ask a member of staff before ordering."}}]}
+</script>
+
+<!-- ══════════ FIXED FURNITURE ══════════
+     The mobile action bar, the back-to-top ring and the album lightbox.
+     All three are enhancements: with JS off the bar and lightbox simply
+     never show, and the anchor still works. -->
+<div class="actionbar" id="actionbar">
+  <a href="tel:+442088269594" class="ab-call">
+    <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Call the shop</a>
+  <a href="#order" class="ab-order">
+    <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>Order online</a>
+</div>
+
+<a href="#top" id="to-top" aria-label="Back to top">
+  <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+</a>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo album viewer">
+  <figure class="lb-fig">
+    <!-- no src until first opened, so nothing is fetched for a viewer who
+         never uses it; alt stays empty because the caption carries the text -->
+    <img class="lb-img" alt="">
+    <figcaption class="lb-bar">
+      <span id="lb-cap"></span>
+      <span class="lb-count" aria-live="polite"></span>
+    </figcaption>
+  </figure>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous photo">
+    <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  <button class="lb-btn lb-next" type="button" aria-label="Next photo">
+    <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  <button class="lb-btn lb-close" type="button" aria-label="Close photo viewer">
+    <svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
+</dialog>
 
 <script src="js/script.js"></script>
 </body>

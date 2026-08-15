@@ -1,0 +1,16 @@
+{
+  "name": "Pitta Corner — Greek Grill, Wood Green",
+  "short_name": "Pitta Corner",
+  "description": "Greek & Cypriot charcoal grill at 43 High Road, Wood Green, London. Menu, hours and ordering.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "minimal-ui",
+  "background_color": "#fdfaf3",
+  "theme_color": "#0f2a5c",
+  "lang": "en-GB",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

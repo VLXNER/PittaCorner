@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Not on the board — Pitta Corner</title>
+<!-- Self-contained on purpose: Pages serves this file for ANY missing path,
+     so a relative stylesheet link would resolve against whatever nonsense
+     path the visitor mistyped. Everything is inline and every link out is
+     absolute. -->
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{min-height:100svh;display:grid;place-items:center;padding:24px;
+    background:#0f2a5c;color:#fdfaf3;text-align:center;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
+  .badge{width:74px;height:74px;margin:0 auto 26px;display:block}
+  h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;
+    font-size:clamp(3.4rem,10vw,5.5rem);line-height:1;color:#ecc873;letter-spacing:-.02em}
+  .k{font-family:Georgia,serif;font-style:italic;font-size:1.25rem;margin:14px 0 6px;color:#fdfaf3}
+  p{color:#c3d6f2;max-width:44ch;margin-inline:auto}
+  .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:30px 0 38px}
+  a.btn{display:inline-block;padding:.9em 1.8em;border-radius:6px;font-weight:700;
+    font-size:.94rem;text-decoration:none;letter-spacing:.03em}
+  a.gold{background:#c99a2c;color:#1d1502}
+  a.gold:hover{background:#dcb04a}
+  a.line{border:1.5px solid rgba(246,230,189,.45);color:#fdfaf3}
+  a.line:hover{border-color:#dcb04a;color:#ecc873}
+  a:focus-visible{outline:3px solid #fdfaf3;outline-offset:2px;box-shadow:0 0 0 6px #a97d18}
+  .fine{font-size:.8rem;color:#8fa9d6}
+  .fine a{color:#ecc873;text-decoration:none}
+  .fine a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<main>
+  <svg class="badge" viewBox="0 0 100 100" aria-hidden="true">
+    <g fill="none" stroke="#dcb04a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="40" stroke-width="1"/>
+      <path d="M38 26v18a5 5 0 0 0 10 0V26"/><path d="M43 49v25"/>
+      <path d="M62 26c3 4 4.5 8.5 4.5 13.5 0 4-2 6.5-4.5 6.5s-4.5-2.5-4.5-6.5c0-5 1.5-9.5 4.5-13.5Z"/>
+      <path d="M62 46v28"/>
+    </g>
+  </svg>
+  <h1>404</h1>
+  <p class="k">That page isn't on the board.</p>
+  <p>The food, thankfully, is — the menu, the hours and the phone number are all one click away.</p>
+  <div class="row">
+    <a class="btn gold" href="https://vlxner.github.io/PittaCorner/">Back to Pitta Corner</a>
+    <a class="btn line" href="https://vlxner.github.io/PittaCorner/#menu">Straight to the menu</a>
+  </div>
+  <p class="fine">Pitta Corner · 43 High Road, Wood Green, London N22 6BH ·
+     <a href="tel:+442088269594">020 8826 9594</a> · open every day 8:00–23:00</p>
+</main>
+</body>
+</html>
