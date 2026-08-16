@@ -88,7 +88,11 @@
 *,*::before,*::after{box-sizing:border-box;}
 html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%;}
 body{
-  margin:0;background:var(--cream-50);color:var(--ink-900);
+  margin:0;color:var(--ink-900);
+  /* printed-stock grain: an inline SVG noise tile at ~4%% alpha over the
+     cream — the paper the menu identity says everything is printed on */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-color:var(--cream-50);
   font-family:var(--font);font-size:16.5px;line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
@@ -135,7 +139,8 @@ button{font:inherit;cursor:pointer;}
 
 /* A gold hairline with a diamond, the way the printed board divides sections */
 .rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 1.6em;}
-.rule::before,.rule::after{content:"";height:1px;width:min(90px,14vw);background:var(--gold-500);}
+.rule::before,.rule::after{content:"";height:1px;width:min(90px,14vw);
+  background:linear-gradient(90deg,var(--gold-700),var(--gold-300) 55%,var(--gold-600));}
 .rule i{width:6px;height:6px;transform:rotate(45deg);background:var(--gold-500);}
 .on-blue .rule::before,.on-blue .rule::after,.on-blue .rule i{background:var(--gold-400);}
 
@@ -184,7 +189,7 @@ button{font:inherit;cursor:pointer;}
 
 .on-blue{background:var(--blue-900);color:var(--cream-50);}
 .on-blue h2,.on-blue h3{color:var(--cream-50);}
-.tint{background:var(--cream-100);}
+.tint{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");background-color:var(--cream-100);}
 
 /* ═══════════ BUTTONS ═══════════ */
 .btn{
@@ -377,7 +382,8 @@ button{font:inherit;cursor:pointer;}
   .story-photo{width:100%;}
   .story-stack .card-blue{width:100%;margin:-52px 0 0;}
 }
-.card-blue{background:var(--blue-900);color:var(--cream-50);padding:clamp(30px,4vw,44px);
+.card-blue{background:radial-gradient(130% 110% at 22% 0%,#1a3e7f,#0f2a5c 58%,#0d2450);
+  color:var(--cream-50);padding:clamp(30px,4vw,44px);
   border-radius:var(--r-md);}
 .card-blue h3{font-size:1.5rem;margin-bottom:.2em;}
 .card-blue .sub{color:var(--blue-200);font-size:.86rem;letter-spacing:.1em;
@@ -411,7 +417,8 @@ button{font:inherit;cursor:pointer;}
   transform:rotate(45deg);background:var(--gold-500);}
 .burgers{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,30px);
          margin-top:clamp(20px,3vw,30px);}
-.burger-card{background:var(--blue-900);color:var(--cream-50);border-radius:var(--r-md);
+.burger-card{background:radial-gradient(130% 110% at 22% 0%,#1a3e7f,#0f2a5c 58%,#0d2450);
+  color:var(--cream-50);border-radius:var(--r-md);
   padding:clamp(26px,3vw,34px);}
 .burger-card h3{margin-bottom:.35em;color:var(--cream-50);}
 .burger-card p{color:var(--blue-200);font-size:.92rem;}
@@ -466,7 +473,7 @@ button{font:inherit;cursor:pointer;}
    would need a shot sequence (a plate on a turntable, ~30 frames); this
    is what one photograph can honestly do. */
 .signature{position:relative;overflow:hidden;overflow:clip;padding:clamp(64px,9vw,132px) 0;
-  background:var(--blue-900);color:var(--cream-50);}
+  background:radial-gradient(120% 100% at 18% 0%,#1a3e7f 0%,#0f2a5c 52%,#0c2149 100%);color:var(--cream-50);}
 .sig-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center;}
 .sig-copy h2{color:var(--cream-50);font-size:clamp(2.2rem,4.6vw,3.8rem);}
 .sig-copy h2 em{font-style:italic;color:var(--gold-300);}
@@ -721,7 +728,7 @@ button{font:inherit;cursor:pointer;}
    moves, which is the difference between a decorated page and a page
    that just has something spinning on it. Purely repetition of names
    that appear on the board below, so it is aria-hidden. */
-.ticker{overflow:hidden;background:var(--blue-900);
+.ticker{overflow:hidden;background:linear-gradient(180deg,#0d2450,#12305f 50%,#0d2450);
   border-block:1px solid rgba(246,230,189,.18);padding:clamp(13px,1.5vw,18px) 0;}
 .ticker-row{display:flex;align-items:center;gap:clamp(18px,2.4vw,32px);
   width:max-content;white-space:nowrap;
@@ -743,7 +750,8 @@ button{font:inherit;cursor:pointer;}
    the other three sit beside it as a list. */
 .reviews-grid{display:grid;grid-template-columns:1.02fr .98fr;
   gap:clamp(18px,2.6vw,32px);margin-bottom:clamp(30px,4vw,50px);}
-.rating-hero{position:relative;overflow:hidden;background:var(--blue-900);
+.rating-hero{position:relative;overflow:hidden;
+  background:radial-gradient(130% 110% at 22% 0%,#1a3e7f,#0f2a5c 58%,#0d2450);
   color:var(--cream-50);border-radius:var(--r-md);
   padding:clamp(30px,3.6vw,48px);
   display:flex;flex-direction:column;justify-content:center;}
@@ -895,20 +903,23 @@ button{font:inherit;cursor:pointer;}
 .info-list li:hover .ico{color:var(--gold-600);}
 
 /* ═══════════ ALLERGENS ═══════════ */
-.allergens{background:var(--cream-100);border-top:1px solid var(--cream-200);
+.allergens{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");background-color:var(--cream-100);
+  border-top:1px solid var(--cream-200);
            padding:clamp(36px,5vw,56px) 0;text-align:center;}
 .allergen-title{font-family:var(--font);font-size:.78rem;font-weight:800;
   letter-spacing:.16em;text-transform:uppercase;color:var(--gold-700);margin-bottom:.9em;}
 .allergens p{max-width:76ch;margin:0 auto;font-size:.9rem;color:var(--ink-700);}
 
 /* ═══════════ FOOTER ═══════════ */
-.footer{position:relative;background:var(--blue-900);color:var(--cream-50);
+.footer{position:relative;color:var(--cream-50);
+  background:radial-gradient(130% 120% at 50% 0%,#173a72 0%,#0f2a5c 48%,#0b1f44 100%);
   padding:clamp(52px,6vw,76px) 0 30px;}
 /* the gold edge off the printed menus, closing the page the way the
    badge opens it */
-.footer::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;
-  background:linear-gradient(90deg,var(--gold-700),var(--gold-400) 42%,
-             var(--gold-300) 66%,var(--gold-600));}
+.footer::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M0 12.5 H28 M23.5 12.5 V3.5 H9.5 V8 H16' fill='none' stroke='%23c99a2c' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-size:auto 10px;background-position:center top;
+  opacity:.9;}
 .footer-top{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(30px,5vw,64px);
   align-items:start;padding-bottom:38px;}
 .footer .brand-name{color:var(--gold-300);font-size:2rem;}
@@ -971,7 +982,7 @@ button{font:inherit;cursor:pointer;}
 .band-copy .eyebrow::before,.band-copy .eyebrow::after{background:var(--gold-400);}
 
 /* ═══════════ ALBUM ═══════════ */
-.album-section{background:var(--cream-100);}
+.album-section{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");background-color:var(--cream-100);}
 /* Nine shots in three columns: three full rows, no leftovers. Mixed
    column and row spans with dense flow left holes the grid could not
    backfill, so every tile is now the same 4:3 and the photos are
@@ -1046,7 +1057,7 @@ button{font:inherit;cursor:pointer;}
    users and browsers without scroll-driven animation get, and it is a
    real layout rather than a degraded one — no horizontal scroll region,
    so there is nothing a keyboard cannot reach. */
-.process{position:relative;background:var(--cream-100);
+.process{position:relative;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");background-color:var(--cream-100);
   border-block:1px solid var(--cream-200);padding:clamp(56px,7vw,92px) 0;}
 .proc-head{margin-bottom:clamp(28px,3.4vw,46px);}
 .proc-track{position:relative;
@@ -1522,7 +1533,11 @@ button{font:inherit;cursor:pointer;}
   color:var(--gold-300);line-height:1.3;}
 .pg-cover-sub{font-size:clamp(.5rem,.8vw,.62rem);font-weight:700;letter-spacing:.26em;
   text-transform:uppercase;color:var(--blue-200);}
-.pg-cover-menu{margin-top:clamp(8px,1.6vw,20px);font-family:var(--font-display);
+.pg-cover-meander{width:56%;height:9px;margin-top:clamp(8px,1.6vw,18px);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M0 12.5 H28 M23.5 12.5 V3.5 H9.5 V8 H16' fill='none' stroke='%23c99a2c' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-size:auto 9px;background-position:center;
+  opacity:.85;}
+.pg-cover-menu{margin-top:clamp(4px,1vw,10px);font-family:var(--font-display);
   font-size:clamp(.78rem,1.3vw,1.05rem);font-weight:600;letter-spacing:.5em;
   text-indent:.5em;color:var(--cream-50);
   border-top:1px solid rgba(201,154,44,.5);border-bottom:1px solid rgba(201,154,44,.5);

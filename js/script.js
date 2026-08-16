@@ -415,6 +415,7 @@
       const cover = mkPage('pg-cover');
       cover.append(badge(), el('span', 'pg-cover-name', 'Pitta Corner'),
         el('span', 'pg-cover-sub', 'Restaurant · Coffee · Crepe'),
+        el('span', 'pg-cover-meander'),
         el('span', 'pg-cover-menu', 'MENU'),
         el('span', 'pg-cover-est', 'Wood Green · London'));
       const titlePg = mkPage('pg-title');
