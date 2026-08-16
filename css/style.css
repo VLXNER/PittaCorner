@@ -346,7 +346,7 @@ button{font:inherit;cursor:pointer;}
    stacked in a tidy column — the arrangement is what makes it read as a
    spread instead of a form. */
 .story-stack{position:relative;}
-.story-photo{margin:0 0 0 auto;width:92%;overflow:hidden;border-radius:var(--r-md);
+.story-photo{margin:0 0 0 auto;width:92%;overflow:hidden;overflow:clip;border-radius:var(--r-md);
   border:1px solid var(--cream-300);background:var(--cream-200);aspect-ratio:1;
   box-shadow:0 34px 60px -34px rgba(20,27,40,.45);}
 .story-photo img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -424,7 +424,7 @@ button{font:inherit;cursor:pointer;}
    is no margin to float into and they would only steal bandwidth.
    Each rides its own view-timeline, drifting up or down by its --spd. */
 .section,.story,.signature{position:relative;}
-.floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+.floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;overflow:clip;z-index:0;}
 .floater{position:absolute;top:var(--t);width:var(--sz);height:var(--sz);
   border-radius:50%;overflow:hidden;
   border:3px solid rgba(201,154,44,.35);
@@ -460,7 +460,7 @@ button{font:inherit;cursor:pointer;}
    The grains and steam are drawn, not photographed. A true 360 spin
    would need a shot sequence (a plate on a turntable, ~30 frames); this
    is what one photograph can honestly do. */
-.signature{position:relative;overflow:hidden;padding:clamp(64px,9vw,132px) 0;
+.signature{position:relative;overflow:hidden;overflow:clip;padding:clamp(64px,9vw,132px) 0;
   background:var(--blue-900);color:var(--cream-50);}
 .sig-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);align-items:center;}
 .sig-copy h2{color:var(--cream-50);font-size:clamp(2.2rem,4.6vw,3.8rem);}
@@ -923,7 +923,7 @@ button{font:inherit;cursor:pointer;}
    put dark heading text on top of a dark photograph. */
 .band{position:relative;height:180svh;background:var(--blue-900);color:var(--cream-50);
   view-timeline-name:--band;view-timeline-axis:block;}
-.band-media{position:sticky;top:0;height:100svh;overflow:hidden;}
+.band-media{position:sticky;top:0;height:100svh;overflow:hidden;overflow:clip;}
 
 /* Embers off the coals. Drawn, not photographed, and hung on the band's
    own timeline rather than each spark's — a 4px dot has almost no view
@@ -964,7 +964,7 @@ button{font:inherit;cursor:pointer;}
    backfill, so every tile is now the same 4:3 and the photos are
    object-fit cropped into it. */
 .album{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px);}
-.shot{position:relative;margin:0;overflow:hidden;border-radius:var(--r-md);
+.shot{position:relative;margin:0;overflow:hidden;overflow:clip;border-radius:var(--r-md);
   background:var(--cream-200);aspect-ratio:4/3;
   transition:transform var(--t-mid) var(--e-out),box-shadow var(--t-mid) var(--e-soft);}
 .shot img{width:100%;height:100%;object-fit:cover;display:block;
@@ -1072,7 +1072,7 @@ button{font:inherit;cursor:pointer;}
   @media (prefers-reduced-motion: no-preference){
     .process{height:300svh;padding:0;
       view-timeline-name:--proc;view-timeline-axis:block;}
-    .proc-pin{position:sticky;top:0;height:100svh;overflow:hidden;
+    .proc-pin{position:sticky;top:0;height:100svh;overflow:hidden;overflow:clip;
       display:flex;flex-direction:column;justify-content:center;
       padding-top:64px;}
     .proc-track{display:flex;width:max-content;
@@ -1100,7 +1100,7 @@ button{font:inherit;cursor:pointer;}
    over it still clears 4.5:1. The scrim is two layers: a flat navy wash
    for contrast and a vertical gradient so the section edges blend into
    the panels above and below rather than cutting off. */
-.has-bg{position:relative;isolation:isolate;overflow:hidden;}
+.has-bg{position:relative;isolation:isolate;overflow:hidden;overflow:clip;}
 /* The file name lives HERE, in a class, and not in a custom property set
    on the element. A url() carried through a custom property is resolved
    against the stylesheet that *substitutes* it, not the one that declares
@@ -1227,6 +1227,18 @@ button{font:inherit;cursor:pointer;}
 #search-clear .ico{width:.9em;height:.9em;}
 @media (pointer:coarse){#search-clear{width:40px;height:40px;}}
 #search-count{margin:0;font-size:.85rem;color:var(--ink-600);}
+#search-count a{color:var(--gold-700);font-weight:700;text-decoration:underline;
+  text-underline-offset:3px;}
+#search-count a:hover{color:var(--blue-700);}
+/* arriving from a search link, the matching rows glow for a moment */
+.plist > li.is-flash{background:var(--gold-100);
+  box-shadow:0 0 0 6px var(--gold-100);border-radius:2px;}
+/* breakfast sits on navy with cream text: an opaque gold wash would
+   erase it, so the flash there is a translucent glow */
+.on-blue .plist > li.is-flash{background:rgba(220,176,74,.22);
+  box-shadow:0 0 0 6px rgba(220,176,74,.22);}
+.plist > li{transition:background 600ms var(--e-soft),box-shadow 600ms var(--e-soft),
+  padding-left var(--t-mid) var(--e-out);}
 #search-count:not(:empty){padding-bottom:10px;}
 #menu-groups .dish.is-off,#menu-groups .plist > li.is-off{display:none;}
 #menu-groups .mgroup.is-empty{display:none;}
@@ -1412,6 +1424,17 @@ button{font:inherit;cursor:pointer;}
 .book-base::after{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:44px;
   transform:translateX(-50%);
   background:linear-gradient(90deg,transparent,rgba(8,16,34,.55) 50%,transparent);}
+/* fore-edges: the pages you have read pile up on the left, the pages
+   still to come on the right — widths set by the engine per turn */
+.book::before,.book::after{content:"";position:absolute;top:5px;bottom:7px;z-index:0;
+  background:repeating-linear-gradient(90deg,
+    var(--cream-50) 0 1px,var(--cream-300) 1px 2px);
+  transition:width 600ms var(--e-soft),opacity 400ms var(--e-soft);
+  opacity:1;}
+.book::before{right:100%;width:calc(var(--stack-l,0) * 1px);border-radius:2px 0 0 2px;}
+.book::after{left:100%;width:calc(var(--stack-r,0) * 1px);border-radius:0 2px 2px 0;}
+.book.is-closed::before,.book.is-closed::after,
+.book.is-ended::before,.book.is-ended::after{opacity:0;}
 
 .leaf{position:absolute;top:0;right:0;width:50%;height:100%;
   transform-origin:left center;transform-style:preserve-3d;
@@ -1477,7 +1500,14 @@ button{font:inherit;cursor:pointer;}
   padding:8px 4px;}
 .pg-cover-est{font-size:clamp(.48rem,.75vw,.6rem);font-weight:700;letter-spacing:.2em;
   text-transform:uppercase;color:var(--gold-500);}
-.pg-endcover{background:radial-gradient(120% 90% at 70% 20%,#1c4187,#0f2a5c 60%,#0b1f44);}
+.pg-endcover{background:radial-gradient(120% 90% at 70% 20%,#1c4187,#0f2a5c 60%,#0b1f44);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+.pg-endcover::before{content:"";position:absolute;inset:12px;border:1px solid rgba(201,154,44,.4);
+  border-radius:4px;pointer-events:none;}
+.pg-endcover .pg-badge{width:clamp(40px,4.6vw,58px);height:clamp(40px,4.6vw,58px);
+  color:var(--gold-600);opacity:.85;}
+.pg-back-line{font-size:clamp(.46rem,.7vw,.56rem);font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(201,154,44,.75);}
 .pg-title,.pg-end{align-items:center;justify-content:center;text-align:center;gap:8px;}
 .pg-title .pg-badge,.pg-end .pg-badge{color:var(--gold-600);}
 .pg-title-name{font-family:var(--font-display);font-weight:600;
@@ -1574,7 +1604,9 @@ button{font:inherit;cursor:pointer;}
     /* menu, breakfast and drinks rows slide in one after another —
        each row has its own view range, so the cascade is natural */
     .dish,.plist > li{animation:list-row-in linear both;animation-timeline:view();
-      animation-range:entry 0% entry 32%;}
+      /* cover-based: a 36px row's entry span is ~12px of scroll, which
+         reads as a pop — cover 12% is ~110px, an actual fade */
+      animation-range:cover 0% cover 12%;}
     @keyframes list-row-in{from{opacity:0;transform:translateX(-16px);}
                            to{opacity:1;transform:none;}}
 
@@ -1590,9 +1622,9 @@ button{font:inherit;cursor:pointer;}
 
     /* order cards arrive from alternating sides */
     .order-card:nth-child(odd){animation:oc-in-l linear both;animation-timeline:view();
-      animation-range:entry 0% entry 48%;}
+      animation-range:cover 0% cover 18%;}
     .order-card:nth-child(even){animation:oc-in-r linear both;animation-timeline:view();
-      animation-range:entry 0% entry 48%;}
+      animation-range:cover 0% cover 18%;}
     @keyframes oc-in-l{from{opacity:0;transform:translateX(-36px) rotate(-1.4deg);}
                        to{opacity:1;transform:none;}}
     @keyframes oc-in-r{from{opacity:0;transform:translateX(36px) rotate(1.4deg);}

@@ -143,6 +143,28 @@
       no: (el.querySelector('.dno') || {}).textContent?.trim() || '',
     }));
     const allGroups = $$('.mgroup', board);
+    /* breakfast and drinks live outside the board; they are never
+       hidden by a search, but their matches deserve to be findable —
+       "cappuccino" and "eggs benedict" are real searches */
+    const elsewhere = $$('#breakfast .plist > li, #drinks .plist > li').map(li => ({
+      el: li,
+      sec: li.closest('#breakfast') ? 'breakfast' : 'drinks',
+      text: norm(li.textContent),
+    }));
+    const elsewhereLink = (id, label, count) => {
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = count + ' ' + label;
+      a.addEventListener('click', () => {
+        elsewhere.forEach(r => {
+          if (r.sec === id && r.hit) {
+            r.el.classList.add('is-flash');
+            setTimeout(() => r.el.classList.remove('is-flash'), 2000);
+          }
+        });
+      });
+      return a;
+    };
     const restoreChips = () => {
       const active = filter && filter.querySelector('.chip.is-active');
       const cat = (active && active.dataset.cat) || 'all';
@@ -155,7 +177,7 @@
       if (!q) {
         rows.forEach(r => r.el.classList.remove('is-off'));
         allGroups.forEach(g => g.classList.remove('is-empty'));
-        scount.textContent = '';
+        scount.replaceChildren();
         restoreChips();
         return;
       }
@@ -172,9 +194,22 @@
       // 500-character paste must not be read back in full
       const t = raw.trim();
       const shown = t.length > 40 ? t.slice(0, 40) + '\u2026' : t;
-      scount.textContent = n
-        ? `${n} ${n === 1 ? 'dish' : 'dishes'} match “${shown}”`
-        : `Nothing on the board matches “${shown}” — try a simpler word`;
+      let bN = 0, dN = 0;
+      elsewhere.forEach(r => {
+        r.hit = r.text.includes(q);
+        if (r.hit) r.sec === 'breakfast' ? bN++ : dN++;
+      });
+      scount.replaceChildren(
+        n ? `${n} ${n === 1 ? 'dish' : 'dishes'} match “${shown}”`
+          : `Nothing on the board matches “${shown}”`);
+      if (bN || dN) {
+        scount.append(n ? ' — plus ' : ' — but there ' + ((bN + dN) === 1 ? 'is ' : 'are '));
+        if (bN) scount.append(elsewhereLink('breakfast', 'at breakfast', bN));
+        if (bN && dN) scount.append(' · ');
+        if (dN) scount.append(elsewhereLink('drinks', 'in drinks', dN));
+      } else if (!n) {
+        scount.append(' — try a simpler word');
+      }
     };
     sinput.addEventListener('input', () => apply(sinput.value));
     sform.addEventListener('submit', e => e.preventDefault());
@@ -422,7 +457,12 @@
           const fr = el('div', 'leaf-face leaf-front');
           const bk = el('div', 'leaf-face leaf-back');
           if (faces[2 * i]) fr.append(faces[2 * i].el); else fr.classList.add('pg-endcover');
-          if (faces[2 * i + 1]) bk.append(faces[2 * i + 1].el); else bk.classList.add('pg-endcover');
+          if (faces[2 * i + 1]) bk.append(faces[2 * i + 1].el);
+          else {
+            bk.classList.add('pg-endcover');
+            bk.append(badge());
+            bk.append(el('span', 'pg-back-line', 'Restaurant · Coffee · Crepe'));
+          }
           leaf.append(fr, bk);
           bookEl.append(leaf);
           leaves.push(leaf);
@@ -451,17 +491,30 @@
           });
           bookEl.classList.toggle('is-closed', t === 0);
           bookEl.classList.toggle('is-ended', t === leaves.length);
+          /* fore-edge sheet stacks: read pages pile left, unread right */
+          const open = t > 0 && t < leaves.length;
+          bookEl.style.setProperty('--stack-l', open ? (t - 1) * 2 : 0);
+          bookEl.style.setProperty('--stack-r', open ? (leaves.length - t - 1) * 2 : 0);
           bkStatus.textContent =
             t === 0 ? 'Front cover — open the menu' :
             t === leaves.length ? 'Back cover' :
             [faces[2 * t - 1], faces[2 * t]].filter(Boolean).map(x => x.label).join(' · ');
+          /* a button that disables under focus drops the keyboard user
+             on <body> the instant .disabled is set — remember who held
+             focus BEFORE setting it, then hand over to the partner */
+          const held = document.activeElement;
           bkPrev.disabled = t === 0;
           bkNext.disabled = t === leaves.length;
+          if (bkNext.disabled && held === bkNext) bkPrev.focus();
+          if (bkPrev.disabled && held === bkPrev) bkNext.focus();
         } else {
           bookEl.classList.remove('is-closed', 'is-ended');
           bkStatus.textContent = faces[f].label + ' — page ' + (f + 1) + ' of ' + faces.length;
+          const held = document.activeElement;
           bkPrev.disabled = f === 0;
           bkNext.disabled = f === faces.length - 1;
+          if (bkNext.disabled && held === bkNext) bkPrev.focus();
+          if (bkPrev.disabled && held === bkPrev) bkNext.focus();
         }
       };
       const mobGo = dir => {
@@ -554,6 +607,7 @@
         else f = Math.min(faces.length - 1, Math.max(0, 2 * t - 1));
         buildFor(e.matches);
       });
+      bookEl.setAttribute('aria-roledescription', 'book');
       buildFor(wide.matches);
       setView('book');
     } catch (err) {

@@ -220,6 +220,27 @@ animation included the closed-state `translateX` in its `from` keyframe and
 sat on `.book` itself — which pinned the mobile book 76px off the left edge
 whenever the timeline was at progress 0. Entrances live on a wrapper.
 
+**`overflow: hidden` creates a scroll container, and `view()` resolves to the
+nearest scroll container.** Every view-timeline whose subject sat inside an
+`overflow:hidden` ancestor was frozen at a fixed progress — 106 of the page's
+205 scroll-driven animations were dead, including the entire signature
+showcase stuck at 50% with salt grains hanging as static dots. Stills can't
+catch this; only sampling across scroll positions can. The fix is
+`overflow: hidden; overflow: clip;` — `clip` crops without becoming a scroll
+container, and the double declaration keeps a fallback where it's unsupported.
+
+**An `entry`-based range on a small element spans almost no scroll.** The
+`entry` span of a 36px menu row is the row's own height — `entry 0% → 32%`
+is twelve pixels of scroll, so the "cascade" completed invisibly between two
+frames. Small subjects range against `cover` (`cover 0% → cover 12%` is
+roughly 110px), which is a fade a human actually sees.
+
+**The browser owns the touch gesture stream.** A horizontal drag delivers
+`pointerdown` then `pointercancel` — the `pointerup` a swipe handler waits
+for never arrives on a touchscreen, even under `touch-action`. Swipes listen
+to `touchstart`/`touchend` on touch devices; pointer events only serve mouse
+drags — never both, or one swipe turns two pages.
+
 ## Design skills (`.claude/skills/`)
 
 The repo vendors the **UI/UX Pro Max** bundle
