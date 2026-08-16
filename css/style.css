@@ -1374,6 +1374,279 @@ button{font:inherit;cursor:pointer;}
   cursor:zoom-in;}
 .shot-btn img{width:100%;height:100%;}
 
+/* ═══════════ MENU BOOK ═══════════
+   A bound menu: navy boards, gold frame, cream leaves that turn in 3D
+   around the spine. The pages are generated from the board markup at
+   load — one copy of the data — and the flat board remains the record
+   for search, print, no-JS and assistive tech. Desktop shows a
+   two-page spread; under 760px the same page nodes feed a single-page
+   pager, because a 390px spread would set the menu in 8px type. */
+.mview{display:flex;flex:0 0 auto;background:var(--cream-200);
+  border:1px solid var(--cream-300);border-radius:var(--r-full);padding:3px;gap:3px;}
+.mview-btn{display:inline-flex;align-items:center;gap:.5em;border:0;background:none;
+  padding:.42em 1.05em;border-radius:var(--r-full);font-weight:700;font-size:.8rem;
+  letter-spacing:.03em;color:var(--ink-600);
+  transition:background var(--t-fast) var(--e-soft),color var(--t-fast) var(--e-soft);}
+.mview-btn .ico{width:1em;height:1em;}
+.mview-btn:hover{color:var(--blue-900);}
+.mview-btn.is-active{background:var(--blue-900);color:var(--cream-50);}
+#menu-groups.is-booked{display:none;}
+
+.book-wrap{padding:clamp(10px,2vw,26px) 0 0;}
+.book-scene{perspective:2600px;perspective-origin:50% 46%;}
+.book{position:relative;width:min(880px,92vw);aspect-ratio:1.38;margin:0 auto;
+  transition:transform 950ms var(--e-soft);}
+/* closed, only the cover shows on the right half — slide so it reads centred */
+.book.is-closed{transform:translateX(-22%);}
+.book.is-ended{transform:translateX(22%);}
+.book-base{position:absolute;inset:-10px -8px;border-radius:12px 16px 16px 12px;
+  background:linear-gradient(150deg,#0b1f44,#16376f 55%,#0d2450);
+  box-shadow:0 46px 90px -34px rgba(15,42,92,.6);
+  opacity:1;transition:opacity 500ms var(--e-soft);}
+.book.is-closed .book-base,.book.is-ended .book-base{opacity:0;}
+/* the stitched spine, only meaningful while the book is open */
+.book-base::after{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:44px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(8,16,34,.55) 50%,transparent);}
+
+.leaf{position:absolute;top:0;right:0;width:50%;height:100%;
+  transform-origin:left center;transform-style:preserve-3d;
+  transition:transform 1000ms var(--e-soft);}
+.leaf.is-turned{transform:rotateY(-180deg);}
+.leaf-face{position:absolute;inset:0;overflow:hidden;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  background:var(--cream-50);}
+.leaf-back{transform:rotateY(180deg);}
+/* paper: right pages (fronts) shade toward the spine on their left edge,
+   left pages (backs) on their right edge */
+.leaf-front{border-radius:0 6px 6px 0;
+  background:linear-gradient(90deg,rgba(20,27,40,.10),rgba(20,27,40,.02) 9%,transparent 16%),var(--cream-50);}
+.leaf-back{border-radius:6px 0 0 6px;
+  background:linear-gradient(270deg,rgba(20,27,40,.10),rgba(20,27,40,.02) 9%,transparent 16%),var(--cream-50);}
+
+/* ── page interior ── */
+.pg{position:relative;width:100%;height:100%;display:flex;flex-direction:column;
+  padding:clamp(16px,2.6vw,30px) clamp(15px,2.4vw,28px);
+  overflow-y:auto;scrollbar-width:none;}
+.pg::-webkit-scrollbar{display:none;}
+.pg-sec{margin-bottom:clamp(8px,1.2vw,16px);}
+.pg-h{font-family:var(--font-display);font-weight:600;font-size:clamp(.82rem,1.25vw,1.02rem);
+  letter-spacing:.09em;text-transform:uppercase;text-align:center;
+  color:var(--blue-900);margin:0 0 2px;}
+.pg-rule{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 clamp(7px,1vw,12px);}
+.pg-rule::before,.pg-rule::after{content:"";height:1px;width:34px;background:var(--gold-500);}
+.pg-rule i{width:4px;height:4px;transform:rotate(45deg);background:var(--gold-500);}
+.pg-row{padding:clamp(2px,.5vw,4px) 0;}
+.pg-top{display:flex;align-items:baseline;gap:7px;}
+.pg-no{flex:0 0 auto;min-width:16px;font-family:var(--font-display);
+  font-size:.62rem;font-weight:600;color:var(--gold-700);}
+.pg-name{font-weight:700;font-size:clamp(.66rem,.95vw,.8rem);color:var(--ink-900);}
+.pg-tag{flex:0 0 auto;padding:0 5px;border-radius:3px;font-size:.5rem;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;background:var(--blue-900);color:var(--gold-300);}
+.pg-dots{flex:1 1 auto;min-width:10px;border-bottom:1px dotted var(--cream-300);
+  transform:translateY(-3px);}
+.pg-price{flex:0 0 auto;font-family:var(--font-display);font-weight:600;
+  font-size:clamp(.66rem,.95vw,.8rem);color:var(--blue-900);white-space:nowrap;}
+.pg-price.pg-ask{font-family:var(--font);font-size:.55rem;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--gold-700);}
+.pg-desc{margin:1px 0 0 23px;font-family:var(--font-display);font-style:italic;
+  font-size:clamp(.6rem,.85vw,.72rem);line-height:1.4;color:var(--ink-600);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* ── special faces ── */
+.pg-cover{align-items:center;justify-content:center;text-align:center;gap:10px;
+  background:radial-gradient(120% 90% at 30% 20%,#1c4187,#0f2a5c 60%,#0b1f44);}
+.pg-cover::before{content:"";position:absolute;inset:12px;border:2px solid var(--gold-500);
+  border-radius:4px;pointer-events:none;}
+.pg-cover::after{content:"";position:absolute;inset:18px;border:1px solid rgba(201,154,44,.45);
+  border-radius:3px;pointer-events:none;}
+.pg-badge{width:clamp(54px,7vw,84px);height:clamp(54px,7vw,84px);color:var(--gold-400);
+  fill:none;stroke:currentColor;}
+.pg-cover-name{font-family:var(--font-script);font-size:clamp(1.5rem,3vw,2.3rem);
+  color:var(--gold-300);line-height:1.3;}
+.pg-cover-sub{font-size:clamp(.5rem,.8vw,.62rem);font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--blue-200);}
+.pg-cover-menu{margin-top:clamp(8px,1.6vw,20px);font-family:var(--font-display);
+  font-size:clamp(.78rem,1.3vw,1.05rem);font-weight:600;letter-spacing:.5em;
+  text-indent:.5em;color:var(--cream-50);
+  border-top:1px solid rgba(201,154,44,.5);border-bottom:1px solid rgba(201,154,44,.5);
+  padding:8px 4px;}
+.pg-cover-est{font-size:clamp(.48rem,.75vw,.6rem);font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-500);}
+.pg-endcover{background:radial-gradient(120% 90% at 70% 20%,#1c4187,#0f2a5c 60%,#0b1f44);}
+.pg-title,.pg-end{align-items:center;justify-content:center;text-align:center;gap:8px;}
+.pg-title .pg-badge,.pg-end .pg-badge{color:var(--gold-600);}
+.pg-title-name{font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.15rem,2vw,1.7rem);color:var(--blue-900);letter-spacing:-.01em;}
+.pg-title-line{font-size:clamp(.55rem,.85vw,.68rem);font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-700);}
+.pg-title-copy{font-family:var(--font-display);font-style:italic;
+  font-size:clamp(.68rem,1vw,.82rem);color:var(--ink-700);max-width:30ch;line-height:1.6;}
+.pg-title-meta{margin-top:6px;font-size:clamp(.56rem,.8vw,.66rem);color:var(--ink-600);line-height:1.8;}
+.pg-end-script{font-family:var(--font-script);font-size:clamp(1.6rem,3vw,2.4rem);
+  color:var(--gold-600);}
+.pg-info-note{font-size:clamp(.58rem,.85vw,.7rem);color:var(--ink-700);line-height:1.65;
+  border-left:2px solid var(--gold-500);padding-left:10px;margin:0 0 10px;}
+
+/* ── controls ── */
+.book-ui{display:flex;align-items:center;justify-content:center;gap:clamp(14px,2.4vw,26px);
+  margin-top:clamp(16px,2.4vw,26px);}
+.bk-btn{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--cream-300);background:var(--cream-50);color:var(--blue-900);
+  transition:background var(--t-fast) var(--e-soft),border-color var(--t-fast) var(--e-soft),
+             color var(--t-fast) var(--e-soft),opacity var(--t-fast);}
+.bk-btn:hover:not(:disabled){background:var(--blue-900);border-color:var(--blue-900);color:var(--gold-300);}
+.bk-btn:disabled{opacity:.35;cursor:default;}
+#bk-status{margin:0;min-width:20ch;text-align:center;font-size:.8rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-600);}
+.book-hint{text-align:center;font-size:.78rem;color:var(--ink-600);font-style:italic;
+  margin:12px 0 0;}
+.book .leaf-face{cursor:pointer;}
+.pg-cover,.pg-endcover{cursor:pointer;}
+
+/* the book settles in as it scrolls into view */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    /* the entrance lives on the scene wrapper: an animation on .book
+       itself would override the closed/open translateX for as long as
+       the timeline holds it, which pinned the mobile book off-centre */
+    .book-scene{view-timeline-name:--bk;
+      animation:book-in linear both;animation-timeline:--bk;
+      animation-range:entry 0% entry 55%;}
+    @keyframes book-in{from{opacity:0;transform:translateY(44px) rotateX(10deg);}
+                       to{opacity:1;}}
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .book,.leaf,.book-base{transition:none !important;}
+}
+
+/* ── single-page mode ── */
+@media (max-width:759px){
+  .book{width:min(400px,94vw);aspect-ratio:.585;}
+  .book.is-closed,.book.is-ended{transform:none;}
+  .book-base{inset:-7px -6px -9px;border-radius:10px;}
+  .book-base::after{display:none;}
+  .mob-holder{position:absolute;inset:0;border-radius:6px;overflow:hidden;
+    background:var(--cream-50);}
+  .mob-holder .pg{border-radius:6px;}
+  .pg{padding:22px 20px;}
+  .pg-h{font-size:.98rem;}
+  .pg-name,.pg-price{font-size:.85rem;}
+  .pg-price.pg-ask{font-size:.6rem;}
+  .pg-no{font-size:.7rem;min-width:19px;}
+  .pg-desc{font-size:.74rem;margin-left:26px;}
+  .pg-tag{font-size:.55rem;}
+  .pg-row{padding:3.5px 0;}
+  .pg-cover-name{font-size:2rem;}
+  .pg-cover-sub{font-size:.6rem;}
+  .pg-cover-menu{font-size:.95rem;}
+  .pg-title-name{font-size:1.5rem;}
+  .pg-title-line{font-size:.66rem;}
+  .pg-title-copy{font-size:.8rem;}
+  .pg-title-meta{font-size:.66rem;}
+  .pg-info-note{font-size:.7rem;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .mob-holder.page-out{animation:pgout 200ms var(--e-soft) both;}
+    .mob-holder.page-in{animation:pgin 260ms var(--e-out) both;}
+    @keyframes pgout{to{opacity:0;transform:translateX(-26px) rotateY(-9deg);}}
+    @keyframes pgin{from{opacity:0;transform:translateX(30px) rotateY(7deg);}to{opacity:1;}}
+  }
+  .mview{order:-1;}
+  .book-hint{padding:0 18px;}
+}
+
+/* ═══════════ SECTION ANIMATION PASS ═══════════
+   The quiet sections get their own scroll-driven life. Everything here
+   is compositor property motion (opacity/transform), riding view
+   timelines, double-gated behind @supports and no-preference. Small
+   elements (stars, icons, quote marks) always ride a NAMED timeline on
+   their container — their own view range is a few pixels, so on view()
+   they would complete the instant they appeared. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+
+    /* menu, breakfast and drinks rows slide in one after another —
+       each row has its own view range, so the cascade is natural */
+    .dish,.plist > li{animation:list-row-in linear both;animation-timeline:view();
+      animation-range:entry 0% entry 32%;}
+    @keyframes list-row-in{from{opacity:0;transform:translateX(-16px);}
+                           to{opacity:1;transform:none;}}
+
+    /* pillar icons pop up out of their captions */
+    .pillar{view-timeline-name:--pl;}
+    .pillar .ico{transform-origin:50% 100%;
+      animation:pillar-pop linear both;animation-timeline:--pl;
+      animation-range:entry 10% entry 62%;}
+    @keyframes pillar-pop{
+      0%{opacity:0;transform:scale(.4) rotate(-10deg);}
+      62%{opacity:1;transform:scale(1.14) rotate(2deg);}
+      100%{opacity:1;transform:none;}}
+
+    /* order cards arrive from alternating sides */
+    .order-card:nth-child(odd){animation:oc-in-l linear both;animation-timeline:view();
+      animation-range:entry 0% entry 48%;}
+    .order-card:nth-child(even){animation:oc-in-r linear both;animation-timeline:view();
+      animation-range:entry 0% entry 48%;}
+    @keyframes oc-in-l{from{opacity:0;transform:translateX(-36px) rotate(-1.4deg);}
+                       to{opacity:1;transform:none;}}
+    @keyframes oc-in-r{from{opacity:0;transform:translateX(36px) rotate(1.4deg);}
+                       to{opacity:1;transform:none;}}
+
+    /* review stars light one after another; the big quote mark drifts in */
+    .rating-hero{view-timeline-name:--rh;}
+    .quote{view-timeline-name:--qt;}
+    .stars .ico:nth-child(1){--sd:0%;}
+    .stars .ico:nth-child(2){--sd:5%;}
+    .stars .ico:nth-child(3){--sd:10%;}
+    .stars .ico:nth-child(4){--sd:15%;}
+    .stars .ico:nth-child(5){--sd:20%;}
+    .rating-hero .stars .ico{animation:star-in linear both;animation-timeline:--rh;
+      animation-range:entry calc(8% + var(--sd,0%)) entry calc(34% + var(--sd,0%));}
+    .quote .stars .ico{animation:star-in linear both;animation-timeline:--qt;
+      animation-range:entry calc(8% + var(--sd,0%)) entry calc(40% + var(--sd,0%));}
+    @keyframes star-in{from{opacity:0;transform:scale(.2) rotate(-45deg);}
+                       to{opacity:1;transform:none;}}
+    .quote::before{animation:qmark-in linear both;animation-timeline:--qt;
+      animation-range:entry 14% entry 60%;}
+    @keyframes qmark-in{from{opacity:0;transform:translateY(14px) rotate(-8deg);}
+                        to{opacity:1;transform:none;}}
+
+    /* drinks column titles underline themselves as they arrive */
+    .drink-col{view-timeline-name:--dc;}
+    .drink-col h3{position:relative;padding-bottom:6px;}
+    .drink-col h3::after{content:"";position:absolute;left:0;bottom:0;height:1px;
+      width:52px;background:var(--gold-500);transform:scaleX(0);transform-origin:left;
+      animation:dc-draw linear both;animation-timeline:--dc;
+      animation-range:entry 6% entry 42%;}
+    @keyframes dc-draw{to{transform:scaleX(1);}}
+
+    /* the story pull-quote's gold mark swings in */
+    .pull{view-timeline-name:--pq;}
+    .pull::before{transform-origin:bottom left;
+      animation:pull-mark linear both;animation-timeline:--pq;
+      animation-range:entry 0% entry 70%;}
+    @keyframes pull-mark{from{opacity:0;transform:rotate(-14deg) translateY(8px);}
+                         to{opacity:1;transform:none;}}
+
+    /* platter cards tilt upright as they enter */
+    .platter-card:nth-child(1){animation:plt-l linear both;animation-timeline:view();
+      animation-range:entry 0% entry 50%;}
+    .platter-card:nth-child(2){animation:plt-r linear both;animation-timeline:view();
+      animation-range:entry 0% entry 50%;}
+    @keyframes plt-l{from{opacity:0;transform:translateY(30px) rotate(-1.2deg);}
+                     to{opacity:1;transform:none;}}
+    @keyframes plt-r{from{opacity:0;transform:translateY(30px) rotate(1.2deg);}
+                     to{opacity:1;transform:none;}}
+  }
+}
+/* hover polish, no timeline needed */
+.order-card .oc-logo{transition:transform var(--t-mid) var(--e-out);}
+.order-card:hover .oc-logo{transform:translateY(-4px) rotate(-4deg);}
+.drink-col h3{transition:color var(--t-fast) var(--e-soft);}
+.drink-col:hover h3{color:var(--gold-700);}
+
 /* ═══════════ REDUCED DATA ═══════════
    If the reader has asked for less data, the decorative photography
    goes first; the content photos and the menu stay. */
@@ -1485,7 +1758,7 @@ button{font:inherit;cursor:pointer;}
   .nav,.hero,.band,.process,.ticker,.album-section,.signature,.map,
   .order-links,.filter-wrap,.floaters,.embers,.featured,.story-stack,
   .reviews-grid,.quotes,.skip-link,.proc-dots,.dish-photo,
-  .actionbar,#to-top,.lightbox,.open-pill,.faq-chev,
+  .actionbar,#to-top,.lightbox,.open-pill,.faq-chev,.book-wrap,
   .eyebrow,.rule,.lead,.pull,.btn,.dish-ico,.dish-mark,.stars{display:none !important;}
 
   /* the FAQ prints as plain question-and-answer (script opens every
@@ -1507,6 +1780,7 @@ button{font:inherit;cursor:pointer;}
 
   /* the board itself */
   #menu-groups .mgroup.is-hidden{display:block !important;}   /* print every category */
+  #menu-groups.is-booked{display:block !important;}           /* book mode prints the board */
   /* and every dish: a search left running must not thin out the print */
   #menu-groups .mgroup.is-empty{display:block !important;}
   #menu-groups .dish.is-off{display:block !important;}

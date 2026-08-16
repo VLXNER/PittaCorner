@@ -79,6 +79,8 @@
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></symbol>
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12"/><path d="M18 6 6 18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5.5C10.4 4 8.2 3.4 5.6 3.4c-.9 0-1.8.1-2.6.3v14.6c.8-.2 1.7-.3 2.6-.3 2.6 0 4.8.6 6.4 2.1 1.6-1.5 3.8-2.1 6.4-2.1.9 0 1.8.1 2.6.3V3.7c-.8-.2-1.7-.3-2.6-.3-2.6 0-4.8.6-6.4 2.1Z"/><path d="M12 5.5v14.6"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8.5 6h12M8.5 12h12M8.5 18h12"/><path d="M3.5 6h.1M3.5 12h.1M3.5 18h.1"/></symbol>
   </defs>
 </svg>
 
@@ -476,6 +478,12 @@
 
     <div class="filter-wrap">
       <div class="shell filter-row">
+        <div class="mview" role="group" aria-label="Menu view">
+          <button type="button" id="view-book" class="mview-btn" aria-pressed="false">
+            <svg class="ico" aria-hidden="true"><use href="#i-book"/></svg>Book</button>
+          <button type="button" id="view-board" class="mview-btn is-active" aria-pressed="true">
+            <svg class="ico" aria-hidden="true"><use href="#i-list"/></svg>Board</button>
+        </div>
         <form id="menu-search-form" class="msearch" role="search" aria-label="Search the menu">
           <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
           <input id="menu-search" type="search" placeholder="Search the board… try “halloumi” or 21"
@@ -499,6 +507,31 @@
         </nav>
       </div>
       <p class="shell" id="search-count" role="status" aria-live="polite"></p>
+    </div>
+
+    <!-- The classic menu book. Pages are BUILT from the board below at load,
+         so there is exactly one copy of the menu data in this file. With JS
+         off this block stays hidden and the board stays visible; in book
+         view the board is display:none so assistive tech never reads the
+         menu twice. Searching or picking a category switches to the board,
+         because those tools operate on the flat list. -->
+    <div class="book-wrap" id="book-wrap" hidden>
+      <div class="book-scene">
+        <div class="book is-closed" id="book" aria-label="Menu, presented as a book">
+          <div class="book-base" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="book-ui">
+        <button type="button" id="bk-prev" class="bk-btn" aria-label="Previous page" disabled>
+          <svg class="ico" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>
+        </button>
+        <p id="bk-status" role="status" aria-live="polite">Front cover — open the menu</p>
+        <button type="button" id="bk-next" class="bk-btn" aria-label="Next page">
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </button>
+      </div>
+      <p class="book-hint">Tap the pages, swipe, or use your arrow keys — or switch to
+         the full board to search and filter.</p>
     </div>
 
     <div class="shell" id="menu-groups">
