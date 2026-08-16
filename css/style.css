@@ -865,7 +865,7 @@ button{font:inherit;cursor:pointer;}
 .visit-col{display:flex;flex-direction:column;justify-content:center;}
 /* the column is a flex container so it can centre against the map;
    without this the Get Directions button stretches to its full width */
-.visit-col > .btn{align-self:flex-start;}
+.visit-col > .btn,.visit-col > .visit-ctas{align-self:flex-start;}
 .info-list{margin:26px 0 32px;}
 .info-list li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--cream-200);}
 .info-list .ico{width:1.3em;height:1.3em;color:var(--gold-700);margin-top:4px;}
@@ -873,6 +873,14 @@ button{font:inherit;cursor:pointer;}
   text-transform:uppercase;color:var(--ink-600);margin-bottom:3px;}
 .info-list span{color:var(--ink-900);font-size:.97rem;line-height:1.55;}
 .info-list a{color:var(--blue-700);font-weight:700;}
+.mini-btn{display:inline-block;margin-top:8px;padding:.35em .9em;
+  border:1px solid var(--cream-300);border-radius:var(--r-full);background:var(--cream-50);
+  font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--ink-700);
+  transition:border-color var(--t-fast) var(--e-soft),color var(--t-fast) var(--e-soft),
+             background var(--t-fast) var(--e-soft);}
+.mini-btn:hover{border-color:var(--gold-500);color:var(--blue-900);}
+.mini-btn.is-done{background:var(--gold-100);border-color:var(--gold-500);color:var(--gold-700);}
+.visit-ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
 .info-list a:hover{text-decoration:underline;}
 /* The map gets the same double hairline as the platter cards, so it
    reads as part of the set rather than a pasted-in widget. */
@@ -1246,6 +1254,22 @@ button{font:inherit;cursor:pointer;}
   padding-left var(--t-mid) var(--e-out);}
 #search-count:not(:empty){padding-bottom:10px;}
 #menu-groups .dish.is-off,#menu-groups .plist > li.is-off{display:none;}
+
+/* ── dietary view: only the dishes the board itself tags ── */
+#menu-groups.is-veg .dish:not(:has(.tag)){display:none;}
+#menu-groups.is-veg .plist > li{display:none;}
+#menu-groups.is-veg .mgroup:not(:has(.dish .tag)){display:none;}
+#menu-groups.is-veg .mgroup:has(> .dish-photo) > .dish-photo{position:static;}
+.veg-note{display:none;max-width:68ch;margin:0 auto clamp(24px,3vw,36px);
+  padding:16px 22px;background:var(--cream-100);border-left:2px solid var(--gold-500);
+  font-size:.9rem;color:var(--ink-700);}
+.veg-note b{color:var(--ink-900);}
+#menu-groups.is-veg .veg-note{display:block;}
+.chip-diet{display:inline-flex;align-items:center;gap:.45em;border-color:var(--gold-500);
+  color:var(--gold-700);}
+.chip-diet .ico{width:.95em;height:.95em;}
+.chip-diet:hover{color:var(--gold-700);border-color:var(--gold-600);background:var(--gold-100);}
+.chip-diet.is-active{background:var(--gold-600);border-color:var(--gold-600);color:#1d1502;}
 #menu-groups .mgroup.is-empty{display:none;}
 /* while searching, a sticky side photo over a two-item list looks absurd */
 .is-searching .mgroup:has(> .dish-photo) > .dish-photo{position:static;}
@@ -1822,10 +1846,12 @@ button{font:inherit;cursor:pointer;}
   /* the board itself */
   #menu-groups .mgroup.is-hidden{display:block !important;}   /* print every category */
   #menu-groups.is-booked{display:block !important;}           /* book mode prints the board */
-  /* and every dish: a search left running must not thin out the print */
-  #menu-groups .mgroup.is-empty{display:block !important;}
-  #menu-groups .dish.is-off{display:block !important;}
-  #menu-groups .plist > li.is-off{display:flex !important;}
+  /* and every dish: search, category or dietary state left active must
+     not thin out the print — restore all rows unconditionally */
+  #menu-groups .mgroup{display:block !important;}
+  #menu-groups .dish{display:block !important;}
+  #menu-groups .plist > li{display:flex !important;}
+  .veg-note{display:none !important;}
   .mgroup{break-inside:auto;margin-bottom:6mm;display:block !important;}
   .mhead{text-align:left !important;margin-bottom:3mm;}
   .dishes{grid-template-columns:1fr 1fr !important;gap:0 8mm !important;}
@@ -1849,6 +1875,16 @@ button{font:inherit;cursor:pointer;}
     content:"Pitta Corner · 43 High Road, Wood Green, London N22 6BH · 020 8826 9594 · open every day 8:00–23:00";
     display:block;font-weight:700;font-size:11pt;
     padding-bottom:3mm;margin-bottom:6mm;border-bottom:1.5pt solid #000;}
+}
+
+/* the printed menu carries its own way back to the live one */
+.print-qr{display:none;}
+@media print{
+  .print-qr{display:flex !important;align-items:center;gap:6mm;
+    margin-top:8mm;padding-top:4mm;border-top:1pt solid #000;
+    break-inside:avoid;}
+  .print-qr img{width:22mm;height:22mm;}
+  .print-qr p{margin:0;font-size:9pt;max-width:70mm;}
 }
 
 /* ═══════════ REDUCED MOTION ═══════════ */

@@ -501,6 +501,8 @@
         </form>
         <nav class="filter" id="filter" aria-label="Menu categories">
           <button class="chip is-active" data-cat="all" aria-pressed="true">All</button>
+          <button class="chip chip-diet" data-cat="veg" aria-pressed="false">
+            <svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg>Veg &amp; Vegan</button>
           <button class="chip" data-cat="specials" aria-pressed="false">Specials</button>
           <button class="chip" data-cat="fish" aria-pressed="false">Fish</button>
           <button class="chip" data-cat="wraps" aria-pressed="false">Pita Wraps</button>
@@ -542,6 +544,10 @@
     </div>
 
     <div class="shell" id="menu-groups">
+
+      <p class="veg-note">Showing the dishes the board tags <b>Vegetarian</b> or
+         <b>Vegan</b>. Several salads, dips and sides are meat-free too — ask a
+         member of staff about ingredients and allergens.</p>
 
       <!-- PITTA CORNER SPECIALS -->
       <section class="mgroup" data-cat="specials">
@@ -1079,7 +1085,8 @@
         </p>
         <ul class="info-list stagger">
           <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
-            <div><strong>Address</strong><span>43 High Road, Wood Green<br>London N22 6BH</span></div></li>
+            <div><strong>Address</strong><span>43 High Road, Wood Green<br>London N22 6BH</span>
+              <button type="button" id="copy-addr" class="mini-btn" aria-live="polite">Copy address</button></div></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
             <div><strong>Phone</strong><span><a href="tel:+442088269594">020 8826 9594</a></span></div></li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>
@@ -1088,7 +1095,10 @@
           <li><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
             <div><strong>Getting here</strong><span>A few minutes' walk from Wood Green<br>station, on the High Road parade</span></div></li>
         </ul>
-        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Pitta+Corner+43+High+Road+Wood+Green+London+N22+6BH" target="_blank" rel="noopener">Get Directions<span class="visually-hidden"> (opens in a new tab)</span></a>
+        <div class="visit-ctas">
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Pitta+Corner+43+High+Road+Wood+Green+London+N22+6BH" target="_blank" rel="noopener">Get Directions<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="btn btn-line" href="pitta-corner.vcf" download="pitta-corner.vcf">Save our contact</a>
+        </div>
       </div>
       <div class="map reveal" data-delay="2">
         <iframe title="Map showing Pitta Corner at 43 High Road, Wood Green, London"
@@ -1112,6 +1122,13 @@
       </p>
     </div>
   </section>
+
+  <!-- print only: a printed menu that can reopen itself -->
+  <div class="print-qr" aria-hidden="true">
+    <img src="icons/qr-menu.svg" alt="" width="96" height="96">
+    <p>This menu lives at <b>vlxner.github.io/PittaCorner</b> — scan to reopen it,
+       search every dish, and check today's opening status.</p>
+  </div>
 
 </main>
 

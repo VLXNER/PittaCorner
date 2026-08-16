@@ -80,8 +80,13 @@
       chip.scrollIntoView({ block: 'nearest', inline: 'center',
         behavior: reduced.matches ? 'auto' : 'smooth' });
 
-      const apply = () => groups.forEach(g =>
-        g.classList.toggle('is-hidden', cat !== 'all' && g.dataset.cat !== cat));
+      const veg = cat === 'veg';
+      const apply = () => {
+        const brd = $('#menu-groups');
+        if (brd) brd.classList.toggle('is-veg', veg);
+        groups.forEach(g =>
+          g.classList.toggle('is-hidden', !veg && cat !== 'all' && g.dataset.cat !== cat));
+      };
 
       if (document.startViewTransition && !reduced.matches) {
         document.startViewTransition(apply);
@@ -168,7 +173,9 @@
     const restoreChips = () => {
       const active = filter && filter.querySelector('.chip.is-active');
       const cat = (active && active.dataset.cat) || 'all';
-      allGroups.forEach(g => g.classList.toggle('is-hidden', cat !== 'all' && g.dataset.cat !== cat));
+      const veg = cat === 'veg';
+      board.classList.toggle('is-veg', veg);
+      allGroups.forEach(g => g.classList.toggle('is-hidden', !veg && cat !== 'all' && g.dataset.cat !== cat));
     };
     const apply = raw => {
       const q = norm(raw.trim());
@@ -182,6 +189,7 @@
         return;
       }
       allGroups.forEach(g => g.classList.remove('is-hidden'));
+      board.classList.remove('is-veg');       // search runs over the whole board
       let n = 0;
       rows.forEach(r => {
         const hit = r.text.includes(q) || r.no === q;
@@ -656,6 +664,40 @@
       d.open = false; delete d.dataset.printOpened;
     });
   });
+
+  /* ── Copy address ── */
+  const copyBtn = $('#copy-addr');
+  if (copyBtn) {
+    const ADDR = '43 High Road, Wood Green, London N22 6BH';
+    copyBtn.addEventListener('click', async () => {
+      let ok = false;
+      try { await navigator.clipboard.writeText(ADDR); ok = true; }
+      catch {
+        const ta = document.createElement('textarea');
+        ta.value = ADDR; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.append(ta); ta.select();
+        try { ok = document.execCommand('copy'); } catch { /* leave ok false */ }
+        ta.remove();
+      }
+      copyBtn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+      copyBtn.classList.toggle('is-done', ok);
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy address';
+        copyBtn.classList.remove('is-done');
+      }, 2200);
+    });
+  }
+
+  /* ── Offline menu ──
+     Network-first for the page itself so a deploy is never stale;
+     cache-first for media. See sw.js. localhost counts as a secure
+     context, which is how the tests exercise it. */
+  if ('serviceWorker' in navigator &&
+      (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => { /* no SW, no harm */ });
+    });
+  }
 
   /* ── Footer year ── */
   const year = $('#year');
