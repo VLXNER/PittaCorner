@@ -30,6 +30,18 @@ No build step, no dependencies, no package.json. Run it with
 
 ## Capabilities
 
+- **The menu book** — the menu presented as a classic bound book: navy
+  boards, gold frame, badge on the cover, cream leaves that turn in 3D
+  around the spine, spread by spread through every section to a "Kali
+  orexi" back page. Pages are harvested from the board markup at load, so
+  the menu exists once in the file. Desktop turns seven physical leaves;
+  under 760px the same page nodes feed a single-page pager. Arrows,
+  tapping the pages, swipe and arrow keys all work. The flat board stays
+  the record — a toggle sits by the search box, searching or filtering
+  switches to the board automatically, print always prints the board, and
+  with JS off the board is simply what you get. Only the two facing pages
+  are visible to find-in-page and assistive tech; the rest of the stack
+  is hidden paper until its turn.
 - **Menu search** — name, ingredient or board number, accent-insensitive,
   with a live match count. Search overrides the category chips; choosing a
   chip clears the search.
@@ -194,6 +206,19 @@ button did nothing — the animation has to live on the `::before` itself.
 `id="top"`, and a sticky header is by definition already at the viewport top,
 so `href="#top"` had nothing to do. With no element named `top`, the HTML spec
 falls back to scrolling to the document start — so the id is gone.
+
+**Stacked 3D pages are still content unless you hide them.** Every page in the
+book's pile was exposed at once: find-in-page matched text the eye could not
+see, screen readers waded through thirteen occluded pages, and the pixel
+contrast auditor rightly reported cream text failing against the navy cover
+lying on top of it. Only the two facing pages are `visibility: visible`; the
+engine flips visibility as leaves turn.
+
+**A scroll-timeline animation on an element overrides that element's own
+transform for as long as the timeline holds it.** The book's entrance
+animation included the closed-state `translateX` in its `from` keyframe and
+sat on `.book` itself — which pinned the mobile book 76px off the left edge
+whenever the timeline was at progress 0. Entrances live on a wrapper.
 
 ## Design skills (`.claude/skills/`)
 
