@@ -617,6 +617,33 @@
     }
   }
 
+  /* ── Ambient hero loop ──
+     Activated by data-video="…" on .hero-media — nothing runs and
+     nothing is fetched while the attribute is absent. The video sits
+     under the photo and fades in only once it can actually play, so
+     the worst case on any device is exactly what ships today: the
+     photograph. Hard-gated by reduced motion, reduced data and
+     Save-Data; muted+playsinline so mobile browsers allow autoplay. */
+  const heroMedia = $('.hero-media[data-video]');
+  if (heroMedia &&
+      !reduced.matches &&
+      !matchMedia('(prefers-reduced-data: reduce)').matches &&
+      !(navigator.connection && navigator.connection.saveData)) {
+    const v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+    v.setAttribute('muted', '');            // property alone can miss iOS autoplay
+    v.setAttribute('aria-hidden', 'true');
+    v.preload = 'metadata';
+    v.className = 'hero-video';
+    v.src = heroMedia.dataset.video;
+    v.addEventListener('canplay', () => {
+      const p = v.play();
+      if (p) p.then(() => v.classList.add('is-playing')).catch(() => v.remove());
+    });
+    v.addEventListener('error', () => v.remove());
+    heroMedia.append(v);
+  }
+
   /* ── FAQ prints open ──
      Closed <details> content does not print and CSS cannot open it, so
      the handoff happens here: open everything before printing, restore

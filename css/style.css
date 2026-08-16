@@ -276,6 +276,11 @@ button{font:inherit;cursor:pointer;}
   justify-content:flex-end;isolation:isolate;overflow:hidden;background:var(--blue-900);
   view-timeline-name:--hero;view-timeline-axis:block;}
 .hero-media{position:absolute;inset:0;z-index:-2;}
+/* the ambient loop sits over the photo and fades in only once playing;
+   the photograph underneath is always the poster and the fallback */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 62%;opacity:0;transition:opacity 900ms var(--e-soft);}
+.hero-video.is-playing{opacity:1;}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 62%;}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg,rgba(8,20,44,.82) 0%,rgba(8,20,44,.42) 32%,
