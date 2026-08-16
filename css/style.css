@@ -335,53 +335,61 @@ button{font:inherit;cursor:pointer;}
   }
 }
 
-/* ═══════════ STORY ═══════════ */
-.story-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(36px,6vw,80px);
-  align-items:center;}
-.story-copy p{color:var(--ink-700);}
-/* A dropped initial. It is the oldest trick in restaurant printing and it
-   does more for the page than any amount of gradient. */
-.story-copy .drop::first-letter{
-  float:left;font-family:var(--font-display);font-weight:600;
-  font-size:3.5em;line-height:.78;color:var(--blue-900);
-  padding:.06em .1em 0 0;}
-.pull{position:relative;padding:2px 0 2px 46px;margin:30px 0;
-  font-family:var(--font-display);font-size:1.28rem;font-style:italic;
-  line-height:1.55;color:var(--blue-900);}
-.pull::before{content:"\201C";position:absolute;left:0;top:.06em;
-  font-family:var(--font-display);font-style:normal;font-size:3.4em;line-height:.72;
-  color:var(--gold-500);}
+/* ═══════════ WHAT WE DO ═══════════ */
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,28px);}
+.offer-card{position:relative;background:var(--cream-50);border:1px solid var(--cream-300);
+  border-radius:var(--r-md);padding:clamp(24px,2.8vw,36px);
+  display:flex;flex-direction:column;align-items:flex-start;
+  transition:transform var(--t-mid) var(--e-out),border-color var(--t-mid) var(--e-soft),
+             box-shadow var(--t-mid) var(--e-soft);}
+.offer-card::before{content:"";position:absolute;inset:7px;border:1px solid var(--gold-100);
+  border-radius:calc(var(--r-md) - 3px);pointer-events:none;}
+.offer-card > *{position:relative;}
+.offer-card:hover{transform:translateY(-5px);border-color:var(--gold-500);
+  box-shadow:0 26px 50px -28px rgba(20,27,40,.5);}
+.offer-when{display:inline-flex;align-items:center;gap:.55em;margin-bottom:14px;
+  padding:.35em .95em;border-radius:var(--r-full);background:var(--gold-100);
+  font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  /* gold-700 on the gold-100 pill measures 4.49:1 — a hundredth short;
+     this darker leaf-brown clears it with margin */
+  color:#6b4e07;}
+.offer-when .ico{width:1.15em;height:1.15em;}
+.offer-card h3{font-size:clamp(1.25rem,1.8vw,1.5rem);margin-bottom:.45em;}
+.offer-card p{flex:1 1 auto;margin:0 0 1.1em;font-size:.93rem;color:var(--ink-700);line-height:1.65;}
+.offer-link{display:inline-flex;align-items:center;gap:.5em;font-weight:700;
+  font-size:.88rem;color:var(--blue-700);}
+.offer-link .ico{transition:transform var(--t-mid) var(--e-out);}
+.offer-link:hover{color:var(--blue-900);}
+.offer-link:hover .ico{transform:translateX(4px);}
 
-/* The shopfront and the hours card, overlapped and offset rather than
-   stacked in a tidy column — the arrangement is what makes it read as a
-   spread instead of a form. */
-.story-stack{position:relative;}
-.story-photo{margin:0 0 0 auto;width:92%;overflow:hidden;overflow:clip;border-radius:var(--r-md);
-  border:1px solid var(--cream-300);background:var(--cream-200);aspect-ratio:1;
-  box-shadow:0 34px 60px -34px rgba(20,27,40,.45);}
-.story-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-.story-stack .card-blue{position:relative;z-index:2;
-  width:min(100%,340px);margin:-84px auto 0 0;padding:clamp(24px,2.6vw,32px);
-  box-shadow:0 40px 72px -30px rgba(15,42,92,.62);}
+.offer-ways{margin-top:clamp(28px,4vw,44px);padding-top:clamp(20px,2.6vw,30px);
+  border-top:1px solid var(--cream-300);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,24px);}
+.offer-ways li{display:flex;gap:12px;align-items:flex-start;}
+.offer-ways .ico{flex:0 0 auto;width:1.25em;height:1.25em;color:var(--gold-700);margin-top:3px;}
+.offer-ways strong{display:block;font-size:.7rem;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-600);margin-bottom:2px;}
+.offer-ways span{font-size:.93rem;color:var(--ink-900);line-height:1.5;}
+.offer-ways a{color:var(--blue-700);font-weight:700;}
+.offer-ways a:hover{text-decoration:underline;}
 
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
-    .story-stack{view-timeline-name:--story;view-timeline-axis:block;}
-    .story-photo img{animation:story-pan linear both;
-      animation-timeline:--story;animation-range:cover;}
-    @keyframes story-pan{from{transform:scale(1.12) translateY(-3%);}
-                         to  {transform:scale(1.12) translateY(3%);}}
-    .story-stack .card-blue{animation:story-card linear both;
-      animation-timeline:--story;animation-range:cover;}
-    @keyframes story-card{from{transform:translateY(24px);}
-                          to  {transform:translateY(-18px);}}
+    .offer-card:nth-child(1){animation:offer-in linear both;animation-timeline:view();
+      animation-range:cover 0% cover 16%;}
+    .offer-card:nth-child(2){animation:offer-in linear both;animation-timeline:view();
+      animation-range:cover 3% cover 19%;}
+    .offer-card:nth-child(3){animation:offer-in linear both;animation-timeline:view();
+      animation-range:cover 6% cover 22%;}
+    @keyframes offer-in{from{opacity:0;transform:translateY(30px);}
+                        to{opacity:1;transform:none;}}
   }
 }
 
-@media (max-width:1040px){
-  .story-photo{width:100%;}
-  .story-stack .card-blue{width:100%;margin:-52px 0 0;}
-}
+@media (max-width:1040px){ .offer-grid{grid-template-columns:1fr;}
+  .offer-ways{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .offer-ways{grid-template-columns:1fr;} }
+
 .card-blue{background:radial-gradient(130% 110% at 22% 0%,#1a3e7f,#0f2a5c 58%,#0d2450);
   color:var(--cream-50);padding:clamp(30px,4vw,44px);
   border-radius:var(--r-md);}
@@ -435,7 +443,7 @@ button{font:inherit;cursor:pointer;}
    column so they never crowd the text. Hidden below 1100px, where there
    is no margin to float into and they would only steal bandwidth.
    Each rides its own view-timeline, drifting up or down by its --spd. */
-.section,.story,.signature{position:relative;}
+.section,.signature{position:relative;}
 .floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;overflow:clip;z-index:0;}
 .floater{position:absolute;top:var(--t);width:var(--sz);height:var(--sz);
   border-radius:50%;overflow:hidden;
@@ -447,7 +455,7 @@ button{font:inherit;cursor:pointer;}
 .floater img{width:100%;height:100%;object-fit:cover;display:block;}
 .on-blue .floater,.signature .floater{border-color:rgba(236,200,115,.4);}
 /* keep the reading column clear of them */
-.section > .shell,.story > .shell{position:relative;z-index:1;}
+.section > .shell{position:relative;z-index:1;}
 
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
@@ -1702,13 +1710,6 @@ button{font:inherit;cursor:pointer;}
       animation-range:entry 6% entry 42%;}
     @keyframes dc-draw{to{transform:scaleX(1);}}
 
-    /* the story pull-quote's gold mark swings in */
-    .pull{view-timeline-name:--pq;}
-    .pull::before{transform-origin:bottom left;
-      animation:pull-mark linear both;animation-timeline:--pq;
-      animation-range:entry 0% entry 70%;}
-    @keyframes pull-mark{from{opacity:0;transform:rotate(-14deg) translateY(8px);}
-                         to{opacity:1;transform:none;}}
 
     /* platter cards tilt upright as they enter */
     .platter-card:nth-child(1){animation:plt-l linear both;animation-timeline:view();
@@ -1759,7 +1760,7 @@ button{font:inherit;cursor:pointer;}
   .pillars{grid-template-columns:repeat(2,1fr);}
   .drinks-grid{grid-template-columns:repeat(2,1fr);}
   .quotes{grid-template-columns:1fr;}
-  .story-grid,.visit-grid,.platter,.burgers,.bfast-grid{grid-template-columns:1fr;}
+  .visit-grid,.platter,.burgers,.bfast-grid{grid-template-columns:1fr;}
   .dishes{grid-template-columns:1fr;}
   .order-links{grid-template-columns:repeat(2,1fr);}
 }
@@ -1836,7 +1837,7 @@ button{font:inherit;cursor:pointer;}
 
   /* screen-only furniture */
   .nav,.hero,.band,.process,.ticker,.album-section,.signature,.map,
-  .order-links,.filter-wrap,.floaters,.embers,.featured,.story-stack,
+  .order-links,.filter-wrap,.floaters,.embers,.featured,
   .reviews-grid,.quotes,.skip-link,.proc-dots,.dish-photo,
   .actionbar,#to-top,.lightbox,.open-pill,.faq-chev,.book-wrap,
   .eyebrow,.rule,.lead,.pull,.btn,.dish-ico,.dish-mark,.stars{display:none !important;}

@@ -421,7 +421,7 @@
       const titlePg = mkPage('pg-title');
       titlePg.append(badge(), el('span', 'pg-title-name', 'Pitta Corner'),
         el('span', 'pg-title-line', 'Charcoal Grill · Souvlaki · Gyros'),
-        el('p', 'pg-title-copy', 'A family kitchen on the High Road — souvla and kalamakia over open coals, chips cut by hand, dips made in-house.'),
+        el('p', 'pg-title-copy', 'Souvla and kalamakia over open coals, gyros carved to order, chips cut by hand, dips made in-house — breakfast through late dinner.'),
         el('p', 'pg-title-meta', '43 High Road, Wood Green, London N22 6BH\n020 8826 9594 · every day 8am – 11pm'));
       const infoPg = mkPage('pg-infoP');
       infoPg.append(el('h3', 'pg-h', 'Good to know'));
