@@ -498,13 +498,29 @@
         if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
         if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
       });
-      let px = null;
-      bookEl.addEventListener('pointerdown', e => { px = e.clientX; swiped = false; });
-      addEventListener('pointerup', e => {
-        if (px === null) return;
-        const dx = e.clientX - px; px = null;
-        if (Math.abs(dx) > 44) { swiped = true; go(dx < 0 ? 1 : -1); }
-      });
+      /* Swipe. On touch devices the browser owns the gesture stream and
+         will cancel pointer events mid-drag even under touch-action, so
+         touchstart/touchend are the channel there; the pointer pair only
+         serves mouse drags on non-touch screens. Never both, or one
+         swipe would turn two pages. */
+      if ('ontouchstart' in window) {
+        let tx = null;
+        bookEl.addEventListener('touchstart', e => { tx = e.touches[0].clientX; swiped = false; }, { passive: true });
+        bookEl.addEventListener('touchend', e => {
+          if (tx === null) return;
+          const dx = e.changedTouches[0].clientX - tx; tx = null;
+          if (Math.abs(dx) > 44) { swiped = true; go(dx < 0 ? 1 : -1); }
+        }, { passive: true });
+      } else {
+        let px = null;
+        bookEl.addEventListener('pointerdown', e => { px = e.clientX; swiped = false; });
+        bookEl.addEventListener('pointercancel', () => { px = null; });
+        addEventListener('pointerup', e => {
+          if (px === null) return;
+          const dx = e.clientX - px; px = null;
+          if (Math.abs(dx) > 44) { swiped = true; go(dx < 0 ? 1 : -1); }
+        });
+      }
       bookEl.addEventListener('click', e => {
         if (swiped) { swiped = false; return; }
         const r = bookEl.getBoundingClientRect();

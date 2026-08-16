@@ -1395,7 +1395,11 @@ button{font:inherit;cursor:pointer;}
 .book-wrap{padding:clamp(10px,2vw,26px) 0 0;}
 .book-scene{perspective:2600px;perspective-origin:50% 46%;}
 .book{position:relative;width:min(880px,92vw);aspect-ratio:1.38;margin:0 auto;
-  transition:transform 950ms var(--e-soft);}
+  transition:transform 950ms var(--e-soft);
+  /* claim horizontal drags for page turns; without this the browser
+     treats the swipe as a scroll pan and cancels the pointer stream
+     before pointerup ever fires on a touchscreen */
+  touch-action:pan-y;}
 /* closed, only the cover shows on the right half — slide so it reads centred */
 .book.is-closed{transform:translateX(-22%);}
 .book.is-ended{transform:translateX(22%);}
