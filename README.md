@@ -68,7 +68,7 @@ No build step, no dependencies, no package.json. Run it with
 
 ## Where the design comes from
 
-**The printed menus, not the shopfront sign.** The building carries a turquoise
+**The restaurant's own print material.** The building carries a turquoise
 script sign, but the menus the restaurant actually hands you are **royal blue,
 gold and cream**, with a circular fork-and-knife badge and the strapline
 *Restaurant · Coffee · Crepe*. That is the identity the site uses. An earlier
@@ -77,8 +77,8 @@ different business.
 
 | Source | On the site |
 | --- | --- |
-| Royal blue menu card | `--blue-900` `#0f2a5c` — panels, the hours card, the footer |
-| Gold foil badge and headings | `--gold-700` … `--gold-100` — rules, prices, numerals, the focus glow |
+| The promo flyers' bright azure field | `--blue-700` `#1b66c2` (with `--blue-900` `#0d2b55` kept for text, scrims and dark boxes) — panels, buttons, the book cover, the footer |
+| The flyers' vivid amber yellow | `--gold-700` … `--gold-100` (primary `#e8ad0a`) — rules, prices, numerals, the meander, the focus glow |
 | Cream menu paper | `--cream-50` … `--cream-300` — the page ground |
 | The circular fork-and-knife badge | Redrawn as `#i-badge`, in the header, hero and footer |
 | Numbered board items | `.dno` numerals, so you can still order by number at the counter |
