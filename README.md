@@ -1,6 +1,6 @@
 # Pitta Corner — Website
 
-A static website for **Pitta Corner**, the Greek and Cypriot grill at 43 High
+A static website for **Pitta Corner**, the charcoal grill at 43 High
 Road, Wood Green, London N22 6BH — built from the restaurant's own printed
 menus and its own photographs rather than a generic taverna template.
 

@@ -59,6 +59,7 @@
   --r-sm:6px; --r-md:10px; --r-lg:16px; --r-full:999px;
 
   --e-out:cubic-bezier(.22,1,.36,1);
+  --e-entr:cubic-bezier(.24,.66,.32,1);
   --e-soft:cubic-bezier(.4,0,.2,1);
   --t-fast:180ms; --t-mid:320ms; --t-slow:760ms;
 
@@ -299,7 +300,7 @@ button{font:inherit;cursor:pointer;}
   font-size:.74rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;
   color:var(--gold-300);}
 .hero-kicker::before,.hero-kicker::after{content:"";width:30px;height:1px;background:var(--gold-400);}
-.hero h1{color:#fff;font-size:clamp(2.9rem,7.4vw,6rem);line-height:1.02;
+.hero h1{color:#fff;font-size:clamp(3.2rem,8.4vw,6.8rem);line-height:1.02;
   letter-spacing:-.03em;margin-bottom:.32em;text-shadow:0 2px 30px rgba(0,0,0,.5);}
 .hero h1 em{font-style:italic;color:var(--gold-300);}
 .hero-lead{color:rgba(255,255,255,.92);font-size:clamp(1.02rem,1.4vw,1.2rem);
@@ -376,11 +377,11 @@ button{font:inherit;cursor:pointer;}
 
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
-    .offer-card:nth-child(1){animation:offer-in linear both;animation-timeline:view();
+    .offer-card:nth-child(1){animation:offer-in var(--e-entr) both;animation-timeline:view();
       animation-range:cover 0% cover 16%;}
-    .offer-card:nth-child(2){animation:offer-in linear both;animation-timeline:view();
+    .offer-card:nth-child(2){animation:offer-in var(--e-entr) both;animation-timeline:view();
       animation-range:cover 3% cover 19%;}
-    .offer-card:nth-child(3){animation:offer-in linear both;animation-timeline:view();
+    .offer-card:nth-child(3){animation:offer-in var(--e-entr) both;animation-timeline:view();
       animation-range:cover 6% cover 22%;}
     @keyframes offer-in{from{opacity:0;transform:translateY(30px);}
                         to{opacity:1;transform:none;}}
@@ -1018,7 +1019,7 @@ button{font:inherit;cursor:pointer;}
    simply show the final state — no fallback needed, nothing breaks. */
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
-    .shot{animation:shot-in linear both;animation-timeline:view();
+    .shot{animation:shot-in var(--e-entr) both;animation-timeline:view();
           animation-range:entry 0% entry calc(58% + var(--lag,0%));}
     @keyframes shot-in{from{opacity:0;transform:translateY(38px) scale(.94);}
                        to{opacity:1;transform:none;}}
@@ -1119,7 +1120,7 @@ button{font:inherit;cursor:pointer;}
       animation-range:contain calc(var(--i) * 20%) contain calc((var(--i) + 1) * 20%);}
     @keyframes dot-fill{from{transform:scaleX(0);}to{transform:scaleX(1);}}
     /* each card tilts upright as it reaches the middle of the run */
-    .step{animation:step-settle linear both;animation-timeline:--proc;
+    .step{animation:step-settle var(--e-entr) both;animation-timeline:--proc;
       animation-range:contain calc(var(--i) * 18%) contain calc(var(--i) * 18% + 26%);}
     /* transform only — an opacity ramp here would put the card's body
        copy below 4.5:1 for the first part of every card's run */
@@ -1204,15 +1205,15 @@ button{font:inherit;cursor:pointer;}
        timeline named on the head itself: a 1px rule or a 20px eyebrow
        has almost no view range of its own, so on view() they would each
        complete the instant they appeared. */
-    .section-head:not(.head-split){animation:head-in linear both;
+    .section-head:not(.head-split){animation:head-in var(--e-entr) both;
                   animation-timeline:view();animation-range:entry 5% entry 55%;}
     @keyframes head-in{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
 
-    .head-split > .eyebrow{animation:head-in linear both;
+    .head-split > .eyebrow{animation:head-in var(--e-entr) both;
       animation-timeline:--head;animation-range:entry 2% entry 42%;}
-    .head-split > .lead{animation:head-in linear both;
+    .head-split > .lead{animation:head-in var(--e-entr) both;
       animation-timeline:--head;animation-range:entry 14% entry 58%;}
-    .head-split > h2{animation:h-unveil linear both;
+    .head-split > h2{animation:h-unveil var(--e-entr) both;
       animation-timeline:--head;animation-range:entry 5% entry 52%;}
     @keyframes h-unveil{from{clip-path:inset(0 0 100% 0);}
                         to  {clip-path:inset(0 0 0 0);}}
@@ -1220,14 +1221,14 @@ button{font:inherit;cursor:pointer;}
       animation-timeline:--head;animation-range:entry 16% entry 64%;}
 
     /* menu photographs settle in with a slight scale */
-    .dish-photo{animation:photo-in linear both;animation-timeline:view();
+    .dish-photo{animation:photo-in var(--e-entr) both;animation-timeline:view();
                 animation-range:entry 0% entry 50%;}
     @keyframes photo-in{from{opacity:0;transform:translateY(26px) scale(.97);}
                         to{opacity:1;transform:none;}}
 
     /* cards and ratings lift a touch */
     .platter-card,.burger-card,.rating-hero,.rating-list li,.quote{
-      animation:card-in linear both;animation-timeline:view();
+      animation:card-in var(--e-entr) both;animation-timeline:view();
       animation-range:entry 5% entry 50%;}
     @keyframes card-in{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
 
@@ -1486,8 +1487,8 @@ button{font:inherit;cursor:pointer;}
 .book.is-ended::before,.book.is-ended::after{opacity:0;}
 
 .leaf{position:absolute;top:0;right:0;width:50%;height:100%;
-  transform-origin:left center;transform-style:preserve-3d;
-  transition:transform 1000ms var(--e-soft);}
+  transform-origin:left center;transform-style:preserve-3d;will-change:transform;
+  transition:transform 1050ms cubic-bezier(.32,.72,.24,1.02);}
 .leaf.is-turned{transform:rotateY(-180deg);}
 .leaf-face{position:absolute;inset:0;overflow:hidden;
   -webkit-backface-visibility:hidden;backface-visibility:hidden;
@@ -1598,7 +1599,7 @@ button{font:inherit;cursor:pointer;}
        itself would override the closed/open translateX for as long as
        the timeline holds it, which pinned the mobile book off-centre */
     .book-scene{view-timeline-name:--bk;
-      animation:book-in linear both;animation-timeline:--bk;
+      animation:book-in var(--e-entr) both;animation-timeline:--bk;
       animation-range:entry 0% entry 55%;}
     @keyframes book-in{from{opacity:0;transform:translateY(44px) rotateX(10deg);}
                        to{opacity:1;}}
@@ -1635,8 +1636,8 @@ button{font:inherit;cursor:pointer;}
   .pg-info-note{font-size:.7rem;}
 
   @media (prefers-reduced-motion: no-preference){
-    .mob-holder.page-out{animation:pgout 200ms var(--e-soft) both;}
-    .mob-holder.page-in{animation:pgin 260ms var(--e-out) both;}
+    .mob-holder.page-out{animation:pgout 210ms var(--e-soft) both;}
+    .mob-holder.page-in{animation:pgin 320ms var(--e-out) both;}
     @keyframes pgout{to{opacity:0;transform:translateX(-26px) rotateY(-9deg);}}
     @keyframes pgin{from{opacity:0;transform:translateX(30px) rotateY(7deg);}to{opacity:1;}}
   }
@@ -1656,7 +1657,7 @@ button{font:inherit;cursor:pointer;}
 
     /* menu, breakfast and drinks rows slide in one after another —
        each row has its own view range, so the cascade is natural */
-    .dish,.plist > li{animation:list-row-in linear both;animation-timeline:view();
+    .dish,.plist > li{animation:list-row-in var(--e-entr) both;animation-timeline:view();
       /* cover-based: a 36px row's entry span is ~12px of scroll, which
          reads as a pop — cover 12% is ~110px, an actual fade */
       animation-range:cover 0% cover 12%;}
@@ -1666,7 +1667,7 @@ button{font:inherit;cursor:pointer;}
     /* pillar icons pop up out of their captions */
     .pillar{view-timeline-name:--pl;}
     .pillar .ico{transform-origin:50% 100%;
-      animation:pillar-pop linear both;animation-timeline:--pl;
+      animation:pillar-pop var(--e-entr) both;animation-timeline:--pl;
       animation-range:entry 10% entry 62%;}
     @keyframes pillar-pop{
       0%{opacity:0;transform:scale(.4) rotate(-10deg);}
@@ -1674,9 +1675,9 @@ button{font:inherit;cursor:pointer;}
       100%{opacity:1;transform:none;}}
 
     /* order cards arrive from alternating sides */
-    .order-card:nth-child(odd){animation:oc-in-l linear both;animation-timeline:view();
+    .order-card:nth-child(odd){animation:oc-in-l var(--e-entr) both;animation-timeline:view();
       animation-range:cover 0% cover 18%;}
-    .order-card:nth-child(even){animation:oc-in-r linear both;animation-timeline:view();
+    .order-card:nth-child(even){animation:oc-in-r var(--e-entr) both;animation-timeline:view();
       animation-range:cover 0% cover 18%;}
     @keyframes oc-in-l{from{opacity:0;transform:translateX(-36px) rotate(-1.4deg);}
                        to{opacity:1;transform:none;}}
@@ -1691,13 +1692,13 @@ button{font:inherit;cursor:pointer;}
     .stars .ico:nth-child(3){--sd:10%;}
     .stars .ico:nth-child(4){--sd:15%;}
     .stars .ico:nth-child(5){--sd:20%;}
-    .rating-hero .stars .ico{animation:star-in linear both;animation-timeline:--rh;
+    .rating-hero .stars .ico{animation:star-in var(--e-entr) both;animation-timeline:--rh;
       animation-range:entry calc(8% + var(--sd,0%)) entry calc(34% + var(--sd,0%));}
-    .quote .stars .ico{animation:star-in linear both;animation-timeline:--qt;
+    .quote .stars .ico{animation:star-in var(--e-entr) both;animation-timeline:--qt;
       animation-range:entry calc(8% + var(--sd,0%)) entry calc(40% + var(--sd,0%));}
     @keyframes star-in{from{opacity:0;transform:scale(.2) rotate(-45deg);}
                        to{opacity:1;transform:none;}}
-    .quote::before{animation:qmark-in linear both;animation-timeline:--qt;
+    .quote::before{animation:qmark-in var(--e-entr) both;animation-timeline:--qt;
       animation-range:entry 14% entry 60%;}
     @keyframes qmark-in{from{opacity:0;transform:translateY(14px) rotate(-8deg);}
                         to{opacity:1;transform:none;}}
@@ -1713,9 +1714,9 @@ button{font:inherit;cursor:pointer;}
 
 
     /* platter cards tilt upright as they enter */
-    .platter-card:nth-child(1){animation:plt-l linear both;animation-timeline:view();
+    .platter-card:nth-child(1){animation:plt-l var(--e-entr) both;animation-timeline:view();
       animation-range:entry 0% entry 50%;}
-    .platter-card:nth-child(2){animation:plt-r linear both;animation-timeline:view();
+    .platter-card:nth-child(2){animation:plt-r var(--e-entr) both;animation-timeline:view();
       animation-range:entry 0% entry 50%;}
     @keyframes plt-l{from{opacity:0;transform:translateY(30px) rotate(-1.2deg);}
                      to{opacity:1;transform:none;}}

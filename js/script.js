@@ -220,6 +220,15 @@
       }
     };
     sinput.addEventListener('input', () => apply(sinput.value));
+    /* the pro-user shortcut: press / anywhere to search the menu */
+    document.addEventListener('keydown', e => {
+      if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target.closest('input, textarea, select, [contenteditable]')) return;
+      e.preventDefault();
+      document.querySelector('#menu').scrollIntoView(
+        { behavior: reduced.matches ? 'auto' : 'smooth', block: 'start' });
+      sinput.focus({ preventScroll: true });
+    });
     sform.addEventListener('submit', e => e.preventDefault());
     sclear.addEventListener('click', () => { sinput.value = ''; apply(''); sinput.focus(); });
     sinput.addEventListener('keydown', e => {
@@ -432,8 +441,8 @@
         el('p', 'pg-info-note', 'Lamb Souvla (whole lamb on the spit) is pre-order only — call ahead on 020 8826 9594.'),
         el('p', 'pg-info-note', 'Order in: Just Eat · Deliveroo · Uber Eats. Or call and collect it hot.'));
       const endPg = mkPage('pg-end');
-      endPg.append(badge(), el('span', 'pg-end-script', 'Καλή όρεξη'),
-        el('p', 'pg-title-copy', 'Enjoy your meal — and see you on the High Road.'));
+      endPg.append(badge(), el('span', 'pg-end-script', 'Enjoy your meal'),
+        el('p', 'pg-title-copy', 'And see you on the High Road.'));
 
       const faces = [
         { el: cover, label: 'Cover' },
@@ -450,7 +459,7 @@
       P('Dips & Sweet', [mkSec(cats.dips.title, cats.dips.rows), mkSec(cats.sweet.title, cats.sweet.rows)]);
       P('To Share', [mkSec('To Share', shareRows)]);
       faces.push({ el: infoPg, label: 'Good to know' });
-      faces.push({ el: endPg, label: 'Kali orexi' });
+      faces.push({ el: endPg, label: 'See you soon' });
 
       /* engine */
       const bkPrev = $('#bk-prev'), bkNext = $('#bk-next'), bkStatus = $('#bk-status');
@@ -571,7 +580,7 @@
         bookEl.addEventListener('touchend', e => {
           if (tx === null) return;
           const dx = e.changedTouches[0].clientX - tx; tx = null;
-          if (Math.abs(dx) > 44) { swiped = true; go(dx < 0 ? 1 : -1); }
+          if (Math.abs(dx) > 36) { swiped = true; go(dx < 0 ? 1 : -1); }
         }, { passive: true });
       } else {
         let px = null;
@@ -580,7 +589,7 @@
         addEventListener('pointerup', e => {
           if (px === null) return;
           const dx = e.clientX - px; px = null;
-          if (Math.abs(dx) > 44) { swiped = true; go(dx < 0 ? 1 : -1); }
+          if (Math.abs(dx) > 36) { swiped = true; go(dx < 0 ? 1 : -1); }
         });
       }
       bookEl.addEventListener('click', e => {
